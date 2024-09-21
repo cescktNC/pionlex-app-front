@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "a803",
+      "username": "rer",
+      "password": "rete"
+    },
+    {
+      "id": "5f5b",
+      "username": "mnbvcx",
+      "password": "mnbvcx"
+    },
+    {
+      "id": "8bbb",
+      "username": "pppp",
+      "password": "ppppp"
+    }
+  ],
+  "data": [
+    {
+      "token": "dsffdsfsfds"
+    }
+  ]
+}

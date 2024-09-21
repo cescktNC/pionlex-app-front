@@ -1,0 +1,72 @@
+// Configuration
+@use '../variables/colors' as vars-colors;
+@use '../variables/forms' as vars-forms;
+@use '../mixins/forms' as mixins-forms;
+
+// Local Variables
+// Login Form
+$login-form: map-get(vars-forms.$forms, 'login');
+$login-form-title: map-get($login-form, 'title');
+$login-form-input: map-get($login-form, 'input');
+$login-form-checkbox: map-get($login-form, 'checkbox');
+$login-form-radio: map-get($login-form, 'radio');
+$login-form-select-option: map-get($login-form, 'select-option');
+$login-form-label: map-get($login-form, 'label');
+$login-form-link: map-get($login-form, 'link');
+$login-form-button: map-get($login-form, 'button');
+$login-form-icon: map-get($login-form, 'icon');
+$login-form-message-error: map-get($login-form, 'errorMessage');
+
+// Styles
+.form--login--register {
+  .form__title {
+    @include mixins-forms.form-title($login-form-title);
+  }
+
+  .form__input {
+    @include mixins-forms.form-input($login-form-input);
+  }
+
+  .form__input__date {
+    position: relative;
+    .bi-calendar {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: map-get(vars-colors.$colors, 'white-opacity');
+    }
+  }
+
+  option {
+    @include mixins-forms.form-select-option($login-form-select-option);
+  }
+
+  .form__checkbox {
+    @include mixins-forms.form-checkbox($login-form-checkbox);
+  }
+
+  .form__radio {
+    @include mixins-forms.form-radio($login-form-radio);
+  }
+
+  .form__label {
+    @include mixins-forms.form-label($login-form-label);
+  }
+
+  .form__link {
+    @include mixins-forms.form-link($login-form-link);
+  }
+
+  .form__button {
+    @include mixins-forms.form-button($login-form-button);
+  }
+
+  .form__icon {
+    @include mixins-forms.form-icon($login-form-icon);
+  }
+
+  .form__error__message {
+    @include mixins-forms.form-error-message($login-form-message-error);
+  }
+}

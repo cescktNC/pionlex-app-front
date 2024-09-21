@@ -1,0 +1,91 @@
+@mixin form-title($title-type) {
+  font-family: map-get($title-type, 'font-family');
+  font-weight: map-get($title-type, 'font-weight');
+  color: map-get($title-type, 'color');
+}
+
+@mixin form-input($input-type) {
+  border: map-get($input-type, 'border');
+  background-color: map-get($input-type, 'bg');
+  margin-bottom: map-get($input-type, 'mb');
+  font-family: map-get($input-type, 'font-family');
+  font-size: map-get($input-type, 'font-size');
+  font-weight: map-get($input-type, 'font-weight');
+  color: map-get($input-type, 'color');
+  transition: map-get($input-type, 'transition');
+
+  &::placeholder {
+    color: map-get(map-get($input-type, 'placeholder'), 'color');
+  }
+
+  &:focus {
+    box-shadow: map-get(map-get($input-type, 'focus'), 'box-shadow');
+    border-color: map-get(map-get($input-type, 'focus'), 'border-color');
+  }
+}
+
+@mixin form-checkbox($checkbox-type) {
+  border: map-get($checkbox-type, 'border');
+  background-color: map-get($checkbox-type, 'bg');
+  transition: map-get($checkbox-type, 'transition');
+
+  &:focus {
+    box-shadow: map-get(map-get($checkbox-type, 'focus'), 'box-shadow');
+    border-color: map-get(map-get($checkbox-type, 'focus'), 'border-color');
+  }
+}
+
+@mixin form-radio($radio-type) {
+  border: map-get($radio-type, 'border');
+  background-color: map-get($radio-type, 'bg');
+  width: map-get($radio-type, 'width');
+  height: map-get($radio-type, 'height');
+  &:checked {
+    box-shadow: map-get(map-get($radio-type, 'checked'), 'box-shadow');
+  }
+}
+
+@mixin form-select-option($select-option-type) {
+  background-color: map-get($select-option-type, 'bg');;
+}
+
+@mixin form-label($label-type) {
+  font-family: map-get($label-type, 'font-family');
+  font-size: map-get($label-type, 'font-size');
+  font-weight: map-get($label-type, 'font-weight');
+  color: map-get($label-type, 'color');
+}
+
+@mixin form-link($link-type) {
+  font-size: map-get($link-type, 'font-size');
+  font-weight: map-get($link-type, 'font-weight');
+  opacity: map-get($link-type, 'opacity');
+  color: map-get($link-type, 'color');
+}
+
+@mixin form-button($button-type) {
+  background-color: map-get($button-type, 'bg');
+  width: map-get($button-type, 'width');
+  height: map-get($button-type, 'height');
+  font-size: map-get($button-type, 'font-size');
+  font-weight: map-get($button-type, 'font-weight');
+  font-family: map-get($button-type, 'font-family');
+  color: map-get($button-type, 'color');
+  transition: map-get($button-type , 'transition');
+
+  &:hover {
+    opacity: map-get(map-get($button-type, 'hover'), 'opacity');
+  }
+}
+
+@mixin form-icon($icon-type) {
+  font-size: map-get($icon-type, 'font-size');
+  color: map-get($icon-type, 'color');
+}
+
+@mixin form-error-message($error-message-type) {
+  color: map-get($error-message-type, 'color');
+  font-size: map-get($error-message-type, 'fs');
+  font-weight: map-get($error-message-type, 'fw');
+  margin: map-get($error-message-type, 'm');
+}

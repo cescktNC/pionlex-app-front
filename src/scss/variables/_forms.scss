@@ -1,0 +1,85 @@
+@use 'typography';
+@use 'colors';
+
+$forms: (
+  login: (
+    title: (
+      font-family: typography.$montserrat,
+      font-weight: 600,
+      color: map-get(colors.$colors, 'custom-white')
+    ),
+    input: (
+      border: .75px solid map-get(colors.$colors, 'white-opacity'),
+      bg: map-get(colors.$colors, 'input-bg'),
+      mb: 15px,
+      font-family: typography.$montserrat,
+      font-size: 14px,
+      font-weight: 400,
+      color: map-get(colors.$colors, 'white-opacity'),
+      transition: box-shadow .5s,
+      placeholder: (
+        color: map-get(colors.$colors, 'white-opacity')
+      ),
+      focus: (
+        box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
+        border-color: rgba(255, 255, 255, 0.7)
+      )
+    ),
+    checkbox: (
+      border: .75px solid map-get(colors.$colors, 'light-grey'),
+      bg: map-get(colors.$colors, 'input-bg'),
+      transition: all .5s,
+      focus: (
+        box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
+        border-color: rgba(255, 255, 255, 0.7)
+      )
+    ),
+    radio: (
+      border: 3px solid map-get(colors.$colors, 'white-opacity'),
+      bg: transparent,
+      width: 15px,
+      height: 15px,
+      checked: (
+        box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.2)
+      )
+    ),
+    select-option: (
+      bg: map-get(colors.$colors, 'dark-grey')
+    ),
+    label: (
+      font-family: typography.$montserrat,
+      font-size: 13px,
+      font-weight: 400,
+      color: map-get(colors.$colors, 'white-opacity')
+    ),
+    link: (
+      font-size: 12px,
+      font-weight: 400,
+      opacity: 0.47,
+      color: map-get(colors.$colors, "custom-white"),
+    ),
+    button: (
+      bg: map-get(colors.$colors, "start-gradient"),
+      width: 120px,
+      height: 35px,
+      font-family: typography.$montserrat,
+      font-size: 14px,
+      font-weight: 600,
+      color: map-get(colors.$colors, "dark-grey"),
+      transition: all .5s,
+      hover: (
+        opacity: 0.8
+      )
+    ),
+    icon: (
+      color: map-get(colors.$colors, "custom-white"),
+      font-size: 16px
+    ),
+    errorMessage: (
+      color: map-get(colors.$colors, "light-red"),
+      fs: 12px,
+      fw: 600,
+      m: 5px 0,
+    )
+  )
+);

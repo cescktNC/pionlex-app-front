@@ -1,0 +1,88 @@
+@use '../variables/colors';
+
+.background {
+  background: linear-gradient(to bottom left, map-get(colors.$colors, "start-gradient"), map-get(colors.$colors, "end-gradient"));
+
+  .translucent-layer-1 {
+    clip-path: polygon(27% 100%, 0% 100%, 0% 64%);
+  }
+
+  .translucent-layer-2 {
+    clip-path: polygon(27% 100%, 0% 100%, 0% 0%, 3% 0%);
+  }
+
+  .translucent-layer-3 {
+    clip-path: polygon(27% 100%, 0% 100%, 0% 0%, 55% 0%);
+  }
+
+  .card {
+    box-shadow: 0 9px 30px 10px rgba(0, 0, 0, 0.25);
+
+    .card-body-login {
+      height: 400px;
+    }
+
+    .card-body-select-form-register {
+      width: 525px;
+    }
+
+    .card-body-register {
+      height: 700px;
+    }
+
+    .card-body {
+      background-color: map-get(colors.$colors, "dark-grey");
+      color: map-get(colors.$colors, "custom-white");
+      font-size: 12px;
+
+      #registerLink, #loginLink {
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      #registerLink:hover, #loginLink:hover {
+        text-decoration: underline;
+      }
+
+      #userRegisterLink, #officeRegisterLink {
+        background-color: map-get(colors.$colors, "dark-grey");
+        width: 230px;
+        height: 60px;
+        font-size: 18px;
+        font-weight: 600;
+        color: map-get(colors.$colors, "custom-white");
+        transition: all 0.3s ease-in-out;
+      }
+
+      #userRegisterLink:hover, #officeRegisterLink:hover {
+        color: map-get(colors.$colors, "dark-grey");
+        background-color: map-get(colors.$colors, "custom-white");
+      }
+  
+    }
+  }
+
+  #card-login, #card-register, #card-select-form-register {
+    position: fixed;
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  }
+
+  #card-login {
+    img {
+      height: 365px;
+    }
+  }
+
+  #card-register {
+    img {
+      height: 167px;
+    }
+  }
+
+  #card-select-form-register {
+    img {
+      height: 490px;
+    }
+  }
+
+}
