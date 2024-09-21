@@ -6,22 +6,25 @@ import router from './routes';
 
   // Variables
   const formLogin = document.querySelector('#form-login');
-  const loginLink = document.querySelector('#loginLink');
-
+  const loginLinkFromUserRegister = document.querySelector('#loginLinkFromUserRegister');
+  const loginLinkFromOfficeRegister = document.querySelector('#loginLinkFromOfficeRegister');
   const registerLink = document.querySelector('#registerLink');
   const userRegisterLink = document.querySelector('#userRegisterLink');
   const officeRegisterLink = document.querySelector('#officeRegisterLink');
   const returnLinkToLoginForm = document.querySelector('#returnLinkToLoginForm');
-  const returnLinkToSelectRegisterForm = document.querySelector('#returnLinkToSelectRegisterForm');
+  const userReturnLinkToSelectRegisterForm = document.querySelector('#userReturnLinkToSelectRegisterForm');
+  const officeReturnLinkToSelectRegisterForm = document.querySelector('#officeReturnLinkToSelectRegisterForm');
   
   // Eventos
   formLogin.addEventListener('submit', validateUser);
-  loginLink.addEventListener('click', () => showLoginForm('card-register', 'slide-down'));
+  loginLinkFromUserRegister.addEventListener('click', () => showLoginForm('card-user-register', 'slide-down'));
+  loginLinkFromOfficeRegister.addEventListener('click', () => showLoginForm('card-office-register', 'slide-right'));
   registerLink.addEventListener('click', () => showSelectRegisterForm('card-login', 'slide-up'));
   userRegisterLink.addEventListener('click', showUserRegisterForm);
   officeRegisterLink.addEventListener('click', showDepartmentRegisterForm);
   returnLinkToLoginForm.addEventListener('click', () => showLoginForm('card-select-form-register', 'slide-left'));
-  returnLinkToSelectRegisterForm.addEventListener('click', () => showSelectRegisterForm('card-register', 'slide-down'));
+  userReturnLinkToSelectRegisterForm.addEventListener('click', () => showSelectRegisterForm('card-user-register', 'slide-down'));
+  officeReturnLinkToSelectRegisterForm.addEventListener('click', () => showSelectRegisterForm('card-office-register', 'slide-right'));
 
   // Funciones
   async function validateUser(e) {
@@ -67,12 +70,12 @@ import router from './routes';
 
   function showUserRegisterForm() {
     addClassFromId('card-select-form-register', 'slide-left');
-    removeClassFromId('card-register', 'slide-down');
+    removeClassFromId('card-user-register', 'slide-down');
   }
 
   function showDepartmentRegisterForm() {
     addClassFromId('card-select-form-register', 'slide-left');
-
+    removeClassFromId('card-office-register', 'slide-right');
   }
 
 })();

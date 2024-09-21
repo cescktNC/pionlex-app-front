@@ -34,3 +34,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
   transform: translate(-250%, 0%);
 }
+
+.slide-right {
+  opacity: 0;
+  transform: translate(250%, 0%);
+}

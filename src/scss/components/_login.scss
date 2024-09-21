@@ -26,8 +26,12 @@
       width: 525px;
     }
 
-    .card-body-register {
+    .card-body-user-register {
       height: 700px;
+    }
+
+    .card-body-office-register {
+      height: 435px;
     }
 
     .card-body {
@@ -35,16 +39,21 @@
       color: map-get(colors.$colors, "custom-white");
       font-size: 12px;
 
-      #registerLink, #loginLink {
+      #registerLink, 
+      #loginLinkFromUserRegister, 
+      #loginLinkFromOfficeRegister {
         font-size: 14px;
         cursor: pointer;
       }
 
-      #registerLink:hover, #loginLink:hover {
+      #registerLink:hover, 
+      #loginLinkFromUserRegister:hover, 
+      #loginLinkFromOfficeRegister:hover {
         text-decoration: underline;
       }
 
-      #userRegisterLink, #officeRegisterLink {
+      #userRegisterLink, 
+      #officeRegisterLink {
         background-color: map-get(colors.$colors, "dark-grey");
         width: 230px;
         height: 60px;
@@ -54,7 +63,8 @@
         transition: all 0.3s ease-in-out;
       }
 
-      #userRegisterLink:hover, #officeRegisterLink:hover {
+      #userRegisterLink:hover, 
+      #officeRegisterLink:hover {
         color: map-get(colors.$colors, "dark-grey");
         background-color: map-get(colors.$colors, "custom-white");
       }
@@ -62,7 +72,10 @@
     }
   }
 
-  #card-login, #card-register, #card-select-form-register {
+  #card-login, 
+  #card-user-register, 
+  #card-office-register, 
+  #card-select-form-register {
     position: fixed;
     transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
   }
@@ -73,7 +86,8 @@
     }
   }
 
-  #card-register {
+  #card-user-register, 
+  #card-office-register {
     img {
       height: 167px;
     }
