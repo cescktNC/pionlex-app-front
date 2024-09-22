@@ -39,21 +39,21 @@
       color: map-get(colors.$colors, "custom-white");
       font-size: 12px;
 
-      #registerLink, 
-      #loginLinkFromUserRegister, 
-      #loginLinkFromOfficeRegister {
+      #register-link, 
+      #login-link-from-user-register, 
+      #login-link-from-office-register {
         font-size: 14px;
         cursor: pointer;
       }
 
-      #registerLink:hover, 
-      #loginLinkFromUserRegister:hover, 
-      #loginLinkFromOfficeRegister:hover {
+      #register-link:hover, 
+      #login-link-from-user-register:hover, 
+      #login-link-from-office-register:hover {
         text-decoration: underline;
       }
 
-      #userRegisterLink, 
-      #officeRegisterLink {
+      #user-register-link, 
+      #office-register-link {
         background-color: map-get(colors.$colors, "dark-grey");
         width: 230px;
         height: 60px;
@@ -63,8 +63,8 @@
         transition: all 0.3s ease-in-out;
       }
 
-      #userRegisterLink:hover, 
-      #officeRegisterLink:hover {
+      #user-register-link:hover, 
+      #office-register-link:hover {
         color: map-get(colors.$colors, "dark-grey");
         background-color: map-get(colors.$colors, "custom-white");
       }

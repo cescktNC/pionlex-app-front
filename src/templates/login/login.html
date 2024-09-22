@@ -12,7 +12,7 @@
     
       <div class="card-body card-body-login d-flex flex-column align-items-center justify-content-between">
 
-        <form id="form-login" method="POST" class="form--login--register w-60" novalidate>
+        <form id="form-login" method="POST" class="form--login--register w-60" autocomplete="off" novalidate>
 
           <h1 class="form__title text-center mt-4 mb-4">LOGIN</h1>
 
@@ -27,7 +27,7 @@
             <span class="input-group-text form__input h-36">
               <i class="bi bi-key-fill form__icon"></i>
             </span>
-            <input type="password" class="form-control form__input" id="password" name="password" placeholder="CONTRASEÑA" required />
+            <input type="password" class="form-control form__input" id="password-login" name="passwordLogin" placeholder="CONTRASEÑA" required />
           </div>
 
           <div class="form-check form__link d-flex justify-content-between">
@@ -39,14 +39,14 @@
           </div>
 
           <div class="d-flex justify-content-center pt-4">
-            <button id="loginButton" type="submit" class="btn form__button">ENTRAR</button>
+            <button type="submit" class="btn form__button">ENTRAR</button>
           </div>
 
         </form>
 
         <div>
           <span class="opacity-50">¿No tienes usuario?</span>
-          <span id="registerLink" class="fw-semibold">Regístrate</span>
+          <span id="register-link" class="fw-semibold">Regístrate</span>
         </div>
 
       </div>
@@ -60,11 +60,11 @@
         <div class="d-flex flex-column align-items-center">
           <h3 class="text-center mt-4 mb-4">¿Qué tipo de registro necesitas?</h3>
 
-          <button id="userRegisterLink" class="border border-white border-3 rounded-pill mt-5">USUARIO</button>
-          <button id="officeRegisterLink" class="border border-white border-3 rounded-pill mt-4">DESPACHO</button>
+          <button id="user-register-link" class="border border-white border-3 rounded-pill mt-5">USUARIO</button>
+          <button id="office-register-link" class="border border-white border-3 rounded-pill mt-4">DESPACHO</button>
         </div>
 
-        <button id="returnLinkToLoginForm" class="btn form__button mb-4">VOLVER</button>
+        <button id="return-link-to-login-form" class="btn form__button mb-4">VOLVER</button>
 
       </div>
     </div>
@@ -75,11 +75,11 @@
 
       <div class="card-body card-body-user-register d-flex flex-column align-items-center justify-content-between">
 
-        <form id="form-user-register" method="POST" class="form--login--register w-60" novalidate>
+        <form id="form-user-register" method="POST" class="form--login--register w-60" autocomplete="off" novalidate>
           
           <h1 class="form__title text-center mt-3 mb-4">USUARIO</h1>
 
-          <input type="text" class="form-control form__input" id="userRegisterName" name="userRegisterName" placeholder="Nombre" required />
+          <input type="text" class="form-control form__input" id="user-register-name" name="userRegisterName" placeholder="N&#8203;ombre" required />
           <input type="text" class="form-control form__input" id="lastname" name="lastname" placeholder="Apellidos" required />
 
           <label for="birthdate" class="form__label mb-1">Fecha de Nacimiento</label>
@@ -101,7 +101,7 @@
             </div>
           </div>
 
-          <input type="email" class="form-control form__input" id="email" name="email" placeholder="name@ejemplo.com" required />
+          <input type="email" class="form-control form__input" id="emailAddress" name="ema&#8203;ilAddress" placeholder="name@ejemplo.com" required />
 
           <div class="mb-3">
             <select class="form-select form__input" id="department" name="department" aria-label="Default select example" required>
@@ -113,19 +113,19 @@
           </div>
 
           <input type="text" class="form-control form__input" id="position" name="position" placeholder="Cargo" required />
-          <input type="text" class="form-control form__input" id="invitationCodeUser" name="invitationCodeUser" placeholder="Código de invitación" required />
-          <input type="password" class="form-control form__input h-36" id="passwordRegister" name="passwordRegister" placeholder="Contraseña" required />
+          <input type="text" class="form-control form__input" id="invitation-code-user" name="invitationCodeUser" placeholder="Código de invitación" required />
+          <input type="password" class="form-control form__input h-36" id="password-register" name="passwordRegister" placeholder="Contraseña" required />
 
           <div class="d-flex justify-content-center pt-3">
-            <button id="userRegisterButton" type="submit" class="btn form__button">REGISTRAR</button>
-            <button id="userReturnLinkToSelectRegisterForm" type="button" class="btn form__button ms-3">VOLVER</button>
+            <button type="submit" class="btn form__button">REGISTRAR</button>
+            <button id="user-return-link-to-select-register-form" type="button" class="btn form__button ms-3">VOLVER</button>
           </div>
 
         </form>
 
         <div>
           <span class="opacity-50">¿Ya tienes usuario?</span>
-          <span id="loginLinkFromUserRegister" class="fw-semibold">LogIn</span>
+          <span id="login-link-from-user-register" class="fw-semibold">LogIn</span>
         </div>
 
       </div>
@@ -138,24 +138,24 @@
 
       <div class="card-body card-body-office-register d-flex flex-column align-items-center justify-content-between">
 
-        <form id="form-office-register" method="POST" class="form--login--register w-60" novalidate>
+        <form id="form-office-register" method="POST" class="form--login--register w-60" autocomplete="off" novalidate>
           
           <h1 class="form__title text-center mt-3 mb-4">DESPACHO</h1>
 
-          <input type="text" class="form-control form__input" id="nameOfficeRegister" name="nameOfficeRegister" placeholder="Nombre" required />
+          <input type="text" class="form-control form__input" id="name-office-register" name="nameOfficeRegister" placeholder="Nombre" required />
           <input type="text" class="form-control form__input" id="cif" name="cif" placeholder="CIF" required />
-          <input type="text" class="form-control form__input" id="invitationCodeOffice" name="invitationCodeOffice" placeholder="Código de invitación" required />
+          <input type="text" class="form-control form__input" id="invitation-code-office" name="invitationCodeOffice" placeholder="Código de invitación" required />
 
           <div class="d-flex justify-content-center pt-3">
-            <button id="officeRegisterButton" type="submit" class="btn form__button">REGISTRAR</button>
-            <button id="officeReturnLinkToSelectRegisterForm" type="button" class="btn form__button ms-3">VOLVER</button>
+            <button type="submit" class="btn form__button">REGISTRAR</button>
+            <button id="office-return-link-to-select-register-form" type="button" class="btn form__button ms-3">VOLVER</button>
           </div>
 
         </form>
 
         <div>
           <span class="opacity-50">¿No quieres registrar un despacho?</span>
-          <span id="loginLinkFromOfficeRegister" class="fw-semibold">LogIn</span>
+          <span id="login-link-from-office-register" class="fw-semibold">LogIn</span>
         </div>
 
       </div>

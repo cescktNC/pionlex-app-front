@@ -1,24 +1,31 @@
 {
-  "users": [
+  "logins": [
     {
-      "id": "a803",
-      "username": "rer",
-      "password": "rete"
-    },
-    {
-      "id": "5f5b",
-      "username": "mnbvcx",
-      "password": "mnbvcx"
-    },
-    {
-      "id": "8bbb",
-      "username": "pppp",
-      "password": "ppppp"
+      "id": "5bc3",
+      "username": "dfgfdgdfs",
+      "passwordLogin": "dfgfdsgdfs"
     }
   ],
-  "data": [
+  "users": [
     {
-      "token": "dsffdsfsfds"
+      "id": "a15c",
+      "userRegisterName": "asdsad",
+      "lastname": "adasd",
+      "birthdate": "2024-09-06",
+      "gender": "hombre",
+      "emailAddress": "asdad@hotmail.com",
+      "department": "1",
+      "position": "sfsdfs",
+      "invitationCodeUser": "sdfds",
+      "passwordRegister": "sdfsf"
+    }
+  ],
+  "offices": [
+    {
+      "id": "0bde",
+      "nameOfficeRegister": "qqqq",
+      "cif": "qqqq",
+      "invitationCodeOffice": "qqqqqqq"
     }
   ]
 }
