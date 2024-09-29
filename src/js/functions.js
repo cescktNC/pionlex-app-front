@@ -25,15 +25,16 @@ export function showAlert(message, containerSelector) {
   let alert = document.querySelector('.bg-danger-subtle');
 
   if (!alert) {
-    alert = document.createElement('p');
-
-    alert.classList.add('rounded', 'bg-danger-subtle', 'text-danger', 'text-center', 'fs-6', 'px-1', 'py-1', 'mt-3');
-
+    alert = document.createElement('div');
+    alert.classList.add('row', 'justify-content-center');
     alert.innerHTML = `
-      <strong class="fw-bold">¡Error!</strong>
-      <span>${message}</span>
+      <div class="col-11 col-sm-10 col-lg-8">
+        <p class="rounded bg-danger-subtle text-danger text-center px-1 py-1 mt-3">
+          <strong class="fw-bold">¡Error!</strong>
+          <span>${message}</span>
+        </p>
+      </div>
     `;
-
     container.appendChild(alert);
   } else {
     alert.innerHTML = `
@@ -46,7 +47,7 @@ export function showAlert(message, containerSelector) {
 
   alertTimeout = setTimeout( () => {
     alert.remove();
-  }, 5000);
+  }, 3000);
 }
 
 // Añade una clase a un elemento html

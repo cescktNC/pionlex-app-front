@@ -1,167 +1,301 @@
-<div class="position-relative vh-100 background">
+<div class="position-relative background text-center">
 
   <div class="bg-white w-100 h-100 opacity-25 position-absolute translucent-layer-1"></div>
   <div class="bg-white w-100 h-100 opacity-25 position-absolute translucent-layer-2"></div>
   <div class="bg-white w-100 h-100 opacity-25 position-absolute translucent-layer-3"></div>
 
-  <div class="h-100 d-flex justify-content-center align-items-center">
-  
-    <div id="card-login" class="card border-0">
-      
-      <img src="/images/card-image-top-login.jpg" class="card-img-top" alt="Pion Lex Logo">
-    
-      <div class="card-body card-body-login d-flex flex-column align-items-center justify-content-between">
+  <div id="container-login" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
 
-        <form id="form-login" method="POST" class="form--login--register w-60" autocomplete="off" novalidate>
+    <div id="card-login" class="row w-100 justify-content-center">
 
-          <h1 class="form__title text-center mt-4 mb-4">LOGIN</h1>
+      <div class="col-sm-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 card border border-0 p-0">
 
-          <div class="input-group">
-            <span class="input-group-text form__input h-36">
-              <i class="bi bi-person-fill form__icon"></i>
-            </span>
-            <input type="text" class="form-control form__input" id="username" name="username" placeholder="USUARIO" required />
-          </div>
+        <img src="/images/card-image-top-login.jpg" class="card-img-top" alt="Pion Lex Logo">
+        
+        <div class="card-body">
 
-          <div class="input-group">
-            <span class="input-group-text form__input h-36">
-              <i class="bi bi-key-fill form__icon"></i>
-            </span>
-            <input type="password" class="form-control form__input" id="password-login" name="passwordLogin" placeholder="CONTRASEÑA" required />
-          </div>
+          <form id="form-login" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
 
-          <div class="form-check form__link d-flex justify-content-between">
-            <label>
-              <input class="form-check-input form__checkbox" type="checkbox" name="remember" />
-              Guardar contraseña
-            </label>
-            <a href="#" class="text-white">¿Has olvidado tu contraseña?</a>
-          </div>
-
-          <div class="d-flex justify-content-center pt-4">
-            <button type="submit" class="btn form__button">ENTRAR</button>
-          </div>
-
-        </form>
-
-        <div>
-          <span class="opacity-50">¿No tienes usuario?</span>
-          <span id="register-link" class="fw-semibold">Regístrate</span>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div id="card-select-form-register" class="card flex-row border-0 slide-left">
-      <img src="/images/card-image-top-select-register.jpg" alt="Pion Lex Logo">
-      <div class="card-body card-body-select-form-register d-flex flex-column align-items-center justify-content-between form--login--register">
-
-        <div class="d-flex flex-column align-items-center">
-          <h3 class="text-center mt-4 mb-4">¿Qué tipo de registro necesitas?</h3>
-
-          <button id="user-register-link" class="border border-white border-3 rounded-pill mt-5">USUARIO</button>
-          <button id="office-register-link" class="border border-white border-3 rounded-pill mt-4">DESPACHO</button>
-        </div>
-
-        <button id="return-link-to-login-form" class="btn form__button mb-4">VOLVER</button>
-
-      </div>
-    </div>
-
-    <div id="card-user-register" class="card border-0 slide-down">
-      
-      <img src="/images/card-image-top-register.jpg" class="card-img-top" alt="Pion Lex Logo">
-
-      <div class="card-body card-body-user-register d-flex flex-column align-items-center justify-content-between">
-
-        <form id="form-user-register" method="POST" class="form--login--register w-60" autocomplete="off" novalidate>
-          
-          <h1 class="form__title text-center mt-3 mb-4">USUARIO</h1>
-
-          <input type="text" class="form-control form__input" id="user-register-name" name="userRegisterName" placeholder="N&#8203;ombre" required />
-          <input type="text" class="form-control form__input" id="lastname" name="lastname" placeholder="Apellidos" required />
-
-          <label for="birthdate" class="form__label mb-1">Fecha de Nacimiento</label>
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="form__input__date flex-grow-1">
-              <input type="date" class="form-control form__input mb-0" id="birthdate" name="birthdate" required />
-              <i class="bi bi-calendar"></i>
-            </div>
-
-            <div class="d-flex">
-              <div class="ps-3">
-                <input class="form-check-input form__radio" type="radio" name="gender" id="hombre" checked>
-                <label class="form-check-label form__label" for="hombre">Hombre</label>
-              </div>
-              <div class="ps-3">
-                <input class="form-check-input form__radio" type="radio" name="gender" id="mujer">
-                <label class="form-check-label form__label" for="mujer">Mujer</label>
+            <div class="row justify-content-center mt-2 mb-3">
+              <div class="col-11 col-sm-9 col-lg-9">
+                <h1 class="form__title">LOGIN</h1>
               </div>
             </div>
-          </div>
 
-          <input type="email" class="form-control form__input" id="emailAddress" name="ema&#8203;ilAddress" placeholder="name@ejemplo.com" required />
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-9 col-lg-9">
+                <div class="input-group">
+                  <span class="input-group-text form__input">
+                    <i class="bi bi-person-fill form__icon"></i>
+                  </span>
+                  <input type="text" class="form-control form__input" id="username" name="username" placeholder="USUARIO" required />
+                </div>
+              </div>
+            </div>
 
-          <div class="mb-3">
-            <select class="form-select form__input" id="department" name="department" aria-label="Default select example" required>
-              <option selected disabled value="">Selecciona el departamento</option>
-              <option value="1">Atención al cliente</option>
-              <option value="2">Administración</option>
-              <option value="3">Contablidad</option>
-            </select>
-          </div>
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-9 col-lg-9">
+                <div class="input-group">
+                  <span class="input-group-text form__input">
+                    <i class="bi bi-key-fill form__icon"></i>
+                  </span>
+                  <input type="password" class="form-control form__input" id="password-login" name="passwordLogin" placeholder="CONTRASEÑA" required />
+                </div>
+              </div>
+            </div>
 
-          <input type="text" class="form-control form__input" id="position" name="position" placeholder="Cargo" required />
-          <input type="text" class="form-control form__input" id="invitation-code-user" name="invitationCodeUser" placeholder="Código de invitación" required />
-          <input type="password" class="form-control form__input h-36" id="password-register" name="passwordRegister" placeholder="Contraseña" required />
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-9 col-lg-9">
+                <div class="row save-lost-password">
+                  <div class="col-12 col-sm-5 text-center text-sm-start">
+                    <label>
+                      <input id="save-password" class="form-check-input form__checkbox" type="checkbox" name="remember" />
+                      Guardar contraseña
+                    </label>
+                  </div>
+                  <div class="col-12 col-sm-7 text-center text-sm-end">
+                    <a id="lost-password" href="#">¿Has olvidado tu contraseña?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          <div class="d-flex justify-content-center pt-3">
-            <button type="submit" class="btn form__button">REGISTRAR</button>
-            <button id="user-return-link-to-select-register-form" type="button" class="btn form__button ms-3">VOLVER</button>
-          </div>
+            <div class="row justify-content-center mt-1 mb-1">
+              <div class="col-11 col-sm-9 col-lg-3">
+                <button type="submit" class="btn form__button">ENTRAR</button>
+              </div>
+            </div>
 
-        </form>
+          </form>
 
-        <div>
-          <span class="opacity-50">¿Ya tienes usuario?</span>
-          <span id="login-link-from-user-register" class="fw-semibold">LogIn</span>
         </div>
 
       </div>
-
+      
     </div>
 
-    <div id="card-office-register" class="card border-0 slide-right">
-      
-      <img src="/images/card-image-top-register.jpg" class="card-img-top" alt="Pion Lex Logo">
+    <div class="row w-100 justify-content-center mt-2 text-white sign-up-div">
+      <div class="col-11">
+        <span class="fw-light">¿No tienes usuario?</span>
+        <span id="sign-up-link" class="fw-semibold">Regístrate</span>
+      </div>
+    </div>
 
-      <div class="card-body card-body-office-register d-flex flex-column align-items-center justify-content-between">
+  </div>
 
-        <form id="form-office-register" method="POST" class="form--login--register w-60" autocomplete="off" novalidate>
-          
-          <h1 class="form__title text-center mt-3 mb-4">DESPACHO</h1>
+  <div id="container-select-sign-up" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center d-none">
 
-          <input type="text" class="form-control form__input" id="name-office-register" name="nameOfficeRegister" placeholder="Nombre" required />
-          <input type="text" class="form-control form__input" id="cif" name="cif" placeholder="CIF" required />
-          <input type="text" class="form-control form__input" id="invitation-code-office" name="invitationCodeOffice" placeholder="Código de invitación" required />
+    <div id="card-select-sign-up" class="w-100 col-xl-10 card border border-0 p-0">
 
-          <div class="d-flex justify-content-center pt-3">
-            <button type="submit" class="btn form__button">REGISTRAR</button>
-            <button id="office-return-link-to-select-register-form" type="button" class="btn form__button ms-3">VOLVER</button>
+      <div class="row g-0">
+        <div class="col-12 col-md-5">
+          <img src="/images/card-image-top-select-sign-up.jpg" alt="Pion Lex Logo">
+        </div>
+        
+        <div class="col-12 col-md-7 card-body d-flex flex-column justify-content-between form--login--sign-up">
+          <h3 class="card-title mt-4 mt-lg-5 mb-4 text-white text-center">¿Qué tipo de registro necesitas?</h3>
+          <div class="d-flex flex-column align-items-center">
+            <button id="user-sign-up-link" class="w-50 border border-white border-2 rounded-pill mt-4 mt-lg-5">USUARIO</button>
+            <button id="office-sign-up-link" class="w-50 border border-white border-2 rounded-pill mt-4">DESPACHO</button>
           </div>
 
-        </form>
-
-        <div>
-          <span class="opacity-50">¿No quieres registrar un despacho?</span>
-          <span id="login-link-from-office-register" class="fw-semibold">LogIn</span>
+          <div class="d-flex justify-content-center mt-auto">
+            <button id="return-link-to-login-form" class="btn form__button mb-4">VOLVER</button>
+          </div>
         </div>
-
       </div>
 
     </div>
 
   </div>
+
+  <div id="container-user-sign-up" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center d-none">
+
+    <div id="card-user-sign-up" class="row w-100 justify-content-center">
+
+      <div class="col-sm-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 card border border-0 p-0">
+
+        <img src="/images/card-image-top-sign-up.jpg" class="card-img-top" alt="Pion Lex Logo">
+        
+        <div class="card-body">
+
+          <form id="form-user-sign-up" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
+
+            <div class="row justify-content-center mt-2 mb-3">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <h1 class="form__title">USUARIO</h1>
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="text" class="form-control form__input" id="user-sign-up-name" name="userSignUpName" placeholder="N&#8203;ombre" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="text" class="form-control form__input" id="lastname" name="lastname" placeholder="Apellidos" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8 text-start">
+                <label for="birthdate" class="form__label mb-1">Fecha de Nacimiento</label>
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="form__input__date">
+                      <input type="date" class="form-control form__input" id="birthdate" name="birthdate" required />
+                      <i class="bi bi-calendar"></i>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-3 pt-sm-1 pb-3 pb-sm-0 text-sm-start">
+                    <input class="form-check-input form__radio" type="radio" name="gender" id="hombre" checked>
+                    <label class="form-check-label form__label" for="hombre">Hombre</label>
+                  </div>
+                  <div class="col-6 col-sm-3 pt-sm-1 pb-3 pb-sm-0 text-sm-start">
+                    <input class="form-check-input form__radio" type="radio" name="gender" id="mujer">
+                    <label class="form-check-label form__label" for="mujer">Mujer</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="email" class="form-control form__input" id="emailAddress" name="ema&#8203;ilAddress" placeholder="name@ejemplo.com" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <select class="form-select form__input" id="department" name="department" aria-label="Default select example" required>
+                  <option selected disabled value="">Selecciona el departamento</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="text" class="form-control form__input" id="position" name="position" placeholder="Cargo" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="text" class="form-control form__input" id="invitation-code-user" name="invitationCodeUser" placeholder="Código de invitación" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="password" class="form-control form__input h-36" id="password-sign-up" name="passwordSignUp" placeholder="Contraseña" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <button type="submit" class="btn form__button">REGISTRAR</button>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <button id="user-return-link-to-select-sign-up-form" type="button" class="btn form__button">VOLVER</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+    <div class="row w-100 justify-content-center mt-2 text-white sign-up-div">
+      <div class="col-11">
+        <span class="fw-light">¿Ya tienes usuario?</span>
+        <span id="login-link-from-user-sign-up" class="fw-semibold">LogIn</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="container-office-sign-up" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center d-none">
+
+    <div id="card-office-sign-up" class="row w-100 justify-content-center">
+
+      <div class="col-sm-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 card border border-0 p-0">
+
+        <img src="/images/card-image-top-sign-up.jpg" class="card-img-top" alt="Pion Lex Logo">
+        
+        <div class="card-body">
+
+          <form id="form-office-sign-up" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
+
+            <div class="row justify-content-center mt-2 mb-3">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <h1 class="form__title">DESPACHO</h1>
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="text" class="form-control form__input" id="name-office-sign-up" name="nameOfficeSignUp" placeholder="Nombre" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="text" class="form-control form__input" id="cif" name="cif" placeholder="CIF" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <input type="text" class="form-control form__input" id="invitation-code-office" name="invitationCodeOffice" placeholder="Código de invitación" required />
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-11 col-sm-10 col-lg-8">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <button type="submit" class="btn form__button">REGISTRAR</button>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <button id="office-return-link-to-select-sign-up-form" type="button" class="btn form__button">VOLVER</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+    <div class="row w-100 justify-content-center mt-2 text-white sign-up-div">
+      <div class="col-11">
+        <span class="fw-light">¿Ya tienes usuario?</span>
+        <span id="login-link-from-office-sign-up" class="fw-semibold">LogIn</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer pb-1 text-white">
+    &copy;2024 - Pion Lex. Todos los derechos reservados.
+  </footer>
 
 </div>

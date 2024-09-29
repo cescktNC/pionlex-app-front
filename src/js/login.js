@@ -1,36 +1,47 @@
 import { showAlert, validateFields, addClassFromId, removeClassFromId } from './functions';
-import { login, createUser, createOffice } from './API';
+import { login, createUser, createOffice, getDepartments } from './API';
 import router from './routes';
 
 ( () => {
 
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('aaaaa');
+    showDepartments();
+  });
+
   // Variables
   const formLogin = document.querySelector('#form-login');
-  const formUserRegister = document.querySelector('#form-user-register');
-  const formOfficeRegister = document.querySelector('#form-office-register');
-  const loginLinkFromUserRegister = document.querySelector('#login-link-from-user-register');
-  const loginLinkFromOfficeRegister = document.querySelector('#login-link-from-office-register');
-  const registerLink = document.querySelector('#register-link');
-  const userRegisterLink = document.querySelector('#user-register-link');
-  const officeRegisterLink = document.querySelector('#office-register-link');
+  const formUserSignUp = document.querySelector('#form-user-sign-up');
+  const formOfficeSignUp = document.querySelector('#form-office-sign-up');
+  const loginLinkFromUserSignUp = document.querySelector('#login-link-from-user-sign-up');
+  const loginLinkFromOfficeSignUp = document.querySelector('#login-link-from-office-sign-up');
+  const signUpLink = document.querySelector('#sign-up-link');
+  const userSignUpLink = document.querySelector('#user-sign-up-link');
+  const officeSignUpLink = document.querySelector('#office-sign-up-link');
   const returnLinkToLoginForm = document.querySelector('#return-link-to-login-form');
-  const userReturnLinkToSelectRegisterForm = document.querySelector('#user-return-link-to-select-register-form');
-  const officeReturnLinkToSelectRegisterForm = document.querySelector('#office-return-link-to-select-register-form');
+  const userSignUpLinkToSelectSignUpForm = document.querySelector('#user-return-link-to-select-sign-up-form');
+  const officeReturnLinkToSelectSignUpForm = document.querySelector('#office-return-link-to-select-sign-up-form');
   
   // Eventos
   formLogin.addEventListener('submit', validateUser);
-  formUserRegister.addEventListener('submit', validateUserRegister);
-  formOfficeRegister.addEventListener('submit', validateOfficeRegister);
-  loginLinkFromUserRegister.addEventListener('click', () => showLoginForm('card-user-register', 'slide-down'));
-  loginLinkFromOfficeRegister.addEventListener('click', () => showLoginForm('card-office-register', 'slide-right'));
-  registerLink.addEventListener('click', () => showSelectRegisterForm('card-login', 'slide-up'));
-  userRegisterLink.addEventListener('click', showUserRegisterForm);
-  officeRegisterLink.addEventListener('click', showDepartmentRegisterForm);
-  returnLinkToLoginForm.addEventListener('click', () => showLoginForm('card-select-form-register', 'slide-left'));
-  userReturnLinkToSelectRegisterForm.addEventListener('click', () => showSelectRegisterForm('card-user-register', 'slide-down'));
-  officeReturnLinkToSelectRegisterForm.addEventListener('click', () => showSelectRegisterForm('card-office-register', 'slide-right'));
+  formUserSignUp.addEventListener('submit', validateUserSignUp);
+  formOfficeSignUp.addEventListener('submit', validateOfficeSignUp);
+  loginLinkFromUserSignUp.addEventListener('click', () => changeForms('container-user-sign-up', 'container-login'));
+  loginLinkFromOfficeSignUp.addEventListener('click', () => changeForms('container-office-sign-up', 'container-login'));
+  signUpLink.addEventListener('click', () => changeForms('container-login', 'container-select-sign-up'));
+  userSignUpLink.addEventListener('click', () => changeForms('container-select-sign-up', 'container-user-sign-up'));
+  officeSignUpLink.addEventListener('click', () => changeForms('container-select-sign-up','container-office-sign-up'));
+  returnLinkToLoginForm.addEventListener('click', () => changeForms('container-select-sign-up', 'container-login'));
+  userSignUpLinkToSelectSignUpForm.addEventListener('click', () => changeForms('container-user-sign-up', 'container-select-sign-up'));
+  officeReturnLinkToSelectSignUpForm.addEventListener('click', () => changeForms('container-office-sign-up', 'container-select-sign-up'));
 
   // Funciones
+
+  function redirect(pageName) {
+    console.log('Hola');
+    router.navigate(pageName);
+  }
+
   async function validateUser(e) {
     e.preventDefault();
     
@@ -59,10 +70,10 @@ import router from './routes';
     router.navigate('/clients');
   }
 
-  async function validateUserRegister(e) {
+  async function validateUserSignUp(e) {
     e.preventDefault();
 
-    const userRegisterName = document.querySelector('#user-register-name').value;
+    const userSignUpName = document.querySelector('#user-sign-up-name').value;
     const lastname = document.querySelector('#lastname').value;
     const birthdate = document.querySelector('#birthdate').value;
     const gender = document.querySelector('input[name="gender"]:checked').id;
@@ -70,10 +81,10 @@ import router from './routes';
     const department = document.querySelector('#department').value;
     const position = document.querySelector('#position').value;
     const invitationCodeUser = document.querySelector('#invitation-code-user').value;
-    const passwordRegister = document.querySelector('#password-register').value;
+    const passwordSignUp = document.querySelector('#password-sign-up').value;
 
-    const userRegister = {
-      userRegisterName,
+    const userSignUp = {
+      userSignUpName,
       lastname,
       birthdate,
       gender,
@@ -81,49 +92,48 @@ import router from './routes';
       department,
       position,
       invitationCodeUser,
-      passwordRegister
+      passwordSignUp
     }
 
-    if (!validateFields(userRegister)) {
-      showAlert('Todos los campos son obligatorios.', 'form-user-register');
+    if (!validateFields(userSignUp)) {
+      showAlert('Todos los campos son obligatorios.', 'form-user-sign-up');
       return;
     }
 
-    const data = await createUser(userRegister);
+    const data = await createUser(userSignUp);
     if (!userHasBeenAdded(data)) {
-      showAlert('Usuario ya registrado.', 'form-user-register');
+      showAlert('Usuario ya registrado.', 'form-user-sign-up');
       return;
     }
 
-    // window.location.reload();
-    showLoginForm('card-user-register', 'slide-down');
+    changeForms('container-user-sign-up', 'container-login');
   }
 
-  async function validateOfficeRegister(e) {
+  async function validateOfficeSignUp(e) {
     e.preventDefault();
 
-    const nameOfficeRegister = document.querySelector('#name-office-register').value;
+    const nameOfficeSignUp = document.querySelector('#name-office-sign-up').value;
     const cif = document.querySelector('#cif').value;
     const invitationCodeOffice = document.querySelector('#invitation-code-office').value;
 
     const office = {
-      nameOfficeRegister,
+      nameOfficeSignUp,
       cif,
       invitationCodeOffice
     }
 
     if (!validateFields(office)) {
-      showAlert('Todos los campos son obligatorios.', 'form-office-register');
+      showAlert('Todos los campos son obligatorios.', 'form-office-sign-up');
       return;
     }
     
     const data = await createOffice(office);
     if (!officeHasBeenAdded(data)) {
-      showAlert('Despacho ya registrado.', 'form-office-register');
+      showAlert('Despacho ya registrado.', 'form-office-sign-up');
       return;
     }
 
-    showLoginForm('card-office-register', 'slide-down');
+    changeForms('container-office-sign-up', 'container-login');
   }
 
   function validateToken(data) {
@@ -139,24 +149,22 @@ import router from './routes';
     return true;
   }
 
-  function showSelectRegisterForm(id, className) {
-    addClassFromId(id, className);
-    removeClassFromId('card-select-form-register', 'slide-left');
+  function changeForms(deleteFormName, addFormName) {
+    addClassFromId(deleteFormName, 'd-none');
+    removeClassFromId(addFormName, 'd-none');
   }
 
-  function showLoginForm(id, className) {
-    addClassFromId(id, className);
-    removeClassFromId('card-login', 'slide-up');
-  }
+  async function showDepartments() {
+    console.log('hola');
+    const departments = await getDepartments();
+    const departmentSelect = document.querySelector('#department');
 
-  function showUserRegisterForm() {
-    addClassFromId('card-select-form-register', 'slide-left');
-    removeClassFromId('card-user-register', 'slide-down');
-  }
-
-  function showDepartmentRegisterForm() {
-    addClassFromId('card-select-form-register', 'slide-left');
-    removeClassFromId('card-office-register', 'slide-right');
+    departments.forEach( department => {
+      const { id, nombre } = department;
+      const option = document.createElement('option');
+      option.innerHTML = `<option value="${id}">${nombre}</option>`;
+      departmentSelect.appendChild(option);
+    });
   }
 
 })();

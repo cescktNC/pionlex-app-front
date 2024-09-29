@@ -18,7 +18,7 @@ $login-form-icon: map-get($login-form, 'icon');
 $login-form-message-error: map-get($login-form, 'errorMessage');
 
 // Styles
-.form--login--register {
+.form--login--sign-up {
   .form__title {
     @include mixins-forms.form-title($login-form-title);
   }
@@ -60,6 +60,7 @@ $login-form-message-error: map-get($login-form, 'errorMessage');
 
   .form__button {
     @include mixins-forms.form-button($login-form-button);
+    margin-top: 25px;
   }
 
   .form__icon {

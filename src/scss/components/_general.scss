@@ -12,14 +12,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-.error-border { 
-  border: 1.6px solid map-get(colors.$colors, 'light-red') !important;
-}
-
-.error-message-active { 
-  display: block !important; 
-}
-
 .slide-up {
   transform: translate(0%, -150%);
   opacity: 0;

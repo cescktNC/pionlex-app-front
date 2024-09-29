@@ -4,6 +4,11 @@
       "id": "5bc3",
       "username": "dfgfdgdfs",
       "passwordLogin": "dfgfdsgdfs"
+    },
+    {
+      "id": "61ff",
+      "username": "sdfsdf",
+      "passwordLogin": "sdfsdf"
     }
   ],
   "users": [
@@ -26,6 +31,58 @@
       "nameOfficeRegister": "qqqq",
       "cif": "qqqq",
       "invitationCodeOffice": "qqqqqqq"
+    }
+  ],
+  "departments": [
+    {
+      "id": "1",
+      "nombre": "Abogados Martínez & Asociados",
+      "cif": "B12345678"
+    },
+    {
+      "id": "2",
+      "nombre": "Bufete Jurídico López",
+      "cif": "B87654321"
+    },
+    {
+      "id": "3",
+      "nombre": "García y Partners Abogados",
+      "cif": "B11223344"
+    },
+    {
+      "id": "4",
+      "nombre": "Despacho Legal Hernández",
+      "cif": "B44332211"
+    },
+    {
+      "id": "5",
+      "nombre": "Asesoría Jurídica Pérez",
+      "cif": "B99887766"
+    },
+    {
+      "id": "6",
+      "nombre": "Sánchez & Compañía Abogados",
+      "cif": "B66778899"
+    },
+    {
+      "id": "7",
+      "nombre": "Bufete Ruiz & Asociados",
+      "cif": "B55443322"
+    },
+    {
+      "id": "8",
+      "nombre": "Consultores Legales Rodríguez",
+      "cif": "B22110099"
+    },
+    {
+      "id": "9",
+      "nombre": "Abogados Fernández & Partners",
+      "cif": "B33445566"
+    },
+    {
+      "id": "10",
+      "nombre": "Jurídicos Romero S.L.",
+      "cif": "B77665544"
     }
   ]
 }

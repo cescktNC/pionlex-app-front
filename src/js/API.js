@@ -1,6 +1,7 @@
 const urlLogins = "http://localhost:4000/logins";
 const urlUsers = "http://localhost:4000/users";
 const urlOffices = "http://localhost:4000/offices";
+const urlDepartments = "http://localhost:4000/departments";
 
 export const login = async user => {
   try {
@@ -50,11 +51,11 @@ export const createOffice = async office => {
   }
 }
 
-export const getClients = async () => {
+export const getDepartments = async () => {
   try {
-    const response = await fetch(urlUsers);
-    const clients = await response.json();
-    return clients;
+    const response = await fetch(urlDepartments);
+    const departments = await response.json();
+    return departments;
   } catch (error) {
     console.log(error);
   }
