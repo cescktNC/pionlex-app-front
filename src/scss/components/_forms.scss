@@ -60,7 +60,7 @@ $login-form-message-error: map-get($login-form, 'errorMessage');
 
   .form__button {
     @include mixins-forms.form-button($login-form-button);
-    margin-top: 25px;
+    // margin-top: 25px;
   }
 
   .form__icon {

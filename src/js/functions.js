@@ -44,7 +44,6 @@ export function showAlert(message, containerSelector) {
   }
 
   clearTimeout(alertTimeout);
-
   alertTimeout = setTimeout( () => {
     alert.remove();
   }, 3000);

@@ -1,0 +1,143 @@
+@use '../variables/colors';
+@use '../variables/typography';
+
+.asidebar-menu {
+  z-index: 1000;
+  width: 290px;
+  height: 100vh;
+  min-width: 290px;
+  left: 0;
+  background-color: map-get(colors.$colors, "dark-grey");
+
+  .logo {
+    height: 70px;
+    min-height: 70px;
+
+    img {
+      height: 30px;
+    }
+  }
+
+  .asidenav-menu {
+    height: calc(100vh - 140px);
+    padding-top: 25px;
+    overflow-y: auto;
+
+    .list-group-item-custom-level-1 {
+      background-color: map-get(colors.$colors, "dark-grey");
+      font-family: typography.$montserrat;
+      border: none;
+      padding: 7px 4px;
+
+      .asidenav-menu-button {
+        background-color: transparent;
+        color: map-get(colors.$colors, "white-opacity");
+        font-size: 17px;
+        border: none;
+        padding: 0;
+        width: 100%;
+
+        .icon-button {
+          flex-basis: 15%;
+        }
+
+        .text-button {
+          flex-basis: 80%;
+        }
+      }
+
+      .accordion-button {
+        box-shadow: none;
+      }
+
+      .accordion-button:not(.collapsed) {
+        color: white;
+      }
+
+      .accordion-button::after {
+        display: none;
+      }
+
+      .arrow-button-custom {
+        transition: transform 0.3s ease;
+      }
+      
+      .accordion-button:not(.collapsed) .arrow-button-custom {
+        transform: rotate(0deg);
+        color: white;
+      }
+      
+      .accordion-button.collapsed .arrow-button-custom {
+        transform: rotate(-90deg);
+      }
+
+      .accordion-body-custom {
+        padding: 8px 0 8px 15px;
+
+
+        .list-group-item-custom-level-2 {
+          font-size: 14px;
+          width: 100%;
+
+          .button-custom {
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            padding-left: 10px;
+            text-align: start;
+            color: map-get(colors.$colors, "white-opacity");
+            transition: color 0.3s ease;
+          }
+
+          .button-custom:focus {
+            color: map-get(colors.$colors, "start-gradient");
+            border-left: 3px solid map-get(colors.$colors, "start-gradient");
+            border-radius: 3px;
+          }
+        }
+      }
+      
+    }
+  }
+
+  .asidenav-menu::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .asidenav-menu::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+  }
+
+  .asidenav-menu::-webkit-scrollbar-thumb:hover,
+  .scrolling::-webkit-scrollbar-thumb {
+    background-color: #415263;
+  }
+
+  .footer {
+    height: 70px;
+    min-height: 70px;
+    font-size: 11px;
+
+    p {
+      color: map-get(colors.$colors, "white-opacity");
+    }
+
+    img {
+      height: 25px;
+    }
+  }
+}
+
+.navbar-menu-content {
+  margin-left: 290px;
+}
+
+.navbar-menu {
+  z-index: 1000;
+  height: 70px;
+  min-height: 70px;
+}
+
+.content-page {
+  height: calc(100vh - 70px);
+}

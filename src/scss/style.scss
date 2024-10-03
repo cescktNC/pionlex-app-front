@@ -6,5 +6,6 @@
 @use 'components/utilities';
 @use 'components/login';
 @use 'components/forms';
+@use 'components/menu';
 
 @include fonts.google-font("Montserrat");
