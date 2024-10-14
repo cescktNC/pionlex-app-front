@@ -4,196 +4,6 @@
       "id": "5bc3",
       "username": "dfgfdgdfs",
       "passwordLogin": "dfgfdsgdfs"
-    },
-    {
-      "id": "61ff",
-      "username": "sdfsdf",
-      "passwordLogin": "sdfsdf"
-    },
-    {
-      "id": "b876",
-      "username": "xczc",
-      "passwordLogin": "zxczxc"
-    },
-    {
-      "id": "dd41",
-      "username": "ssfs",
-      "passwordLogin": "sdffd"
-    },
-    {
-      "id": "fecc",
-      "username": "sdfsf",
-      "passwordLogin": "sdfdsfd"
-    },
-    {
-      "id": "ca9e",
-      "username": "aasa",
-      "passwordLogin": "asasa"
-    },
-    {
-      "id": "bca8",
-      "username": "sdsfd",
-      "passwordLogin": "dfsfd"
-    },
-    {
-      "id": "8bdd",
-      "username": "ssdfdf",
-      "passwordLogin": "sfsdf"
-    },
-    {
-      "id": "b385",
-      "username": "sdfsf",
-      "passwordLogin": "sdfsf"
-    },
-    {
-      "id": "0954",
-      "username": "asdada",
-      "passwordLogin": "ddsds"
-    },
-    {
-      "id": "3e8c",
-      "username": "<x<x",
-      "passwordLogin": "asdada"
-    },
-    {
-      "id": "4023",
-      "username": "assad",
-      "passwordLogin": "asdsad"
-    },
-    {
-      "id": "89df",
-      "username": "assad",
-      "passwordLogin": "asdsad"
-    },
-    {
-      "id": "780d",
-      "username": "assad",
-      "passwordLogin": "asdsad"
-    },
-    {
-      "id": "8f09",
-      "username": "assad",
-      "passwordLogin": "asdsad"
-    },
-    {
-      "id": "81b2",
-      "username": "assad",
-      "passwordLogin": "asdsad"
-    },
-    {
-      "id": "bd85",
-      "username": "assad",
-      "passwordLogin": "asdsad"
-    },
-    {
-      "id": "6da7",
-      "username": "assad",
-      "passwordLogin": "asdsad"
-    },
-    {
-      "id": "b9c5",
-      "username": "assad",
-      "passwordLogin": "asdsad"
-    },
-    {
-      "id": "71bc",
-      "username": "dsdsf",
-      "passwordLogin": "sdfs"
-    },
-    {
-      "id": "1a3e",
-      "username": "asdadsa",
-      "passwordLogin": "adsadada"
-    },
-    {
-      "id": "2536",
-      "username": "qeweq",
-      "passwordLogin": "qewqe"
-    },
-    {
-      "id": "b3b6",
-      "username": "qeweq",
-      "passwordLogin": "qewqe"
-    },
-    {
-      "id": "e2ca",
-      "username": "qeweq",
-      "passwordLogin": "qewqe"
-    },
-    {
-      "id": "b7ae",
-      "username": "qeweq",
-      "passwordLogin": "qewqe"
-    },
-    {
-      "id": "41ff",
-      "username": "qeweq",
-      "passwordLogin": "qewqe"
-    },
-    {
-      "id": "1a26",
-      "username": "qeweq",
-      "passwordLogin": "qewqe"
-    },
-    {
-      "id": "864e",
-      "username": "sdfsf",
-      "passwordLogin": "sfdsf"
-    },
-    {
-      "id": "4d28",
-      "username": "asad",
-      "passwordLogin": "asdad"
-    },
-    {
-      "id": "be00",
-      "username": "asdas",
-      "passwordLogin": "asdasd"
-    },
-    {
-      "id": "9a9f",
-      "username": "asdd",
-      "passwordLogin": "asdad"
-    },
-    {
-      "id": "7d31",
-      "username": "dsfdf",
-      "passwordLogin": "sdfdsf"
-    },
-    {
-      "id": "91d9",
-      "username": "werwe",
-      "passwordLogin": "ewrwe"
-    },
-    {
-      "id": "69a2",
-      "username": "asdad",
-      "passwordLogin": "asdasd"
-    },
-    {
-      "id": "ade2",
-      "username": "adad",
-      "passwordLogin": "adsa"
-    },
-    {
-      "id": "a42f",
-      "username": "erewr",
-      "passwordLogin": "ewrewr"
-    },
-    {
-      "id": "205e",
-      "username": "fsdf",
-      "passwordLogin": "dsfs"
-    },
-    {
-      "id": "f924",
-      "username": "dfdsfds",
-      "passwordLogin": "sdffsd"
-    },
-    {
-      "id": "230e",
-      "username": "dsfdsf",
-      "passwordLogin": "dsfsdf"
     }
   ],
   "users": [
@@ -208,6 +18,260 @@
       "position": "sfsdfs",
       "invitationCodeUser": "sdfds",
       "passwordRegister": "sdfsf"
+    }
+  ],
+  "clients": [
+    {
+      "nombre": "Carlos",
+      "apellido": "Gómez Fernández",
+      "telefono": "+34 677 123 456",
+      "email": "carlos.gomez@example.com",
+      "poblacion": "Tarragona",
+      "fecha_alta": "2023-05-10",
+      "estado": "en proceso"
+    },
+    {
+      "nombre": "Laura",
+      "apellido": "Martínez Soler",
+      "telefono": "+34 655 987 654",
+      "email": "laura.martinez@example.com",
+      "poblacion": "Reus",
+      "fecha_alta": "2023-02-15",
+      "estado": "esperando documentación"
+    },
+    {
+      "nombre": "Jordi",
+      "apellido": "López Riera",
+      "telefono": "+34 612 456 789",
+      "email": "jordi.lopez@example.com",
+      "poblacion": "Salou",
+      "fecha_alta": "2022-11-05",
+      "estado": "cerrado"
+    },
+    {
+      "nombre": "Marta",
+      "apellido": "Vila Puig",
+      "telefono": "+34 666 321 789",
+      "email": "marta.vila@example.com",
+      "poblacion": "Valls",
+      "fecha_alta": "2023-08-20",
+      "estado": "nuevo"
+    },
+    {
+      "nombre": "Pere",
+      "apellido": "Font Rovira",
+      "telefono": "+34 688 789 123",
+      "email": "pere.font@example.com",
+      "poblacion": "Tortosa",
+      "fecha_alta": "2023-01-10",
+      "estado": "pendiente de pago"
+    },
+    {
+      "nombre": "Anna",
+      "apellido": "Serra Vidal",
+      "telefono": "+34 611 987 321",
+      "email": "anna.serra@example.com",
+      "poblacion": "Amposta",
+      "fecha_alta": "2022-09-22",
+      "estado": "en revisión"
+    },
+    {
+      "nombre": "Joan",
+      "apellido": "Pérez Gallart",
+      "telefono": "+34 644 123 789",
+      "email": "joan.perez@example.com",
+      "poblacion": "Cambrils",
+      "fecha_alta": "2023-03-18",
+      "estado": "en espera de resolución"
+    },
+    {
+      "nombre": "Núria",
+      "apellido": "Navarro Prats",
+      "telefono": "+34 622 456 321",
+      "email": "nuria.navarro@example.com",
+      "poblacion": "El Vendrell",
+      "fecha_alta": "2022-07-30",
+      "estado": "moroso"
+    },
+    {
+      "nombre": "Rosa",
+      "apellido": "Casals Ferrer",
+      "telefono": "+34 666 654 987",
+      "email": "rosa.casals@example.com",
+      "poblacion": "Montblanc",
+      "fecha_alta": "2023-06-12",
+      "estado": "archivado"
+    },
+    {
+      "nombre": "Albert",
+      "apellido": "Pujol Cerdà",
+      "telefono": "+34 677 321 654",
+      "email": "albert.pujol@example.com",
+      "poblacion": "Tarragona",
+      "fecha_alta": "2023-04-25",
+      "estado": "con resolución pendiente"
+    },
+    {
+      "nombre": "Sergi",
+      "apellido": "Aragonés Martí",
+      "telefono": "+34 699 123 987",
+      "email": "sergi.aragones@example.com",
+      "poblacion": "Reus",
+      "fecha_alta": "2023-09-14",
+      "estado": "en proceso"
+    },
+    {
+      "nombre": "Cristina",
+      "apellido": "Ferrer Bosch",
+      "telefono": "+34 655 654 321",
+      "email": "cristina.ferrer@example.com",
+      "poblacion": "Tarragona",
+      "fecha_alta": "2023-05-30",
+      "estado": "esperando documentación"
+    },
+    {
+      "nombre": "Eduard",
+      "apellido": "Vilaseca Baró",
+      "telefono": "+34 622 789 456",
+      "email": "eduard.vilaseca@example.com",
+      "poblacion": "Valls",
+      "fecha_alta": "2023-08-07",
+      "estado": "cerrado"
+    },
+    {
+      "nombre": "Lucía",
+      "apellido": "Gallego Pérez",
+      "telefono": "+34 611 345 987",
+      "email": "lucia.gallego@example.com",
+      "poblacion": "El Vendrell",
+      "fecha_alta": "2023-04-01",
+      "estado": "nuevo"
+    },
+    {
+      "nombre": "Pol",
+      "apellido": "Soler Dalmau",
+      "telefono": "+34 666 876 543",
+      "email": "pol.soler@example.com",
+      "poblacion": "Salou",
+      "fecha_alta": "2023-07-13",
+      "estado": "pendiente de pago"
+    },
+    {
+      "nombre": "Eva",
+      "apellido": "Cabré Llop",
+      "telefono": "+34 644 987 234",
+      "email": "eva.cabre@example.com",
+      "poblacion": "Tortosa",
+      "fecha_alta": "2023-01-19",
+      "estado": "en revisión"
+    },
+    {
+      "nombre": "Oriol",
+      "apellido": "Esteve Coll",
+      "telefono": "+34 611 432 789",
+      "email": "oriol.esteve@example.com",
+      "poblacion": "Cambrils",
+      "fecha_alta": "2023-03-25",
+      "estado": "en espera de resolución"
+    },
+    {
+      "nombre": "Lidia",
+      "apellido": "Miró Costa",
+      "telefono": "+34 688 654 123",
+      "email": "lidia.miro@example.com",
+      "poblacion": "Montblanc",
+      "fecha_alta": "2022-09-11",
+      "estado": "moroso"
+    },
+    {
+      "nombre": "Alejandro",
+      "apellido": "Blanch Torres",
+      "telefono": "+34 644 321 789",
+      "email": "alejandro.blanch@example.com",
+      "poblacion": "Amposta",
+      "fecha_alta": "2022-12-18",
+      "estado": "archivado"
+    },
+    {
+      "nombre": "Paula",
+      "apellido": "Sanz Durán",
+      "telefono": "+34 633 456 987",
+      "email": "paula.sanz@example.com",
+      "poblacion": "Reus",
+      "fecha_alta": "2023-02-06",
+      "estado": "con resolución pendiente"
+    },
+    {
+      "nombre": "Marc",
+      "apellido": "Clavell Serra",
+      "telefono": "+34 655 234 765",
+      "email": "marc.clavell@example.com",
+      "poblacion": "Tarragona",
+      "fecha_alta": "2023-06-20",
+      "estado": "en proceso"
+    },
+    {
+      "nombre": "Ingrid",
+      "apellido": "Rubio Tormo",
+      "telefono": "+34 699 765 432",
+      "email": "ingrid.rubio@example.com",
+      "poblacion": "Valls",
+      "fecha_alta": "2022-10-10",
+      "estado": "esperando documentación"
+    },
+    {
+      "nombre": "Raúl",
+      "apellido": "Vidal Ortiz",
+      "telefono": "+34 688 987 123",
+      "email": "raul.vidal@example.com",
+      "poblacion": "Salou",
+      "fecha_alta": "2022-11-22",
+      "estado": "cerrado"
+    },
+    {
+      "nombre": "Noemí",
+      "apellido": "Ramírez Mas",
+      "telefono": "+34 611 234 987",
+      "email": "noemi.ramirez@example.com",
+      "poblacion": "Cambrils",
+      "fecha_alta": "2023-09-15",
+      "estado": "nuevo"
+    },
+    {
+      "nombre": "Roger",
+      "apellido": "Cortés Villalba",
+      "telefono": "+34 622 765 543",
+      "email": "roger.cortes@example.com",
+      "poblacion": "El Vendrell",
+      "fecha_alta": "2023-05-28",
+      "estado": "pendiente de pago"
+    },
+    {
+      "nombre": "Clara",
+      "apellido": "Pastor Lozano",
+      "telefono": "+34 644 876 321",
+      "email": "clara.pastor@example.com",
+      "poblacion": "Montblanc",
+      "fecha_alta": "2023-03-07",
+      "estado": "en revisión"
+    },
+    {
+      "nombre": "Xavier",
+      "apellido": "Camps Florit",
+      "telefono": "+34 633 765 987",
+      "email": "xavier.camps@example.com",
+      "poblacion": "Tortosa",
+      "fecha_alta": "2023-07-10",
+      "estado": "en espera de resolución"
+    },
+    {
+      "nombre": "Verónica",
+      "apellido": "Navarro Sánchez",
+      "telefono": "+34 655 765 432",
+      "email": "veronica.navarro@example.com",
+      "poblacion": "Reus",
+      "fecha_alta": "2023-01-03",
+      "estado": "moroso"
     }
   ],
   "offices": [

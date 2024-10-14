@@ -17,6 +17,12 @@ $login-form-button: map-get($login-form, 'button');
 $login-form-icon: map-get($login-form, 'icon');
 $login-form-message-error: map-get($login-form, 'errorMessage');
 
+// Login Form
+$dark-mode-form: map-get(vars-forms.$forms, 'dark-theme');
+$dark-mode-form-input: map-get($dark-mode-form, 'input');
+$dark-mode-form-icon: map-get($dark-mode-form, 'icon');
+$dark-mode-form-button: map-get($dark-mode-form, 'button');
+
 // Styles
 .form--login--sign-up {
   .form__title {
@@ -69,5 +75,22 @@ $login-form-message-error: map-get($login-form, 'errorMessage');
 
   .form__error__message {
     @include mixins-forms.form-error-message($login-form-message-error);
+  }
+}
+
+.form--dark--theme {
+  position: relative;
+  display: flex;
+  
+  .form__input {
+    @include mixins-forms.form-input($dark-mode-form-input);
+  }
+
+  .form__icon {
+    @include mixins-forms.form-icon($dark-mode-form-icon);
+  }
+
+  .form__button {
+    @include mixins-forms.form-button($dark-mode-form-button);
   }
 }

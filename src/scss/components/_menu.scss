@@ -1,17 +1,32 @@
+@use '../variables/sizes';
 @use '../variables/colors';
 @use '../variables/typography';
 
-.asidebar-menu {
-  z-index: 1000;
-  width: 290px;
+.page {
+  position: relative;
   height: 100vh;
-  min-width: 290px;
+  min-height: 100vh;
+  background-color: map-get(colors.$colors, "dark-grey");
+}
+
+.asidebar-menu {
+  position: absolute;
   left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width");
+  height: 100vh;
+  min-width: map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width");
   background-color: map-get(colors.$colors, "dark-grey");
 
   .logo {
-    height: 70px;
-    min-height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height");
+    min-height: map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height");
 
     img {
       height: 30px;
@@ -20,29 +35,36 @@
 
   .asidenav-menu {
     height: calc(100vh - 140px);
-    padding-top: 25px;
+    padding-top: 20px;
     overflow-y: auto;
+    width: 100%;
 
-    .list-group-item-custom-level-1 {
-      background-color: map-get(colors.$colors, "dark-grey");
+    .list-group-item-custom {
+      background-color: transparent;
       font-family: typography.$montserrat;
       border: none;
-      padding: 7px 4px;
+      width: 100%;
 
       .asidenav-menu-button {
+        display: flex;
+        align-items: center;
         background-color: transparent;
         color: map-get(colors.$colors, "white-opacity");
-        font-size: 17px;
         border: none;
         padding: 0;
         width: 100%;
 
         .icon-button {
           flex-basis: 15%;
+          text-align: center;
+          font-size: 15px;
         }
 
         .text-button {
-          flex-basis: 80%;
+          flex-basis: 85%;
+          font-size: 17px;
+          font-weight: 600;
+          text-align: start;
         }
       }
 
@@ -72,21 +94,32 @@
       }
 
       .accordion-body-custom {
-        padding: 8px 0 8px 15px;
+        padding: 5px 0 0 8px;
 
-
-        .list-group-item-custom-level-2 {
-          font-size: 14px;
+        .list-group-item-custom-level-1 {
           width: 100%;
 
           .button-custom {
+            display: flex;
+            align-items: center;
             background-color: transparent;
-            border: none;
-            width: 100%;
-            padding-left: 10px;
-            text-align: start;
             color: map-get(colors.$colors, "white-opacity");
+            border: none;
             transition: color 0.3s ease;
+            width: 100%;
+
+            .icon-button {
+              flex-basis: 12%;
+              text-align: center;
+              font-size: 13px;
+            }
+    
+            .text-button {
+              flex-basis: 88%;
+              text-align: start;
+              font-size: 14px;
+              font-weight: 500;
+            }
           }
 
           .button-custom:focus {
@@ -114,30 +147,131 @@
   }
 
   .footer {
-    height: 70px;
-    min-height: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: map-get(sizes.$sizes-aside-nav-menu, "footer");
+    min-height: map-get(sizes.$sizes-aside-nav-menu, "footer");
     font-size: 11px;
+    width: 90%;
 
-    p {
-      color: map-get(colors.$colors, "white-opacity");
+    .text-footer {
+      text-align: end;
+      font-weight: 600;
+      
+      p {
+        color: map-get(colors.$colors, "white-opacity");
+        margin: 0;
+      }
     }
 
-    img {
-      height: 25px;
+    .img-footer {
+      img {
+        height: 25px;
+      }
     }
   }
 }
 
-.navbar-menu-content {
-  margin-left: 290px;
-}
-
 .navbar-menu {
+  position: absolute;
+  left: map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width");
   z-index: 1000;
-  height: 70px;
-  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: typography.$montserrat;
+  background-color: map-get(colors.$colors, "dark-grey");
+  height: map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height");
+  min-height: map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height");
+  width: calc(100% - map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width"));
+
+  .navbar-menu-left {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    .button {
+      background-color: transparent;
+      border: 0;
+      margin: 0 25px;
+      cursor: pointer;
+  
+      .burger {
+        color: map-get(colors.$colors, "custom-white");
+      }
+    }
+  }
+
+  .navbar-menu-right {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    .icons {
+      display: flex;
+      align-items: center;
+      margin-right: 50px;
+
+      .app-dots,
+      .gear,
+      .moon {
+        color: map-get(colors.$colors, "custom-white");
+        margin: 0 10px;
+        font-size: 23px;
+        cursor: pointer;
+      }
+
+      .app-dots {
+        font-size: 32px;
+      }
+    }
+
+    .profile {
+      display: flex;
+      cursor: pointer;
+
+      .data-profile {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        color: map-get(colors.$colors, "custom-white");
+        margin-right: 15px;
+
+        .name-user {
+          font-size: 16px;
+          font-weight: 600;
+          margin: 0 0 -5px 0;
+        }
+
+        .position-user {
+          font-size: 12px;
+          font-weight: 200;
+          margin: 0;
+        }
+      }
+
+      .img-profile {
+        margin-right: 25px;
+  
+        .profile-photo {
+          height: 40px;
+          width: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+    }
+
+  }
 }
 
 .content-page {
-  height: calc(100vh - 70px);
+  position: absolute;
+  left: map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width");
+  top:map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height");
+  height: calc(100vh - map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height"));
+  width: calc(100% - map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width"));
+  border-top-left-radius: 10px;
+  background-color: #fff;
 }

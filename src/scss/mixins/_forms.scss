@@ -12,6 +12,10 @@
   font-size: map-get($input-type, 'font-size');
   font-weight: map-get($input-type, 'font-weight');
   color: map-get($input-type, 'color');
+  border-radius: map-get($input-type, 'br');
+  padding: map-get($input-type, 'padding');
+  width: map-get($input-type, 'width');
+  max-width: map-get($input-type, 'mw');
   transition: map-get($input-type, 'transition');
 
   &::placeholder {
@@ -71,6 +75,7 @@
   font-weight: map-get($button-type, 'font-weight');
   font-family: map-get($button-type, 'font-family');
   color: map-get($button-type, 'color');
+  border-radius: map-get($button-type , 'br');
   transition: map-get($button-type , 'transition');
 
   &:hover {
@@ -79,7 +84,10 @@
 }
 
 @mixin form-icon($icon-type) {
-  font-size: map-get($icon-type, 'font-size');
+  position: map-get($icon-type, 'position');
+  left: map-get($icon-type, 'left');
+  top: map-get($icon-type, 'top');
+  transform: map-get($icon-type, 'transform');
   color: map-get($icon-type, 'color');
 }
 
