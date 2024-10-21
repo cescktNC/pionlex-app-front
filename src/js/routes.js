@@ -8,10 +8,9 @@ function requireAuth(callback) {
   return () => {
     if (getCookie('auth_token')) {
       // En caso de que el usuario refresque la pagina
-      if (!document.getElementById('asidenav-menu-modules')) {
-        router.navigate('/loadModules');
-      }
-      callback();
+      !document.getElementById('asidenav-menu-modules')
+      ? router.navigate('/loadModules')
+      : callback();
     } else  {
       router.navigate('/login');
     }
@@ -64,7 +63,7 @@ router
     loadTemplate('crm/users/list');
   }))
   .on('/module4Section1', requireAuth( () => {
-    loadTemplate('module4/section1/list', [], 'content-page');
+    loadTemplate('module4/section1/list', ['/src/js/menu.js'], 'content-page');
   }))
   .notFound( () => {
     document.getElementById('app').innerHTML = '<h1>404 - Página no encontrada</h1>';

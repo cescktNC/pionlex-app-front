@@ -31,3 +31,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
   transform: translate(250%, 0%);
 }
+
+.active {
+  color: map-get(colors.$colors, "start-gradient") !important;
+  border-left: 3px solid map-get(colors.$colors, "start-gradient") !important;
+  border-radius: 3px !important;
+}

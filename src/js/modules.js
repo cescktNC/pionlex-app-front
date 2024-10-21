@@ -42,8 +42,7 @@ import router from './routes';
     }
   };
 
-  
-
+  // Funciones
   async function loadModules() {
     try {
       const asidenavMenu = document.querySelector('#asidenav-menu-modules');
@@ -70,8 +69,13 @@ import router from './routes';
 
           const accordionElement = firstLi.querySelector('div');
           accordionElement.classList.add('show');
+
+          const sectionFirstItem = firstLi.querySelector('.list-group-item-custom-level-1');
+          const buttonFirstItem = sectionFirstItem.querySelector('button');
+          buttonFirstItem.classList.add('active');
         } else {
-          button.classList.add('text-white');
+          const span = button.querySelector('span');
+          span.classList.add('text-white');
         }
       }
 
