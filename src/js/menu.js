@@ -1,12 +1,15 @@
 ( () => {
 
   // Variables
-  const asidenavMenu = document.querySelector('#asidenav-menu-modules');
-  const notAccordionItems = asidenavMenu.querySelectorAll('.not-accordion-item');
-  const accordionItems = asidenavMenu.querySelectorAll('.accordion-item');
-  const sectionItems = asidenavMenu.querySelectorAll('.list-group-item-custom-level-1');
+  let scrollTimeOut;
+  const asidenavMenu = document.querySelector('.asidenav-menu');
+  const asidenavMenuModules = document.querySelector('#asidenav-menu-modules');
+  const notAccordionItems = asidenavMenuModules.querySelectorAll('.not-accordion-item');
+  const accordionItems = asidenavMenuModules.querySelectorAll('.accordion-item');
+  const sectionItems = asidenavMenuModules.querySelectorAll('.list-group-item-custom-level-1');
 
   // Eventos
+  asidenavMenu.addEventListener('scroll', scroll);
   notAccordionItems.forEach( notAccordionItem => {
     notAccordionItem.addEventListener('click', collapseAccordion);
   });
@@ -17,18 +20,27 @@
     sectionItem.addEventListener('click', addSelection);
   });
 
+  function scroll() {
+    asidenavMenu.classList.add('scrolling');
+
+    clearTimeout(scrollTimeOut);
+    scrollTimeOut = setTimeout( () => {
+      asidenavMenu.classList.remove('scrolling');
+    }, 500);
+  }
+
   function collapseAccordion(e) {
     const clickedElement = e.target;
     clickedElement.classList.add('text-white');
 
-    const accordionElement = asidenavMenu.querySelector('.show');
+    const accordionElement = asidenavMenuModules.querySelector('.show');
     const accordionElementParent = accordionElement.parentElement;
     const button = accordionElementParent.querySelector('button');
     button.classList.add('collapsed');
     button.setAttribute('aria-expanded', 'false');
     accordionElement.classList.remove('show');
 
-    const activeButton = asidenavMenu.querySelector('.active');
+    const activeButton = asidenavMenuModules.querySelector('.active');
     if (activeButton) {
       activeButton.classList.remove('active');
     }
@@ -42,7 +54,7 @@
   }
 
   function addSelection(e) {
-    const activeButton = asidenavMenu.querySelector('.active');
+    const activeButton = asidenavMenuModules.querySelector('.active');
     if (activeButton) {
       activeButton.classList.remove('active');
     }
