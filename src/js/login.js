@@ -1,15 +1,14 @@
 import { showAlert, validateFields, addClassFromId, removeClassFromId } from './functions';
-import { login, createUser, createOffice, getDepartments } from './API';
+import { login, createRecord, getRecords } from './API';
 import router from './routes';
 
 ( () => {
 
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('aaaaa');
-    showDepartments();
-  });
-
   // Variables
+  const urlUsers = "http://localhost:4000/users";
+  const urlOffices = "http://localhost:4000/offices";
+  const urlDepartments = "http://localhost:4000/departments";
+
   const formLogin = document.querySelector('#form-login');
   const formUserSignUp = document.querySelector('#form-user-sign-up');
   const formOfficeSignUp = document.querySelector('#form-office-sign-up');
@@ -36,12 +35,6 @@ import router from './routes';
   officeReturnLinkToSelectSignUpForm.addEventListener('click', () => changeForms('container-office-sign-up', 'container-select-sign-up'));
 
   // Funciones
-
-  function redirect(pageName) {
-    console.log('Hola');
-    router.navigate(pageName);
-  }
-
   async function validateUser(e) {
     e.preventDefault();
     
@@ -64,10 +57,13 @@ import router from './routes';
       return;
     }
 
-    // const token = data[0].token;
-    const token = 'jus5648sanm546123lo8iuysdaaAsU5ghj151Z65';
+    const token = data.token;
     document.cookie = `auth_token=${token}; path=/; secure; SameSite=Lax`;
-    router.navigate('/clients');
+
+    const moduleIds = data.modules;
+    localStorage.setItem('moduleIds', JSON.stringify(data.modules));
+
+    router.navigate('/loadModules');
   }
 
   async function validateUserSignUp(e) {
@@ -75,6 +71,7 @@ import router from './routes';
 
     const userSignUpName = document.querySelector('#user-sign-up-name').value;
     const lastname = document.querySelector('#lastname').value;
+    const username = createUserName(userSignUpName, lastname);
     const birthdate = document.querySelector('#birthdate').value;
     const gender = document.querySelector('input[name="gender"]:checked').id;
     const emailAddress = document.querySelector('#emailAddress').value;
@@ -86,6 +83,7 @@ import router from './routes';
     const userSignUp = {
       userSignUpName,
       lastname,
+      username,
       birthdate,
       gender,
       emailAddress,
@@ -100,13 +98,14 @@ import router from './routes';
       return;
     }
 
-    const data = await createUser(userSignUp);
+    const data = await createRecord(userSignUp, urlUsers);
     if (!userHasBeenAdded(data)) {
       showAlert('Usuario ya registrado.', 'form-user-sign-up');
       return;
     }
 
     changeForms('container-user-sign-up', 'container-login');
+    document.querySelector('#username').value = username;
   }
 
   async function validateOfficeSignUp(e) {
@@ -127,7 +126,7 @@ import router from './routes';
       return;
     }
     
-    const data = await createOffice(office);
+    const data = await createRecord(office, urlOffices);
     if (!officeHasBeenAdded(data)) {
       showAlert('Despacho ya registrado.', 'form-office-sign-up');
       return;
@@ -138,7 +137,7 @@ import router from './routes';
 
   function validateToken(data) {
     return true;
-    // return data[0]?.token;
+    // return data.token;
   }
 
   function userHasBeenAdded(data) {
@@ -155,16 +154,29 @@ import router from './routes';
   }
 
   async function showDepartments() {
-    console.log('hola');
-    const departments = await getDepartments();
+    const departments = await getRecords(urlDepartments);
     const departmentSelect = document.querySelector('#department');
 
     departments.forEach( department => {
       const { id, nombre } = department;
       const option = document.createElement('option');
-      option.innerHTML = `<option value="${id}">${nombre}</option>`;
+      option.value = id;
+      option.innerText = nombre;
       departmentSelect.appendChild(option);
     });
   }
+
+  function createUserName(name, lastname) {
+    const firstCharName = name.charAt(0).toLocaleLowerCase();
+    const lastnames = lastname.split(' ');
+    const firstLastname = lastnames.shift().toLocaleLowerCase();
+
+    let username = firstCharName + firstLastname;
+    username = username.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    return username;
+  }
+
+  showDepartments();
 
 })();

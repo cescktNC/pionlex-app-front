@@ -22,6 +22,7 @@
   ],
   "clients": [
     {
+      "id": "1",
       "nombre": "Carlos",
       "apellido": "Gómez Fernández",
       "telefono": "+34 677 123 456",
@@ -31,6 +32,7 @@
       "estado": "en proceso"
     },
     {
+      "id": "2",
       "nombre": "Laura",
       "apellido": "Martínez Soler",
       "telefono": "+34 655 987 654",
@@ -40,6 +42,7 @@
       "estado": "esperando documentación"
     },
     {
+      "id": "3",
       "nombre": "Jordi",
       "apellido": "López Riera",
       "telefono": "+34 612 456 789",
@@ -49,6 +52,7 @@
       "estado": "cerrado"
     },
     {
+      "id": "4",
       "nombre": "Marta",
       "apellido": "Vila Puig",
       "telefono": "+34 666 321 789",
@@ -58,6 +62,7 @@
       "estado": "nuevo"
     },
     {
+      "id": "5",
       "nombre": "Pere",
       "apellido": "Font Rovira",
       "telefono": "+34 688 789 123",
@@ -67,6 +72,7 @@
       "estado": "pendiente de pago"
     },
     {
+      "id": "6",
       "nombre": "Anna",
       "apellido": "Serra Vidal",
       "telefono": "+34 611 987 321",
@@ -76,6 +82,7 @@
       "estado": "en revisión"
     },
     {
+      "id": "7",
       "nombre": "Joan",
       "apellido": "Pérez Gallart",
       "telefono": "+34 644 123 789",
@@ -85,6 +92,7 @@
       "estado": "en espera de resolución"
     },
     {
+      "id": "8",
       "nombre": "Núria",
       "apellido": "Navarro Prats",
       "telefono": "+34 622 456 321",
@@ -94,6 +102,7 @@
       "estado": "moroso"
     },
     {
+      "id": "9",
       "nombre": "Rosa",
       "apellido": "Casals Ferrer",
       "telefono": "+34 666 654 987",
@@ -103,6 +112,7 @@
       "estado": "archivado"
     },
     {
+      "id": "10",
       "nombre": "Albert",
       "apellido": "Pujol Cerdà",
       "telefono": "+34 677 321 654",
@@ -112,6 +122,7 @@
       "estado": "con resolución pendiente"
     },
     {
+      "id": "11",
       "nombre": "Sergi",
       "apellido": "Aragonés Martí",
       "telefono": "+34 699 123 987",
@@ -121,6 +132,7 @@
       "estado": "en proceso"
     },
     {
+      "id": "12",
       "nombre": "Cristina",
       "apellido": "Ferrer Bosch",
       "telefono": "+34 655 654 321",
@@ -130,6 +142,7 @@
       "estado": "esperando documentación"
     },
     {
+      "id": "13",
       "nombre": "Eduard",
       "apellido": "Vilaseca Baró",
       "telefono": "+34 622 789 456",
@@ -139,6 +152,7 @@
       "estado": "cerrado"
     },
     {
+      "id": "14",
       "nombre": "Lucía",
       "apellido": "Gallego Pérez",
       "telefono": "+34 611 345 987",
@@ -148,6 +162,7 @@
       "estado": "nuevo"
     },
     {
+      "id": "15",
       "nombre": "Pol",
       "apellido": "Soler Dalmau",
       "telefono": "+34 666 876 543",
@@ -157,6 +172,7 @@
       "estado": "pendiente de pago"
     },
     {
+      "id": "16",
       "nombre": "Eva",
       "apellido": "Cabré Llop",
       "telefono": "+34 644 987 234",
@@ -166,6 +182,7 @@
       "estado": "en revisión"
     },
     {
+      "id": "17",
       "nombre": "Oriol",
       "apellido": "Esteve Coll",
       "telefono": "+34 611 432 789",
@@ -175,6 +192,7 @@
       "estado": "en espera de resolución"
     },
     {
+      "id": "18",
       "nombre": "Lidia",
       "apellido": "Miró Costa",
       "telefono": "+34 688 654 123",
@@ -184,6 +202,7 @@
       "estado": "moroso"
     },
     {
+      "id": "19",
       "nombre": "Alejandro",
       "apellido": "Blanch Torres",
       "telefono": "+34 644 321 789",
@@ -193,6 +212,7 @@
       "estado": "archivado"
     },
     {
+      "id": "20",
       "nombre": "Paula",
       "apellido": "Sanz Durán",
       "telefono": "+34 633 456 987",
@@ -202,6 +222,7 @@
       "estado": "con resolución pendiente"
     },
     {
+      "id": "21",
       "nombre": "Marc",
       "apellido": "Clavell Serra",
       "telefono": "+34 655 234 765",
@@ -211,6 +232,7 @@
       "estado": "en proceso"
     },
     {
+      "id": "22",
       "nombre": "Ingrid",
       "apellido": "Rubio Tormo",
       "telefono": "+34 699 765 432",
@@ -220,6 +242,7 @@
       "estado": "esperando documentación"
     },
     {
+      "id": "23",
       "nombre": "Raúl",
       "apellido": "Vidal Ortiz",
       "telefono": "+34 688 987 123",
@@ -229,6 +252,7 @@
       "estado": "cerrado"
     },
     {
+      "id": "24",
       "nombre": "Noemí",
       "apellido": "Ramírez Mas",
       "telefono": "+34 611 234 987",
@@ -238,6 +262,7 @@
       "estado": "nuevo"
     },
     {
+      "id": "25",
       "nombre": "Roger",
       "apellido": "Cortés Villalba",
       "telefono": "+34 622 765 543",
@@ -247,6 +272,7 @@
       "estado": "pendiente de pago"
     },
     {
+      "id": "26",
       "nombre": "Clara",
       "apellido": "Pastor Lozano",
       "telefono": "+34 644 876 321",
@@ -256,6 +282,7 @@
       "estado": "en revisión"
     },
     {
+      "id": "27",
       "nombre": "Xavier",
       "apellido": "Camps Florit",
       "telefono": "+34 633 765 987",
@@ -265,6 +292,7 @@
       "estado": "en espera de resolución"
     },
     {
+      "id": "28",
       "nombre": "Verónica",
       "apellido": "Navarro Sánchez",
       "telefono": "+34 655 765 432",
