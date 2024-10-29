@@ -112,7 +112,7 @@ $forms: (
       font-size: 14px,
       font-weight: 600,
       color: map-get(colors.$colors, "dark-grey"),
-      br: 0 5px 5px 0,
+      // br: 0 5px 5px 0,
       transition: all .5s,
       hover: (
         opacity: 0.8

@@ -34,7 +34,7 @@
       "email": "carlos.gomez@example.com",
       "poblacion": "Tarragona",
       "fecha_alta": "2023-05-10",
-      "estado": "en proceso"
+      "estado": "En Proceso"
     },
     {
       "id": "2",
@@ -44,7 +44,7 @@
       "email": "laura.martinez@example.com",
       "poblacion": "Reus",
       "fecha_alta": "2023-02-15",
-      "estado": "esperando documentación"
+      "estado": "Esperando documentación"
     },
     {
       "id": "3",
@@ -54,7 +54,7 @@
       "email": "jordi.lopez@example.com",
       "poblacion": "Salou",
       "fecha_alta": "2022-11-05",
-      "estado": "cerrado"
+      "estado": "Cerrado"
     },
     {
       "id": "4",
@@ -64,7 +64,7 @@
       "email": "marta.vila@example.com",
       "poblacion": "Valls",
       "fecha_alta": "2023-08-20",
-      "estado": "nuevo"
+      "estado": "Nuevo"
     },
     {
       "id": "5",
@@ -74,7 +74,7 @@
       "email": "pere.font@example.com",
       "poblacion": "Tortosa",
       "fecha_alta": "2023-01-10",
-      "estado": "pendiente de pago"
+      "estado": "Pendiente de pago"
     },
     {
       "id": "6",
@@ -84,7 +84,7 @@
       "email": "anna.serra@example.com",
       "poblacion": "Amposta",
       "fecha_alta": "2022-09-22",
-      "estado": "en revisión"
+      "estado": "En revisión"
     },
     {
       "id": "7",
@@ -94,7 +94,7 @@
       "email": "joan.perez@example.com",
       "poblacion": "Cambrils",
       "fecha_alta": "2023-03-18",
-      "estado": "en espera de resolución"
+      "estado": "En espera de resolución"
     },
     {
       "id": "8",
@@ -104,7 +104,7 @@
       "email": "nuria.navarro@example.com",
       "poblacion": "El Vendrell",
       "fecha_alta": "2022-07-30",
-      "estado": "moroso"
+      "estado": "Moroso"
     },
     {
       "id": "9",
@@ -114,7 +114,7 @@
       "email": "rosa.casals@example.com",
       "poblacion": "Montblanc",
       "fecha_alta": "2023-06-12",
-      "estado": "archivado"
+      "estado": "Archivado"
     },
     {
       "id": "10",
@@ -124,7 +124,7 @@
       "email": "albert.pujol@example.com",
       "poblacion": "Tarragona",
       "fecha_alta": "2023-04-25",
-      "estado": "con resolución pendiente"
+      "estado": "Con resolución pendiente"
     },
     {
       "id": "11",
@@ -134,7 +134,7 @@
       "email": "sergi.aragones@example.com",
       "poblacion": "Reus",
       "fecha_alta": "2023-09-14",
-      "estado": "en proceso"
+      "estado": "En Proceso"
     },
     {
       "id": "12",
@@ -144,7 +144,7 @@
       "email": "cristina.ferrer@example.com",
       "poblacion": "Tarragona",
       "fecha_alta": "2023-05-30",
-      "estado": "esperando documentación"
+      "estado": "Esperando documentación"
     },
     {
       "id": "13",
@@ -154,7 +154,7 @@
       "email": "eduard.vilaseca@example.com",
       "poblacion": "Valls",
       "fecha_alta": "2023-08-07",
-      "estado": "cerrado"
+      "estado": "Cerrado"
     },
     {
       "id": "14",
@@ -164,7 +164,7 @@
       "email": "lucia.gallego@example.com",
       "poblacion": "El Vendrell",
       "fecha_alta": "2023-04-01",
-      "estado": "nuevo"
+      "estado": "Nuevo"
     },
     {
       "id": "15",
@@ -174,7 +174,7 @@
       "email": "pol.soler@example.com",
       "poblacion": "Salou",
       "fecha_alta": "2023-07-13",
-      "estado": "pendiente de pago"
+      "estado": "Pendiente de pago"
     },
     {
       "id": "16",
@@ -184,7 +184,7 @@
       "email": "eva.cabre@example.com",
       "poblacion": "Tortosa",
       "fecha_alta": "2023-01-19",
-      "estado": "en revisión"
+      "estado": "En revisión"
     },
     {
       "id": "17",
@@ -194,7 +194,7 @@
       "email": "oriol.esteve@example.com",
       "poblacion": "Cambrils",
       "fecha_alta": "2023-03-25",
-      "estado": "en espera de resolución"
+      "estado": "En espera de resolución"
     },
     {
       "id": "18",
@@ -204,7 +204,7 @@
       "email": "lidia.miro@example.com",
       "poblacion": "Montblanc",
       "fecha_alta": "2022-09-11",
-      "estado": "moroso"
+      "estado": "Moroso"
     },
     {
       "id": "19",
@@ -214,7 +214,7 @@
       "email": "alejandro.blanch@example.com",
       "poblacion": "Amposta",
       "fecha_alta": "2022-12-18",
-      "estado": "archivado"
+      "estado": "Archivado"
     },
     {
       "id": "20",
@@ -224,7 +224,7 @@
       "email": "paula.sanz@example.com",
       "poblacion": "Reus",
       "fecha_alta": "2023-02-06",
-      "estado": "con resolución pendiente"
+      "estado": "Con resolución pendiente"
     },
     {
       "id": "21",
@@ -234,7 +234,7 @@
       "email": "marc.clavell@example.com",
       "poblacion": "Tarragona",
       "fecha_alta": "2023-06-20",
-      "estado": "en proceso"
+      "estado": "En Proceso"
     },
     {
       "id": "22",
@@ -244,7 +244,7 @@
       "email": "ingrid.rubio@example.com",
       "poblacion": "Valls",
       "fecha_alta": "2022-10-10",
-      "estado": "esperando documentación"
+      "estado": "Esperando documentación"
     },
     {
       "id": "23",
@@ -254,7 +254,7 @@
       "email": "raul.vidal@example.com",
       "poblacion": "Salou",
       "fecha_alta": "2022-11-22",
-      "estado": "cerrado"
+      "estado": "Cerrado"
     },
     {
       "id": "24",
@@ -264,7 +264,7 @@
       "email": "noemi.ramirez@example.com",
       "poblacion": "Cambrils",
       "fecha_alta": "2023-09-15",
-      "estado": "nuevo"
+      "estado": "Nuevo"
     },
     {
       "id": "25",
@@ -274,7 +274,7 @@
       "email": "roger.cortes@example.com",
       "poblacion": "El Vendrell",
       "fecha_alta": "2023-05-28",
-      "estado": "pendiente de pago"
+      "estado": "Pendiente de pago"
     },
     {
       "id": "26",
@@ -284,7 +284,7 @@
       "email": "clara.pastor@example.com",
       "poblacion": "Montblanc",
       "fecha_alta": "2023-03-07",
-      "estado": "en revisión"
+      "estado": "En revisión"
     },
     {
       "id": "27",
@@ -294,7 +294,7 @@
       "email": "xavier.camps@example.com",
       "poblacion": "Tortosa",
       "fecha_alta": "2023-07-10",
-      "estado": "en espera de resolución"
+      "estado": "En espera de resolución"
     },
     {
       "id": "28",
@@ -304,7 +304,7 @@
       "email": "veronica.navarro@example.com",
       "poblacion": "Reus",
       "fecha_alta": "2023-01-03",
-      "estado": "moroso"
+      "estado": "Moroso"
     }
   ],
   "offices": [

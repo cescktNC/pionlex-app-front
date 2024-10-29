@@ -268,4 +268,7 @@
   width: calc(100% - map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width"));
   border-top-left-radius: 10px;
   background-color: #fff;
+  padding: 20px 30px;
+  overflow-y: auto;
+  font-family: typography.$montserrat;
 }

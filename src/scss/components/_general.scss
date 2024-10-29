@@ -37,3 +37,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-left: 3px solid map-get(colors.$colors, "start-gradient") !important;
   border-radius: 3px !important;
 }
+
+.toastSuccess {
+  background-color: #90EE90;
+}
+
+.toastError {
+  background-color: #FF6F6F;
+}

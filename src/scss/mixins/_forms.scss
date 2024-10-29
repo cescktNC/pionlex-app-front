@@ -75,7 +75,7 @@
   font-weight: map-get($button-type, 'font-weight');
   font-family: map-get($button-type, 'font-family');
   color: map-get($button-type, 'color');
-  border-radius: map-get($button-type , 'br');
+  // border-radius: map-get($button-type , 'br');
   transition: map-get($button-type , 'transition');
 
   &:hover {

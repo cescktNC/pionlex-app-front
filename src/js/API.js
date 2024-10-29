@@ -3,6 +3,7 @@ const urlUsers = "http://localhost:4000/users";
 const urlOffices = "http://localhost:4000/offices";
 const urlDepartments = "http://localhost:4000/departments";
 
+// Inicio de sesion de un cliente
 export const login = async user => {
   try {
     const response = await fetch(urlLogins, {
@@ -19,10 +20,11 @@ export const login = async user => {
     };
     return dataTemp;
   } catch (error) {
-    console.log(error);
+    console.error('Error en la conexión o en la solicitud:', error);
   }
 }
 
+// Crea un registro
 export const createRecord = async (record, url) => {
   try {
     const response = await fetch(url, {
@@ -35,16 +37,35 @@ export const createRecord = async (record, url) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error('Error en la conexión o en la solicitud:', error);
   }
 }
 
+// Obtiene registros
 export const getRecords = async url => {
   try {
     const response = await fetch(url);
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error('Error en la conexión o en la solicitud:', error);
+  }
+}
+
+// Elimina registro
+export const deleteRecord = async (id, url) => {
+  try {
+    const response = await fetch(`${url}/${id}`, {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      return true;
+    } else {
+      console.error(`Error en la solicitud: ${response.status}`);
+      return false;
+    }
+  } catch (error) {
+    console.error('Error en la conexión o en la solicitud:', error);
+    return false;
   }
 }

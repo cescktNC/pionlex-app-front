@@ -93,4 +93,8 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
   .form__button {
     @include mixins-forms.form-button($dark-mode-form-button);
   }
+
+  .right-rounded-button {
+    border-radius: 0 5px 5px 0;
+  }
 }
