@@ -175,7 +175,7 @@
   }
 
   #deleteClientButton:hover {
-    background-color: #00D1D3;
+    background-color: map-get(colors.$colors, "start-gradient-opacity");
   }
 }
 

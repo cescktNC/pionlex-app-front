@@ -6,11 +6,12 @@
 
 @mixin form-input($input-type) {
   border: map-get($input-type, 'border');
+  outline: map-get($input-type, 'outline');
   background-color: map-get($input-type, 'bg');
   margin-bottom: map-get($input-type, 'mb');
-  font-family: map-get($input-type, 'font-family');
-  font-size: map-get($input-type, 'font-size');
-  font-weight: map-get($input-type, 'font-weight');
+  font-family: map-get($input-type, 'ff');
+  font-size: map-get($input-type, 'fs');
+  font-weight: map-get($input-type, 'fw');
   color: map-get($input-type, 'color');
   border-radius: map-get($input-type, 'br');
   padding: map-get($input-type, 'padding');
@@ -23,8 +24,9 @@
   }
 
   &:focus {
-    box-shadow: map-get(map-get($input-type, 'focus'), 'box-shadow');
-    border-color: map-get(map-get($input-type, 'focus'), 'border-color');
+    box-shadow: map-get(map-get($input-type, 'focus'), 'bs');
+    border-color: map-get(map-get($input-type, 'focus'), 'bc');
+    outline-color: map-get(map-get($input-type, 'focus'), 'oc');
   }
 }
 
@@ -75,11 +77,11 @@
   font-weight: map-get($button-type, 'font-weight');
   font-family: map-get($button-type, 'font-family');
   color: map-get($button-type, 'color');
-  // border-radius: map-get($button-type , 'br');
+  margin-top: map-get($button-type, 'mt');
   transition: map-get($button-type , 'transition');
 
   &:hover {
-    opacity: map-get(map-get($button-type, 'hover'), 'opacity');
+    background-color: map-get(map-get($button-type, 'hover'), 'bc');
   }
 }
 

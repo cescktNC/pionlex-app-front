@@ -17,7 +17,13 @@ $login-form-button: map-get($login-form, 'button');
 $login-form-icon: map-get($login-form, 'icon');
 $login-form-message-error: map-get($login-form, 'errorMessage');
 
-// Login Form
+// Light Form
+$light-mode-form: map-get(vars-forms.$forms, 'light-theme');
+$light-mode-form-input: map-get($light-mode-form, 'input');
+$light-mode-form-label: map-get($light-mode-form, 'label');
+$light-mode-form-button: map-get($light-mode-form, 'button');
+
+// Dark Form
 $dark-mode-form: map-get(vars-forms.$forms, 'dark-theme');
 $dark-mode-form-input: map-get($dark-mode-form, 'input');
 $dark-mode-form-icon: map-get($dark-mode-form, 'icon');
@@ -66,7 +72,6 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
 
   .form__button {
     @include mixins-forms.form-button($login-form-button);
-    // margin-top: 25px;
   }
 
   .form__icon {
@@ -75,6 +80,31 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
 
   .form__error__message {
     @include mixins-forms.form-error-message($login-form-message-error);
+  }
+}
+
+.form--light--theme {
+  .form__input {
+    @include mixins-forms.form-input($light-mode-form-input);
+  }
+
+  .form__input__date {
+    position: relative;
+    .bi-calendar {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: map-get(vars-colors.$colors, 'white-opacity');
+    }
+  }
+
+  .form__label {
+    @include mixins-forms.form-label($light-mode-form-label);
+  }
+
+  .form__button {
+    @include mixins-forms.form-button($light-mode-form-button);
   }
 }
 

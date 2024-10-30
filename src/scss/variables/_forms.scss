@@ -12,17 +12,17 @@ $forms: (
       border: .75px solid map-get(colors.$colors, 'white-opacity'),
       bg: map-get(colors.$colors, 'input-bg'),
       mb: 15px,
-      font-family: typography.$montserrat,
-      font-size: 14px,
-      font-weight: 400,
+      ff: typography.$montserrat,
+      fs: 14px,
+      fw: 400,
       color: map-get(colors.$colors, 'white-opacity'),
       transition: box-shadow .5s,
       placeholder: (
         color: map-get(colors.$colors, 'white-opacity')
       ),
       focus: (
-        box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
-        border-color: rgba(255, 255, 255, 0.7)
+        bs: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
+        bc: rgba(255, 255, 255, 0.7)
       )
     ),
     checkbox: (
@@ -66,9 +66,10 @@ $forms: (
       font-size: 14px,
       font-weight: 600,
       color: map-get(colors.$colors, "dark-grey"),
-      transition: all .5s,
+      mt: 25px,
+      transition: all .3s,
       hover: (
-        opacity: 0.8
+        bc: map-get(colors.$colors, "start-gradient-opacity")
       )
     ),
     icon: (
@@ -82,7 +83,40 @@ $forms: (
       m: 5px 0,
     )
   ),
-  light-theme: (),
+  light-theme: (
+    input: (
+      outline: 1px solid map-get(colors.$colors, 'white-opacity'),
+      mb: 15px,
+      ff: typography.$montserrat,
+      fs: 14px,
+      fw: 400,
+      transition: all .3s,
+      placeholder: (
+        color: map-get(colors.$colors, 'input-text-color')
+      ),
+      focus: (
+        bs: none,
+        oc: map-get(colors.$colors, "start-gradient")
+      )
+    ),
+    label: (
+      font-size: 13px,
+      color: map-get(colors.$colors, 'input-text-color')
+    ),
+    button: (
+      bg: map-get(colors.$colors, "start-gradient"),
+      width: 90px,
+      height: 38px,
+      font-family: typography.$montserrat,
+      font-size: 14px,
+      font-weight: 600,
+      color: map-get(colors.$colors, "dark-grey"),
+      transition: all .3s,
+      hover: (
+        bc: map-get(colors.$colors, "start-gradient-opacity")
+      )
+    )
+  ),
   dark-theme: (
     input: (
       border: .75px solid map-get(colors.$colors, 'white-opacity'),
@@ -93,15 +127,14 @@ $forms: (
       color: map-get(colors.$colors, 'white-opacity'),
       br: 5px 0 0 5px, // top-left | top-right | bottom-right | bottom-left
       padding: 0 10px 0 40px, // arriba | derecha | abajo | izquierda
-      // width: 240px,
       mw: 240px,
       transition: box-shadow .5s,
       placeholder: (
         color: map-get(colors.$colors, 'white-opacity')
       ),
       focus: (
-        box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
-        border-color: rgba(255, 255, 255, 0.7)
+        bs: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
+        bc: rgba(255, 255, 255, 0.7)
       )
     ),
     button: (
@@ -112,10 +145,9 @@ $forms: (
       font-size: 14px,
       font-weight: 600,
       color: map-get(colors.$colors, "dark-grey"),
-      // br: 0 5px 5px 0,
-      transition: all .5s,
+      transition: all .3s,
       hover: (
-        opacity: 0.8
+        bc: map-get(colors.$colors, "start-gradient-opacity")
       )
     ),
     icon: (

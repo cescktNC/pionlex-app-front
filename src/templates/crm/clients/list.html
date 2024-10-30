@@ -1,7 +1,7 @@
 <h3 id="client-title">Clientes</h3>
 <div class="clients-content">
-  <div class="form--dark--theme">
-    <button id="client_button" class="btn form__button client_button" type="submit">
+  <div class="form--light--theme">
+    <button id="client_button" class="btn form__button" type="submit">
       Añadir Cliente
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -22,7 +22,7 @@
   </table>
 </div>
 
-<!-- Modal -->
+<!-- Modals -->
 <div class="modal fade" id="deleteClientModal" tabindex="-1" aria-labelledby="deleteClientModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -35,11 +35,47 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <!-- <button id="deleteClientButton" type="button" data-bs-dismiss="modal" class="btn">Eliminar</button> -->
         <button id="deleteClientButton" type="button" class="btn">Eliminar</button>
         <button id="deletingClientButton" class="btn d-none" type="button" disabled>
           <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
           <span role="status">Eliminando...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editClientModalLabel">Editar Cliente</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formEditClient" method="POST" class="form--light--theme" autocomplete="off" novalidate>
+          <input id="name" type="text" name="name" class="form-control form__input" placeholder="Nombre" required />
+          <input id="surname" type="text" name="surname" class="form-control form__input" placeholder="Apellidos" required />
+          <input id="phone" type="tel" name="phone" class="form-control form__input" placeholder="Teléfono" required />
+          <input id="emailAddress" type="email" name="ema&#8203;ilAddress" class="form-control form__input" placeholder="nombre@ejemplo.com" required />
+          <input id="city" type="text" name="city" class="form-control form__input mb-2" placeholder="Población" required />
+          <label for="birthdate" class="form__label mb-1">Fecha de Alta</label>
+          <div class="form__input__date">
+            <input id="registrationDate" type="date" name="registrationDate" class="form-control form__input mb-2" required />
+            <i class="bi bi-calendar"></i>
+          </div>
+          <label for="birthdate" class="form__label mb-1">Estado</label>
+          <select id="status" name="status" class="form-select form__input" aria-label="Select para el estado del cliente" required>
+            <option selected disabled value="">Selecciona el departamento</option>
+          </select>
+        </form>
+      </div>
+      <div class="modal-footer form--light--theme">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button id="editClientButton" type="button" class="btn form__button">Guardar</button>
+        <button id="savingClientButton" class="btn d-none" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span role="status">Guardando...</span>
         </button>
       </div>
     </div>
