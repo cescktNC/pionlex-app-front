@@ -168,7 +168,7 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
       // Se hace el destructuring del json row.data()
       const { name, surname, phone, email, city, registrationDate, status } = row.data();
 
-      await showStatuses(status);
+      await getStatuses(status);
 
       // Se rellema el formulario
       inputName.value = name;
@@ -196,9 +196,18 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
     }
   }
 
-  async function showStatuses(statusClient) {
+  // Muestra los diferentes estados en el select de los formulario de crear y editar cliente
+  async function getStatuses(statusClient) {
     const statuses = await getRecords(urlStatuses);
 
+    // Verifica si el select ya contiene las opciones. Si no tiene opciones, realiza una petición al backend para obtenerlas 
+    // y rellenar el select. Si ya tiene opciones, selecciona la opción correspondiente sin realizar ninguna petición
+    selectStatus.children.length === 1 && selectStatus.children[0].disabled
+    ? showStatuses(statuses, statusClient)
+    : setSelectOption(statuses, statusClient);
+  }
+
+  function showStatuses(statuses, statusClient) {
     statuses.forEach( status => {
       const { id, name } = status;
       const option = document.createElement('option');
@@ -209,6 +218,17 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
         option.selected = true
       }
       selectStatus.appendChild(option);
+    });
+  }
+
+  function setSelectOption(statuses, statusClient) {
+    const options = Array.from(selectStatus.children);
+    options.forEach( option => {
+      console.log(option);
+      const name = option.innerText;
+      if (name.toLocaleLowerCase() === statusClient.toLocaleLowerCase()) {
+        option.selected = true
+      }
     });
   }
 
