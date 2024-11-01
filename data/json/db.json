@@ -28,283 +28,283 @@
   "clients": [
     {
       "id": "1",
-      "nombre": "Carlos",
-      "apellido": "Gómez Fernández",
-      "telefono": "+34 677 123 456",
+      "name": "Carlos",
+      "surname": "Gómez Fernández",
+      "phone": "+34 677 123 456",
       "email": "carlos.gomez@example.com",
-      "poblacion": "Tarragona",
-      "fecha_alta": "2023-05-10",
-      "estado": "En Proceso"
+      "city": "Tarragona",
+      "registrationDate": "2023-05-10",
+      "status": "En Proceso"
     },
     {
       "id": "2",
-      "nombre": "Laura",
-      "apellido": "Martínez Soler",
-      "telefono": "+34 655 987 654",
+      "name": "Laura",
+      "surname": "Martínez Soler",
+      "phone": "+34 655 987 654",
       "email": "laura.martinez@example.com",
-      "poblacion": "Reus",
-      "fecha_alta": "2023-02-15",
-      "estado": "Esperando documentación"
+      "city": "Reus",
+      "registrationDate": "2023-02-15",
+      "status": "Esperando documentación"
     },
     {
       "id": "3",
-      "nombre": "Jordi",
-      "apellido": "López Riera",
-      "telefono": "+34 612 456 789",
+      "name": "Jordi",
+      "surname": "López Riera",
+      "phone": "+34 612 456 789",
       "email": "jordi.lopez@example.com",
-      "poblacion": "Salou",
-      "fecha_alta": "2022-11-05",
-      "estado": "Cerrado"
+      "city": "Salou",
+      "registrationDate": "2022-11-05",
+      "status": "Cerrado"
     },
     {
       "id": "4",
-      "nombre": "Marta",
-      "apellido": "Vila Puig",
-      "telefono": "+34 666 321 789",
+      "name": "Marta",
+      "surname": "Vila Puig",
+      "phone": "+34 666 321 789",
       "email": "marta.vila@example.com",
-      "poblacion": "Valls",
-      "fecha_alta": "2023-08-20",
-      "estado": "Nuevo"
+      "city": "Valls",
+      "registrationDate": "2023-08-20",
+      "status": "Nuevo"
     },
     {
       "id": "5",
-      "nombre": "Pere",
-      "apellido": "Font Rovira",
-      "telefono": "+34 688 789 123",
+      "name": "Pere",
+      "surname": "Font Rovira",
+      "phone": "+34 688 789 123",
       "email": "pere.font@example.com",
-      "poblacion": "Tortosa",
-      "fecha_alta": "2023-01-10",
-      "estado": "Pendiente de pago"
+      "city": "Tortosa",
+      "registrationDate": "2023-01-10",
+      "status": "Pendiente de pago"
     },
     {
       "id": "6",
-      "nombre": "Anna",
-      "apellido": "Serra Vidal",
-      "telefono": "+34 611 987 321",
+      "name": "Anna",
+      "surname": "Serra Vidal",
+      "phone": "+34 611 987 321",
       "email": "anna.serra@example.com",
-      "poblacion": "Amposta",
-      "fecha_alta": "2022-09-22",
-      "estado": "En revisión"
+      "city": "Amposta",
+      "registrationDate": "2022-09-22",
+      "status": "En revisión"
     },
     {
       "id": "7",
-      "nombre": "Joan",
-      "apellido": "Pérez Gallart",
-      "telefono": "+34 644 123 789",
+      "name": "Joan",
+      "surname": "Pérez Gallart",
+      "phone": "+34 644 123 789",
       "email": "joan.perez@example.com",
-      "poblacion": "Cambrils",
-      "fecha_alta": "2023-03-18",
-      "estado": "En espera de resolución"
+      "city": "Cambrils",
+      "registrationDate": "2023-03-18",
+      "status": "En espera de resolución"
     },
     {
       "id": "8",
-      "nombre": "Núria",
-      "apellido": "Navarro Prats",
-      "telefono": "+34 622 456 321",
+      "name": "Núria",
+      "surname": "Navarro Prats",
+      "phone": "+34 622 456 321",
       "email": "nuria.navarro@example.com",
-      "poblacion": "El Vendrell",
-      "fecha_alta": "2022-07-30",
-      "estado": "Moroso"
+      "city": "El Vendrell",
+      "registrationDate": "2022-07-30",
+      "status": "Moroso"
     },
     {
       "id": "9",
-      "nombre": "Rosa",
-      "apellido": "Casals Ferrer",
-      "telefono": "+34 666 654 987",
+      "name": "Rosa",
+      "surname": "Casals Ferrer",
+      "phone": "+34 666 654 987",
       "email": "rosa.casals@example.com",
-      "poblacion": "Montblanc",
-      "fecha_alta": "2023-06-12",
-      "estado": "Archivado"
+      "city": "Montblanc",
+      "registrationDate": "2023-06-12",
+      "status": "Archivado"
     },
     {
       "id": "10",
-      "nombre": "Albert",
-      "apellido": "Pujol Cerdà",
-      "telefono": "+34 677 321 654",
+      "name": "Albert",
+      "surname": "Pujol Cerdà",
+      "phone": "+34 677 321 654",
       "email": "albert.pujol@example.com",
-      "poblacion": "Tarragona",
-      "fecha_alta": "2023-04-25",
-      "estado": "Con resolución pendiente"
+      "city": "Tarragona",
+      "registrationDate": "2023-04-25",
+      "status": "Con resolución pendiente"
     },
     {
       "id": "11",
-      "nombre": "Sergi",
-      "apellido": "Aragonés Martí",
-      "telefono": "+34 699 123 987",
+      "name": "Sergi",
+      "surname": "Aragonés Martí",
+      "phone": "+34 699 123 987",
       "email": "sergi.aragones@example.com",
-      "poblacion": "Reus",
-      "fecha_alta": "2023-09-14",
-      "estado": "En Proceso"
+      "city": "Reus",
+      "registrationDate": "2023-09-14",
+      "status": "En Proceso"
     },
     {
       "id": "12",
-      "nombre": "Cristina",
-      "apellido": "Ferrer Bosch",
-      "telefono": "+34 655 654 321",
+      "name": "Cristina",
+      "surname": "Ferrer Bosch",
+      "phone": "+34 655 654 321",
       "email": "cristina.ferrer@example.com",
-      "poblacion": "Tarragona",
-      "fecha_alta": "2023-05-30",
-      "estado": "Esperando documentación"
+      "city": "Tarragona",
+      "registrationDate": "2023-05-30",
+      "status": "Esperando documentación"
     },
     {
       "id": "13",
-      "nombre": "Eduard",
-      "apellido": "Vilaseca Baró",
-      "telefono": "+34 622 789 456",
+      "name": "Eduard",
+      "surname": "Vilaseca Baró",
+      "phone": "+34 622 789 456",
       "email": "eduard.vilaseca@example.com",
-      "poblacion": "Valls",
-      "fecha_alta": "2023-08-07",
-      "estado": "Cerrado"
+      "city": "Valls",
+      "registrationDate": "2023-08-07",
+      "status": "Cerrado"
     },
     {
       "id": "14",
-      "nombre": "Lucía",
-      "apellido": "Gallego Pérez",
-      "telefono": "+34 611 345 987",
+      "name": "Lucía",
+      "surname": "Gallego Pérez",
+      "phone": "+34 611 345 987",
       "email": "lucia.gallego@example.com",
-      "poblacion": "El Vendrell",
-      "fecha_alta": "2023-04-01",
-      "estado": "Nuevo"
+      "city": "El Vendrell",
+      "registrationDate": "2023-04-01",
+      "status": "Nuevo"
     },
     {
       "id": "15",
-      "nombre": "Pol",
-      "apellido": "Soler Dalmau",
-      "telefono": "+34 666 876 543",
+      "name": "Pol",
+      "surname": "Soler Dalmau",
+      "phone": "+34 666 876 543",
       "email": "pol.soler@example.com",
-      "poblacion": "Salou",
-      "fecha_alta": "2023-07-13",
-      "estado": "Pendiente de pago"
+      "city": "Salou",
+      "registrationDate": "2023-07-13",
+      "status": "Pendiente de pago"
     },
     {
       "id": "16",
-      "nombre": "Eva",
-      "apellido": "Cabré Llop",
-      "telefono": "+34 644 987 234",
+      "name": "Eva",
+      "surname": "Cabré Llop",
+      "phone": "+34 644 987 234",
       "email": "eva.cabre@example.com",
-      "poblacion": "Tortosa",
-      "fecha_alta": "2023-01-19",
-      "estado": "En revisión"
+      "city": "Tortosa",
+      "registrationDate": "2023-01-19",
+      "status": "En revisión"
     },
     {
       "id": "17",
-      "nombre": "Oriol",
-      "apellido": "Esteve Coll",
-      "telefono": "+34 611 432 789",
+      "name": "Oriol",
+      "surname": "Esteve Coll",
+      "phone": "+34 611 432 789",
       "email": "oriol.esteve@example.com",
-      "poblacion": "Cambrils",
-      "fecha_alta": "2023-03-25",
-      "estado": "En espera de resolución"
+      "city": "Cambrils",
+      "registrationDate": "2023-03-25",
+      "status": "En espera de resolución"
     },
     {
       "id": "18",
-      "nombre": "Lidia",
-      "apellido": "Miró Costa",
-      "telefono": "+34 688 654 123",
+      "name": "Lidia",
+      "surname": "Miró Costa",
+      "phone": "+34 688 654 123",
       "email": "lidia.miro@example.com",
-      "poblacion": "Montblanc",
-      "fecha_alta": "2022-09-11",
-      "estado": "Moroso"
+      "city": "Montblanc",
+      "registrationDate": "2022-09-11",
+      "status": "Moroso"
     },
     {
       "id": "19",
-      "nombre": "Alejandro",
-      "apellido": "Blanch Torres",
-      "telefono": "+34 644 321 789",
+      "name": "Alejandro",
+      "surname": "Blanch Torres",
+      "phone": "+34 644 321 789",
       "email": "alejandro.blanch@example.com",
-      "poblacion": "Amposta",
-      "fecha_alta": "2022-12-18",
-      "estado": "Archivado"
+      "city": "Amposta",
+      "registrationDate": "2022-12-18",
+      "status": "Archivado"
     },
     {
       "id": "20",
-      "nombre": "Paula",
-      "apellido": "Sanz Durán",
-      "telefono": "+34 633 456 987",
+      "name": "Paula",
+      "surname": "Sanz Durán",
+      "phone": "+34 633 456 987",
       "email": "paula.sanz@example.com",
-      "poblacion": "Reus",
-      "fecha_alta": "2023-02-06",
-      "estado": "Con resolución pendiente"
+      "city": "Reus",
+      "registrationDate": "2023-02-06",
+      "status": "Con resolución pendiente"
     },
     {
       "id": "21",
-      "nombre": "Marc",
-      "apellido": "Clavell Serra",
-      "telefono": "+34 655 234 765",
+      "name": "Marc",
+      "surname": "Clavell Serra",
+      "phone": "+34 655 234 765",
       "email": "marc.clavell@example.com",
-      "poblacion": "Tarragona",
-      "fecha_alta": "2023-06-20",
-      "estado": "En Proceso"
+      "city": "Tarragona",
+      "registrationDate": "2023-06-20",
+      "status": "En Proceso"
     },
     {
       "id": "22",
-      "nombre": "Ingrid",
-      "apellido": "Rubio Tormo",
-      "telefono": "+34 699 765 432",
+      "name": "Ingrid",
+      "surname": "Rubio Tormo",
+      "phone": "+34 699 765 432",
       "email": "ingrid.rubio@example.com",
-      "poblacion": "Valls",
-      "fecha_alta": "2022-10-10",
-      "estado": "Esperando documentación"
+      "city": "Valls",
+      "registrationDate": "2022-10-10",
+      "status": "Esperando documentación"
     },
     {
       "id": "23",
-      "nombre": "Raúl",
-      "apellido": "Vidal Ortiz",
-      "telefono": "+34 688 987 123",
+      "name": "Raúl",
+      "surname": "Vidal Ortiz",
+      "phone": "+34 688 987 123",
       "email": "raul.vidal@example.com",
-      "poblacion": "Salou",
-      "fecha_alta": "2022-11-22",
-      "estado": "Cerrado"
+      "city": "Salou",
+      "registrationDate": "2022-11-22",
+      "status": "Cerrado"
     },
     {
       "id": "24",
-      "nombre": "Noemí",
-      "apellido": "Ramírez Mas",
-      "telefono": "+34 611 234 987",
+      "name": "Noemí",
+      "surname": "Ramírez Mas",
+      "phone": "+34 611 234 987",
       "email": "noemi.ramirez@example.com",
-      "poblacion": "Cambrils",
-      "fecha_alta": "2023-09-15",
-      "estado": "Nuevo"
+      "city": "Cambrils",
+      "registrationDate": "2023-09-15",
+      "status": "Nuevo"
     },
     {
       "id": "25",
-      "nombre": "Roger",
-      "apellido": "Cortés Villalba",
-      "telefono": "+34 622 765 543",
+      "name": "Roger",
+      "surname": "Cortés Villalba",
+      "phone": "+34 622 765 543",
       "email": "roger.cortes@example.com",
-      "poblacion": "El Vendrell",
-      "fecha_alta": "2023-05-28",
-      "estado": "Pendiente de pago"
+      "city": "El Vendrell",
+      "registrationDate": "2023-05-28",
+      "status": "Pendiente de pago"
     },
     {
       "id": "26",
-      "nombre": "Clara",
-      "apellido": "Pastor Lozano",
-      "telefono": "+34 644 876 321",
+      "name": "Clara",
+      "surname": "Pastor Lozano",
+      "phone": "+34 644 876 321",
       "email": "clara.pastor@example.com",
-      "poblacion": "Montblanc",
-      "fecha_alta": "2023-03-07",
-      "estado": "En revisión"
+      "city": "Montblanc",
+      "registrationDate": "2023-03-07",
+      "status": "En revisión"
     },
     {
       "id": "27",
-      "nombre": "Xavier",
-      "apellido": "Camps Florit",
-      "telefono": "+34 633 765 987",
+      "name": "Xavier",
+      "surname": "Camps Florit",
+      "phone": "+34 633 765 987",
       "email": "xavier.camps@example.com",
-      "poblacion": "Tortosa",
-      "fecha_alta": "2023-07-10",
-      "estado": "En espera de resolución"
+      "city": "Tortosa",
+      "registrationDate": "2023-07-10",
+      "status": "En espera de resolución"
     },
     {
       "id": "28",
-      "nombre": "Verónica",
-      "apellido": "Navarro Sánchez",
-      "telefono": "+34 655 765 432",
+      "name": "Verónica",
+      "surname": "Navarro Sánchez",
+      "phone": "+34 655 765 432",
       "email": "veronica.navarro@example.com",
-      "poblacion": "Reus",
-      "fecha_alta": "2023-01-03",
-      "estado": "Moroso"
+      "city": "Reus",
+      "registrationDate": "2023-01-03",
+      "status": "Moroso"
     }
   ],
   "offices": [
@@ -365,6 +365,48 @@
       "id": "10",
       "nombre": "Jurídicos Romero S.L.",
       "cif": "B77665544"
+    }
+  ],
+  "statuses": [
+    {
+      "id": "1",
+      "name": "En proceso"
+    },
+    {
+      "id": "2",
+      "name": "Esperando documentación"
+    },
+    {
+      "id": "3",
+      "name": "Cerrado"
+    },
+    {
+      "id": "4",
+      "name": "Nuevo"
+    },
+    {
+      "id": "5",
+      "name": "Pendiente de pago"
+    },
+    {
+      "id": "6",
+      "name": "En revisión"
+    },
+    {
+      "id": "7",
+      "name": "En espera de resolución"
+    },
+    {
+      "id": "8",
+      "name": "Moroso"
+    },
+    {
+      "id": "9",
+      "name": "Archivado"
+    },
+    {
+      "id": "10",
+      "name": "Con resolución pendiente"
     }
   ]
 }

@@ -6,9 +6,20 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 
   // Variables
   const urlClients = "http://localhost:4000/clients";
+  const urlStatuses = "http://localhost:4000/statuses";
+
   const deleteClientButton = document.querySelector('#deleteClientButton');
   const deletingClientButton = document.querySelector('#deletingClientButton');
   const deleteClientToast = document.getElementById('deleteClientToast');
+
+  const inputName = document.querySelector('#name');
+  const inputSurname = document.querySelector('#surname');
+  const inputPhone = document.querySelector('#phone');
+  const inputEmail = document.querySelector('#email');
+  const inputCity = document.querySelector('#city');
+  const inputRegistrationDate = document.querySelector('#registrationDate');
+  const selectStatus = document.querySelector('#status');
+  const saveClientButton = document.querySelector('#saveClientButton');
 
   const deleteClientModal = new bootstrap.Modal(document.querySelector('#deleteClientModal'));
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(deleteClientToast);
@@ -26,12 +37,12 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
         { 
           data: null,
           className: 'td td-align-left',
-          render: data => `${data.nombre} ${data.apellido}`
+          render: data => `${data.name} ${data.surname}`
         },
-        { data: 'telefono', className: 'td td-align-center' },
+        { data: 'phone', className: 'td td-align-center' },
         { data: 'email', className: 'td td-align-center' },
-        { data: 'poblacion', className: 'td td-align-center' },
-        { data: 'fecha_alta', className: 'td td-align-center' },
+        { data: 'city', className: 'td td-align-center' },
+        { data: 'registrationDate', className: 'td td-align-center' },
         // { 
         //   data: 'fecha_alta',
         //   className: 'td td-align-center',
@@ -47,7 +58,7 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
           render: data => {
             return `
               <div class="client-status">
-                <span>${data.estado}</span>
+                <span>${data.status}</span>
               </div>`;
           }
         },
@@ -93,10 +104,10 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
         }
       },
       createdRow: function(row, data) {
-        const estadoCell = $('td', row).eq(5);
-        let div = estadoCell.find('div');
+        const statusCell = $('td', row).eq(5);
+        let div = statusCell.find('div');
 
-        switch (data.estado.toLocaleLowerCase()) {
+        switch (data.status.toLocaleLowerCase()) {
           case 'en proceso':
             div.addClass('in-progress');
             break;
@@ -141,18 +152,67 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 
       // Se guarda el nombre completo del cliente
       const rowData = row.data();
-      const fullName = `${rowData.nombre} ${rowData.apellido}`;
+      const fullName = `${rowData.name} ${rowData.surname}`;
 
-      saveDataClientToTheDeleteClientButton(idClient, fullName);
+      handleClientEditOrDelete(idClient, fullName, false);
+    });
+
+    $('#clientsTable').on('click', '.btn-edit', async (event) => {
+      const editButton = event.target.parentElement;
+      const idClient = editButton.dataset.id;
+
+      // Se obtiene la fila del cliente que se quiere editar
+      const dataTableClients = $('#clientsTable').DataTable();
+      const row = dataTableClients.row($(editButton).closest('tr'));
+
+      // Se hace el destructuring del json row.data()
+      const { name, surname, phone, email, city, registrationDate, status } = row.data();
+
+      await showStatuses(status);
+
+      // Se rellema el formulario
+      inputName.value = name;
+      inputSurname.value = surname;
+      inputPhone.value = phone;
+      inputEmail.value = email;
+      inputCity.value = city;
+      inputRegistrationDate.value = registrationDate;
+
+      const fullName = `${name} ${surname}`;
+
+      handleClientEditOrDelete(idClient, fullName);
     });
 
   }
 
-  function saveDataClientToTheDeleteClientButton(idClient, fullName) {
-    deleteClientButton.dataset.idClient = idClient;
-    deleteClientButton.dataset.fullName = fullName;
+  // Guarda el id y el nombre completo del cliente en el botón correspondiente, para luego poderlo mostrar en el toast
+  function handleClientEditOrDelete(idClient, fullName, editButton = true) {
+    if (editButton) {
+      saveClientButton.dataset.idClient = idClient;
+      saveClientButton.dataset.fullName = fullName;
+    } else {
+      deleteClientButton.dataset.idClient = idClient;
+      deleteClientButton.dataset.fullName = fullName;
+    }
   }
 
+  async function showStatuses(statusClient) {
+    const statuses = await getRecords(urlStatuses);
+
+    statuses.forEach( status => {
+      const { id, name } = status;
+      const option = document.createElement('option');
+      option.value = id;
+      option.innerText = name;
+      if (name.toLocaleLowerCase() === statusClient.toLocaleLowerCase()) {
+        selectStatus.querySelector('option[selected]').removeAttribute('selected');
+        option.selected = true
+      }
+      selectStatus.appendChild(option);
+    });
+  }
+
+  // Elimina un cliente de la BD
   async function deleteClient(e) {
     const idClient = parseInt(deleteClientButton.dataset.idClient);
     const response = await deleteRecord(idClient, urlClients);
@@ -176,11 +236,11 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
     // showToast(response);
   }
 
+  // Se refresca el datatable con el listado de clientes actualizado
   async function refreshDatatable() {
     const dataTableClients = $('#clientsTable').DataTable();
     const currentPage = dataTableClients.page();
 
-    // Se refresca el datatable con el listado de clientes actualizado
     const clients = await getRecords(urlClients);
     dataTableClients.clear();
     dataTableClients.rows.add(clients);
@@ -188,6 +248,7 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
     dataTableClients.page(currentPage).draw('page');
   }
 
+  // Se muestra el toast correspondiente a la respuesta del backend
   function showToast(response) {
     const iconToastHeader = deleteClientToast.querySelector('.toast-header i');
     const toastBody = deleteClientToast.querySelector('.toast-body');

@@ -45,10 +45,16 @@ export const createRecord = async (record, url) => {
 export const getRecords = async url => {
   try {
     const response = await fetch(url);
-    const data = await response.json();
-    return data;
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error(`Error en la solicitud: ${response.status}`);
+      return null;
+    }
   } catch (error) {
     console.error('Error en la conexión o en la solicitud:', error);
+    return null;
   }
 }
 
