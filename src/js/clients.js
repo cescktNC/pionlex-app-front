@@ -8,6 +8,8 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
   const urlClients = "http://localhost:4000/clients";
   const urlStatuses = "http://localhost:4000/statuses";
 
+  const addNewClientButton = document.querySelector('#addNewClientButton');
+
   const deleteClientButton = document.querySelector('#deleteClientButton');
   const deletingClientButton = document.querySelector('#deletingClientButton');
   const deleteClientToast = document.getElementById('deleteClientToast');
@@ -25,6 +27,7 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(deleteClientToast);
 
   // Eventos
+  addNewClientButton.addEventListener('click', clearClientForm);
   deleteClientButton.addEventListener('click', deleteClient);
   
   // Funciones
@@ -204,9 +207,10 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
     // y rellenar el select. Si ya tiene opciones, selecciona la opción correspondiente sin realizar ninguna petición
     selectStatus.children.length === 1 && selectStatus.children[0].disabled
     ? showStatuses(statuses, statusClient)
-    : setSelectOption(statuses, statusClient);
+    : setSelectOption(statusClient);
   }
 
+  // Rellena el select con las opciones
   function showStatuses(statuses, statusClient) {
     statuses.forEach( status => {
       const { id, name } = status;
@@ -215,21 +219,39 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
       option.innerText = name;
       if (name.toLocaleLowerCase() === statusClient.toLocaleLowerCase()) {
         selectStatus.querySelector('option[selected]').removeAttribute('selected');
-        option.selected = true
+        option.selected = true;
       }
       selectStatus.appendChild(option);
     });
   }
 
-  function setSelectOption(statuses, statusClient) {
+  // Selecciona la opcion correspondinte al argumento
+  function setSelectOption(statusClient) {
     const options = Array.from(selectStatus.children);
     options.forEach( option => {
       console.log(option);
       const name = option.innerText;
       if (name.toLocaleLowerCase() === statusClient.toLocaleLowerCase()) {
-        option.selected = true
+        option.selected = true;
       }
     });
+  }
+
+  // Borra los datos del formulario de cliente
+  function clearClientForm() {
+    inputName.value = inputSurname.value = inputPhone.value = inputEmail.value = inputCity.value = inputRegistrationDate.value = '';
+    removeSelectedOption();
+  }
+
+  // Deja la opción por defecto como seleccionada
+  function removeSelectedOption() {
+    const options = Array.from(selectStatus.children);
+    options.forEach( option => {
+      if (option.selected) {
+        option.selected = false;
+      }
+    });
+    options[0].selected = true;
   }
 
   // Elimina un cliente de la BD

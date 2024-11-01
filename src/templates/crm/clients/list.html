@@ -1,7 +1,7 @@
 <h3 id="client-title">Clientes</h3>
 <div class="clients-content">
   <div class="form--light--theme">
-    <button id="client_button" class="btn form__button" type="submit">
+    <button id="addNewClientButton" type="button" data-bs-toggle="modal" data-bs-target="#editClientModal" class="btn form__button">
       Añadir Cliente
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -71,7 +71,7 @@
         </form>
       </div>
       <div class="modal-footer form--light--theme">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button id="cancelClientButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button id="saveClientButton" type="button" class="btn form__button">Guardar</button>
         <button id="savingClientButton" class="btn d-none" type="button" disabled>
           <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
