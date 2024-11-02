@@ -1,3 +1,4 @@
+import { populateInputFields, clearInputFields, populateSelectOptions, setSelectOption, removeSelectedOption } from './functions';
 import { getRecords, deleteRecord } from './API'
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
@@ -20,6 +21,7 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
   const inputEmail = document.querySelector('#email');
   const inputCity = document.querySelector('#city');
   const inputRegistrationDate = document.querySelector('#registrationDate');
+  const inputFields = [inputName, inputSurname, inputPhone, inputEmail, inputCity, inputRegistrationDate];
   const selectStatus = document.querySelector('#status');
   const saveClientButton = document.querySelector('#saveClientButton');
 
@@ -170,19 +172,12 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 
       // Se hace el destructuring del json row.data()
       const { name, surname, phone, email, city, registrationDate, status } = row.data();
+      const valuesInputFields = [name, surname, phone, email, city, registrationDate, status];
 
-      await getStatuses(status);
-
-      // Se rellema el formulario
-      inputName.value = name;
-      inputSurname.value = surname;
-      inputPhone.value = phone;
-      inputEmail.value = email;
-      inputCity.value = city;
-      inputRegistrationDate.value = registrationDate;
+      populateInputFields(inputFields, valuesInputFields);
+      await showStatuses(status);
 
       const fullName = `${name} ${surname}`;
-
       handleClientEditOrDelete(idClient, fullName);
     });
 
@@ -200,58 +195,21 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
   }
 
   // Muestra los diferentes estados en el select de los formulario de crear y editar cliente
-  async function getStatuses(statusClient) {
-    const statuses = await getRecords(urlStatuses);
-
+  async function showStatuses(statusClient) {
     // Verifica si el select ya contiene las opciones. Si no tiene opciones, realiza una petición al backend para obtenerlas 
     // y rellenar el select. Si ya tiene opciones, selecciona la opción correspondiente sin realizar ninguna petición
-    selectStatus.children.length === 1 && selectStatus.children[0].disabled
-    ? showStatuses(statuses, statusClient)
-    : setSelectOption(statusClient);
-  }
-
-  // Rellena el select con las opciones
-  function showStatuses(statuses, statusClient) {
-    statuses.forEach( status => {
-      const { id, name } = status;
-      const option = document.createElement('option');
-      option.value = id;
-      option.innerText = name;
-      if (name.toLocaleLowerCase() === statusClient.toLocaleLowerCase()) {
-        selectStatus.querySelector('option[selected]').removeAttribute('selected');
-        option.selected = true;
-      }
-      selectStatus.appendChild(option);
-    });
-  }
-
-  // Selecciona la opcion correspondinte al argumento
-  function setSelectOption(statusClient) {
-    const options = Array.from(selectStatus.children);
-    options.forEach( option => {
-      console.log(option);
-      const name = option.innerText;
-      if (name.toLocaleLowerCase() === statusClient.toLocaleLowerCase()) {
-        option.selected = true;
-      }
-    });
+    if (selectStatus.children.length === 1 && selectStatus.children[0].disabled) {
+      const statuses = await getRecords(urlStatuses);
+      populateSelectOptions(selectStatus, statuses, statusClient);
+    } else {
+      setSelectOption(selectStatus, statusClient);
+    }
   }
 
   // Borra los datos del formulario de cliente
   function clearClientForm() {
-    inputName.value = inputSurname.value = inputPhone.value = inputEmail.value = inputCity.value = inputRegistrationDate.value = '';
-    removeSelectedOption();
-  }
-
-  // Deja la opción por defecto como seleccionada
-  function removeSelectedOption() {
-    const options = Array.from(selectStatus.children);
-    options.forEach( option => {
-      if (option.selected) {
-        option.selected = false;
-      }
-    });
-    options[0].selected = true;
+    clearInputFields(inputFields);
+    removeSelectedOption(selectStatus);
   }
 
   // Elimina un cliente de la BD
