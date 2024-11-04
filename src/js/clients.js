@@ -1,11 +1,25 @@
-import { populateInputFields, clearInputFields, populateSelectOptions, setSelectOption, removeSelectedOption } from './functions';
-import { getRecords, deleteRecord } from './API'
+import { 
+  validateFields, 
+  validatePhone, 
+  validateEmail, 
+  populateInputFields, 
+  clearInputFields, 
+  populateSelectOptions, 
+  setSelectOption, 
+  removeSelectedOption, 
+  showError,
+  showToast,
+  refreshDatatable
+} from './functions';
+import { createRecord, editRecord, getRecords, deleteRecord } from './API'
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 
 ( () => {
 
   // Variables
+  let statuses;
+
   const urlClients = "http://localhost:4000/clients";
   const urlStatuses = "http://localhost:4000/statuses";
 
@@ -13,8 +27,12 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 
   const deleteClientButton = document.querySelector('#deleteClientButton');
   const deletingClientButton = document.querySelector('#deletingClientButton');
-  const deleteClientToast = document.getElementById('deleteClientToast');
+  const saveClientButton = document.querySelector('#saveClientButton');
+  const savingClientButton = document.querySelector('#savingClientButton');
 
+  const clientToast = document.getElementById('clientToast');
+
+  const clientCreateEditModalLabel = document.querySelector('#clientCreateEditModalLabel');
   const inputName = document.querySelector('#name');
   const inputSurname = document.querySelector('#surname');
   const inputPhone = document.querySelector('#phone');
@@ -23,18 +41,20 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
   const inputRegistrationDate = document.querySelector('#registrationDate');
   const inputFields = [inputName, inputSurname, inputPhone, inputEmail, inputCity, inputRegistrationDate];
   const selectStatus = document.querySelector('#status');
-  const saveClientButton = document.querySelector('#saveClientButton');
 
-  const deleteClientModal = new bootstrap.Modal(document.querySelector('#deleteClientModal'));
-  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(deleteClientToast);
+  const clientDeleteModal = new bootstrap.Modal(document.querySelector('#clientDeleteModal'));
+  const clientCreateEditModal = new bootstrap.Modal(document.querySelector('#clientCreateEditModal'));
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(clientToast);
 
   // Eventos
   addNewClientButton.addEventListener('click', clearClientForm);
   deleteClientButton.addEventListener('click', deleteClient);
+  saveClientButton.addEventListener('click', saveClient);
   
   // Funciones
   async function showClients() {
     const clients = await getRecords(urlClients);
+    statuses = await getRecords(urlStatuses);
 
     $('#clientsTable').DataTable({
       data: clients,
@@ -61,9 +81,10 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
           className: 'td td-align-center',
           width: '140px',
           render: data => {
+            const status = statuses.find(status => status.id === data.status);
             return `
               <div class="client-status">
-                <span>${data.status}</span>
+                <span>${status.name}</span>
               </div>`;
           }
         },
@@ -73,10 +94,10 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
           orderable: false,
           render: data => {
             return `
-              <button type="button" data-bs-toggle="modal" data-bs-target="#editClientModal" class="btn-edit" data-id="${data.id}">
+              <button type="button" data-bs-toggle="modal" data-bs-target="#clientCreateEditModal" class="btn-edit" data-id="${data.id}">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
-              <button type="button" data-bs-toggle="modal" data-bs-target="#deleteClientModal" class="btn-delete" data-id="${data.id}">
+              <button type="button" data-bs-toggle="modal" data-bs-target="#clientDeleteModal" class="btn-delete" data-id="${data.id}">
                 <i class="fa-solid fa-trash"></i>
               </button>
             `;
@@ -111,36 +132,37 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
       createdRow: function(row, data) {
         const statusCell = $('td', row).eq(5);
         let div = statusCell.find('div');
+        const status = parseInt(data.status);
 
-        switch (data.status.toLocaleLowerCase()) {
-          case 'en proceso':
+        switch (status) {
+          case 1:
             div.addClass('in-progress');
             break;
-          case 'esperando documentación':
+          case 2:
             div.addClass('awaiting-documentation');
             break;
-          case 'cerrado':
+          case 3:
             div.addClass('closed');
             break;
-          case 'nuevo':
+          case 4:
             div.addClass('new');
             break;
-          case 'pendiente de pago':
+          case 5:
             div.addClass('pending-payment');
             break;
-          case 'en revisión':
+          case 6:
             div.addClass('under-review');
             break;
-          case 'en espera de resolución':
+          case 7:
             div.addClass('awaiting-resolution');
             break;
-          case 'moroso':
+          case 8:
             div.addClass('overdue');
             break;
-          case 'archivado':
+          case 9:
             div.addClass('archived');
             break;
-          case 'con resolución pendiente':
+          case 10:
             div.addClass('pending-resolution');
             break;
         }
@@ -165,6 +187,8 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
     $('#clientsTable').on('click', '.btn-edit', async (event) => {
       const editButton = event.target.parentElement;
       const idClient = editButton.dataset.id;
+
+      clientCreateEditModalLabel.innerText = 'Editar Cliente';
 
       // Se obtiene la fila del cliente que se quiere editar
       const dataTableClients = $('#clientsTable').DataTable();
@@ -196,10 +220,9 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 
   // Muestra los diferentes estados en el select de los formulario de crear y editar cliente
   async function showStatuses(statusClient) {
-    // Verifica si el select ya contiene las opciones. Si no tiene opciones, realiza una petición al backend para obtenerlas 
-    // y rellenar el select. Si ya tiene opciones, selecciona la opción correspondiente sin realizar ninguna petición
+    // Verifica si el select ya contiene las opciones. Si no tiene opciones rellenar el select. 
+    // Si ya tiene opciones, selecciona la opción correspondiente.
     if (selectStatus.children.length === 1 && selectStatus.children[0].disabled) {
-      const statuses = await getRecords(urlStatuses);
       populateSelectOptions(selectStatus, statuses, statusClient);
     } else {
       setSelectOption(selectStatus, statusClient);
@@ -208,62 +231,104 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 
   // Borra los datos del formulario de cliente
   function clearClientForm() {
+    clientCreateEditModalLabel.innerText = 'Crear Cliente';
     clearInputFields(inputFields);
-    removeSelectedOption(selectStatus);
+    if (selectStatus.children.length === 1 && selectStatus.children[0].disabled) {
+      populateSelectOptions(selectStatus, statuses);
+    } else {
+      removeSelectedOption(selectStatus);
+    }
+    saveClientButton.dataset.idClient = '';
+    saveClientButton.dataset.fullName = '';
   }
 
   // Elimina un cliente de la BD
-  async function deleteClient(e) {
+  async function deleteClient() {
     const idClient = parseInt(deleteClientButton.dataset.idClient);
     const response = await deleteRecord(idClient, urlClients);
 
     deleteClientButton.classList.add('d-none');
     deletingClientButton.classList.remove('d-none');
     // Esto es temporal para simular el tiempo de respuesta del backend
-    setTimeout( () => {
-      deleteClientModal.hide();
+    setTimeout( async () => {
+      clientDeleteModal.hide();
       deleteClientButton.classList.remove('d-none');
       deletingClientButton.classList.add('d-none');
-      refreshDatatable();
-      showToast(response);
+      const clients = await getRecords(urlClients);
+      refreshDatatable('clientsTable', clients);
+      showToast(response, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
     }, 2000);
 
     // Cuando se quite el codigo temporal anterior hay que descomentar estas líneas
-    // deleteClientModal.hide();
+    // clientDeleteModal.hide();
     // deleteClientButton.classList.remove('d-none');
     // deletingClientButton.classList.add('d-none');
-    // refreshDatatable();
-    // showToast(response);
+    // const clients = await getRecords(urlClients);
+    // refreshDatatable('clientsTable', clients);
+    // showToast(response, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
   }
 
-  // Se refresca el datatable con el listado de clientes actualizado
-  async function refreshDatatable() {
-    const dataTableClients = $('#clientsTable').DataTable();
-    const currentPage = dataTableClients.page();
+  async function saveClient() {
+    const id = saveClientButton.dataset.idClient;
+    const name = inputName.value;
+    const surname = inputSurname.value;
+    const phone = inputPhone.value;
+    const email = inputEmail.value;
+    const city = inputCity.value;
+    const registrationDate = inputRegistrationDate.value;
+    const status = selectStatus.value;
 
-    const clients = await getRecords(urlClients);
-    dataTableClients.clear();
-    dataTableClients.rows.add(clients);
-    dataTableClients.draw();
-    dataTableClients.page(currentPage).draw('page');
-  }
-
-  // Se muestra el toast correspondiente a la respuesta del backend
-  function showToast(response) {
-    const iconToastHeader = deleteClientToast.querySelector('.toast-header i');
-    const toastBody = deleteClientToast.querySelector('.toast-body');
-    const fullName = deleteClientButton.dataset.fullName;
-
-    if (response) {
-      iconToastHeader.classList.add('fa-solid', 'fa-check');
-      toastBody.innerText = `${fullName} se ha eliminado correctamente.`;
-      deleteClientToast.classList.add('toastSuccess');
-    } else {
-      iconToastHeader.classList.add('fa-solid', 'fa-triangle-exclamation');
-      toastBody.innerText = `${fullName} no ha podido ser eliminado.`;
-      deleteClientToast.classList.add('toastError');
+    let client;
+    id === ''
+    ? client = { name, surname, phone, email, city, registrationDate, status }
+    : client = { id, name, surname, phone, email, city, registrationDate, status };
+    
+    if (!validateFields(client)) {
+      showError('Todos los campos son obligatorios.', 'errorAlert');
+      return;
     }
-    toastBootstrap.show();
+
+    if (!validatePhone(phone)) {
+      showError('Teléfono incorrecto.', 'errorAlert');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      showError('Email incorrecto.', 'errorAlert');
+      return;
+    }
+
+    let response, successMessage, errorMessage;
+    if (saveClientButton.dataset.idClient === '') {
+      response = await createRecord(client, urlClients);
+      successMessage = 'Cliente creado correctamente';
+      errorMessage = 'No se ha podido crear el cliente';
+    } else {
+      response = await editRecord(client, urlClients);
+      successMessage = 'se ha modificado correctamente';
+      errorMessage = 'no ha podido ser modificado';
+    }
+
+    saveClientButton.classList.add('d-none');
+    savingClientButton.classList.remove('d-none');
+    // Esto es temporal para simular el tiempo de respuesta del backend
+    setTimeout( async () => {
+      clientCreateEditModal.hide();
+      saveClientButton.classList.remove('d-none');
+      savingClientButton.classList.add('d-none');
+      const clients = await getRecords(urlClients);
+      refreshDatatable('clientsTable', clients);
+      showToast(response, saveClientButton, clientToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
+    }, 2000);
+
+    // Cuando se quite el codigo temporal anterior hay que descomentar estas líneas
+    // clientCreateEditModal.hide();
+    // saveClientButton.classList.remove('d-none');
+    // savingClientButton.classList.add('d-none');
+    // const clients = await getRecords(urlClients);
+    // refreshDatatable('clientsTable', clients);
+    // showToast(response, saveClientButton, clientToast, toastBootstrap, 'Guradar', 'se ha modificado correctamente', 'no ha podido ser modificado');
+
   }
 
   // Lógica

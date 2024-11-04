@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 /***************************************************************************/
 /**                             GENERALES                                 **/
 /***************************************************************************/
@@ -30,6 +32,17 @@ export function validateFields(obj) {
   return Object.values(obj).every( input => input !== '')
 }
 
+export function validatePhone(phone) {
+  // const phonePattern = /^\+?[0-9]{1,3}?[0-9]{7,15}$/; // Valida números de cualquier pais
+  const phonePattern = /^(?:\+34)?[0-9]{9}$/; // Valida números de españa
+  return phonePattern.test(phone);
+}
+
+export function validateEmail(email) {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailPattern.test(email);
+}
+
 // Rellena los inputs
 export function populateInputFields(inputFields, valuesInputFields) {
   inputFields.forEach( (inputField, key) => inputField.value = valuesInputFields[key] );
@@ -47,7 +60,7 @@ export function populateSelectOptions(selectField, options, optionToSelect) {
     const optionField = document.createElement('option');
     optionField.value = id;
     optionField.innerText = name;
-    if (name.toLocaleLowerCase() === optionToSelect.toLocaleLowerCase()) {
+    if (id === optionToSelect) {
       selectField.querySelector('option[selected]').removeAttribute('selected');
       optionField.selected = true;
     }
@@ -59,8 +72,8 @@ export function populateSelectOptions(selectField, options, optionToSelect) {
 export function setSelectOption(selectField, optionToSelect) {
   const options = Array.from(selectField.children);
   options.forEach( option => {
-    const name = option.innerText;
-    if (name.toLocaleLowerCase() === optionToSelect.toLocaleLowerCase()) {
+    const id = option.value;
+    if (id === optionToSelect) {
       option.selected = true;
     }
   });
@@ -77,7 +90,7 @@ export function removeSelectedOption(selectField) {
   options[0].selected = true;
 }
 
-// Muestra mensaje de error en un formulario cuando no se han rellenado todos los campos.
+// Muestra mensaje de error en los formularios de login cuando no se han rellenado todos los campos.
 let alertTimeout;
 export function showAlert(message, containerSelector) {
 
@@ -113,4 +126,72 @@ export function showAlert(message, containerSelector) {
   alertTimeout = setTimeout( () => {
     alert.remove();
   }, 3000);
+}
+
+// Muestra mensaje de error en un formulario cuando no se han rellenado todos los campos.
+let errorTimeout;
+export function showError(message, containerSelector) {
+
+  const container = document.getElementById(containerSelector);
+
+  if (!container) {
+    console.log(`El contenedor ${containerSelector} no existe.`);
+    return;
+  }
+
+  let error = document.querySelector('.errorAlert');
+
+  if (!error) {
+    container.classList.add('errorAlert');
+    container.innerText = message;
+  } else {
+    error.classList.add('errorAlert');
+    error.innerText = message;
+  }
+
+  clearTimeout(errorTimeout);
+  errorTimeout = setTimeout( () => {
+    container.innerText = '';
+    container.classList.remove('errorAlert');
+  }, 3000);
+}
+
+/***************************************************************************/
+/**                               TOASTS                                  **/
+/***************************************************************************/
+
+// Se muestra el toast correspondiente a la respuesta del backend
+export function showToast(response, button, toast, toastBootstrap, title, successMessage, errorMessage) {
+  const iconToastHeader = toast.querySelector('.toast-header i');
+  const titleToastHeader = toast.querySelector('.toast-header strong');
+  const toastBody = toast.querySelector('.toast-body');
+  const fullName = button.dataset.fullName;
+
+  titleToastHeader.innerText = title;
+
+  if (!response) {
+    iconToastHeader.classList.add('fa-solid', 'fa-check');
+    toastBody.innerText = `${fullName} ${successMessage}.`;
+    toast.classList.add('toastSuccess');
+  } else {
+    iconToastHeader.classList.add('fa-solid', 'fa-triangle-exclamation');
+    toastBody.innerText = `${fullName} ${errorMessage}.`;
+    toast.classList.add('toastError');
+  }
+  toastBootstrap.show();
+}
+
+/***************************************************************************/
+/**                             DATATABLES                                **/
+/***************************************************************************/
+
+// Se refresca el datatable actualizando el listado
+export async function refreshDatatable(dataTableName, data) {
+  const dataTable = $(`#${dataTableName}`).DataTable();
+  const currentPage = dataTable.page();
+
+  dataTable.clear();
+  dataTable.rows.add(data);
+  dataTable.draw();
+  dataTable.page(currentPage).draw('page');
 }

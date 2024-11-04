@@ -34,10 +34,55 @@ export const createRecord = async (record, url) => {
         'Content-Type': 'application/json'
       }
     });
-    const data = await response.json();
-    return data;
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error(`Error en la solicitud: ${response.status}`);
+      return null;
+    }
   } catch (error) {
     console.error('Error en la conexión o en la solicitud:', error);
+  }
+}
+
+export const editRecord = async (record, url) => {
+  try {
+    const response = await fetch(`${url}/${record.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(record),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error(`Error en la solicitud: ${response.status}`);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error en la conexión o en la solicitud:', error);
+  }
+}
+
+// Elimina registro
+export const deleteRecord = async (id, url) => {
+  try {
+    console.log(`${url}/${id}`);
+    const response = await fetch(`${url}/${id}`, {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      return true;
+    } else {
+      console.error(`Error en la solicitud: ${response.status}`);
+      return false;
+    }
+  } catch (error) {
+    console.error('Error en la conexión o en la solicitud:', error);
+    return false;
   }
 }
 
@@ -55,23 +100,5 @@ export const getRecords = async url => {
   } catch (error) {
     console.error('Error en la conexión o en la solicitud:', error);
     return null;
-  }
-}
-
-// Elimina registro
-export const deleteRecord = async (id, url) => {
-  try {
-    const response = await fetch(`${url}/${id}`, {
-      method: 'DELETE'
-    });
-    if (response.ok) {
-      return true;
-    } else {
-      console.error(`Error en la solicitud: ${response.status}`);
-      return false;
-    }
-  } catch (error) {
-    console.error('Error en la conexión o en la solicitud:', error);
-    return false;
   }
 }

@@ -1,7 +1,7 @@
 <h3 id="client-title">Clientes</h3>
 <div class="clients-content">
   <div class="form--light--theme">
-    <button id="addNewClientButton" type="button" data-bs-toggle="modal" data-bs-target="#editClientModal" class="btn form__button">
+    <button id="addNewClientButton" type="button" data-bs-toggle="modal" data-bs-target="#clientCreateEditModal" class="btn form__button">
       Añadir Cliente
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -23,20 +23,20 @@
 </div>
 
 <!-- Modals -->
-<div class="modal fade" id="deleteClientModal" tabindex="-1" aria-labelledby="deleteClientModalLabel" aria-hidden="true">
+<div class="modal fade" id="clientDeleteModal" tabindex="-1" aria-labelledby="clientDeleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="deleteClientModalLabel">Borrar Cliente</h1>
+        <h1 class="modal-title fs-5" id="clientDeleteModalLabel">Borrar Cliente</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         ¿Seguro que quieres eliminar a este usuario?
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer form--light--theme">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button id="deleteClientButton" type="button" class="btn">Eliminar</button>
-        <button id="deletingClientButton" class="btn d-none" type="button" disabled>
+        <button id="deleteClientButton" type="button" class="btn form__button">Eliminar</button>
+        <button id="deletingClientButton" class="btn form__button d-none" type="button" disabled>
           <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
           <span role="status">Eliminando...</span>
         </button>
@@ -45,15 +45,15 @@
   </div>
 </div>
 
-<div class="modal fade" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
+<div class="modal fade" id="clientCreateEditModal" tabindex="-1" aria-labelledby="clientCreateEditModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editClientModalLabel">Editar Cliente</h1>
+        <h1 class="modal-title fs-5" id="clientCreateEditModalLabel"></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="formEditClient" method="POST" class="form--light--theme" autocomplete="off" novalidate>
+        <form id="clientCreateEditForm" method="POST" class="form--light--theme" autocomplete="off" novalidate>
           <input id="name" type="text" name="name" class="form-control form__input" placeholder="Nombre" required />
           <input id="surname" type="text" name="surname" class="form-control form__input" placeholder="Apellidos" required />
           <input id="phone" type="tel" name="phone" class="form-control form__input" placeholder="Teléfono" required />
@@ -69,11 +69,12 @@
             <option selected disabled value="">Selecciona el estado</option>
           </select>
         </form>
+        <p id="errorAlert"></p>
       </div>
       <div class="modal-footer form--light--theme">
         <button id="cancelClientButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button id="saveClientButton" type="button" class="btn form__button">Guardar</button>
-        <button id="savingClientButton" class="btn d-none" type="button" disabled>
+        <button id="savingClientButton" class="btn form__button d-none" type="button" disabled>
           <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
           <span role="status">Guardando...</span>
         </button>
@@ -84,10 +85,10 @@
 
 <!-- Toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="deleteClientToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div id="clientToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
       <i class=""></i>
-      <strong class="me-auto">Eliminar</strong>
+      <strong class="me-auto"></strong>
       <small>Ahora</small>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>

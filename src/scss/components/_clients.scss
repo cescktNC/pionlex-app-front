@@ -161,25 +161,15 @@
 
 }
 
-#deleteClientModal {
-  #deleteClientButton {
-    background-color: map-get(colors.$colors, "start-gradient");
-    font-weight: 600;
-    transition: all .3s;
-  }
-
-  #deletingClientButton {
-    background-color: map-get(colors.$colors, "start-gradient");
-    font-weight: 600;
-    border: 1px solid map-get(colors.$colors, "start-gradient");
-  }
-
-  #deleteClientButton:hover {
-    background-color: map-get(colors.$colors, "start-gradient-opacity");
+#clientCreateEditModal {
+  #errorAlert {
+    height: 37px;
+    margin-top: 17px;
+    margin-bottom: 0;
   }
 }
 
-#deleteClientToast {
+#clientToast {
   strong {
     margin-left: 5px;
   }

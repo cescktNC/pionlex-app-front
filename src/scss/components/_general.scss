@@ -45,3 +45,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .toastError {
   background-color: #FF6F6F;
 }
+
+.errorAlert {
+  border-radius: 5px;
+  background-color: #f8d7da;
+  color: #dc3545;
+  text-align: center;
+  padding: 5px 0;
+  font-weight: 600;
+}

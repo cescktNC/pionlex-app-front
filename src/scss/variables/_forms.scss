@@ -105,10 +105,10 @@ $forms: (
     ),
     button: (
       bg: map-get(colors.$colors, "start-gradient"),
-      width: 90px,
-      height: 38px,
+      // width: 90px,
+      // height: 38px,
       font-family: typography.$montserrat,
-      font-size: 14px,
+      // font-size: 14px,
       font-weight: 600,
       color: map-get(colors.$colors, "dark-grey"),
       transition: all .3s,
