@@ -158,10 +158,10 @@ import router from './routes';
     const departmentSelect = document.querySelector('#department');
 
     departments.forEach( department => {
-      const { id, nombre } = department;
+      const { id, name } = department;
       const option = document.createElement('option');
       option.value = id;
-      option.innerText = nombre;
+      option.innerText = name;
       departmentSelect.appendChild(option);
     });
   }
