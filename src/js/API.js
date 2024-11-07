@@ -70,7 +70,6 @@ export const editRecord = async (record, url) => {
 // Elimina registro
 export const deleteRecord = async (id, url) => {
   try {
-    console.log(`${url}/${id}`);
     const response = await fetch(`${url}/${id}`, {
       method: 'DELETE'
     });

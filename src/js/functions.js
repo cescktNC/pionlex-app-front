@@ -11,6 +11,26 @@ export function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+// Borra todos los scritps cargados menos el del main.js
+export function removeAllScriptsExceptMain() {
+  const scripts = document.querySelectorAll('script');
+  scripts.forEach( script => {
+    if (!script.src.includes('main.js')) {
+      script.remove();
+    }
+  });
+}
+
+// Añade los scripts pasados por parámetro
+export function addScripts(scripts) {
+  scripts.forEach( script => {
+    const scriptElement = document.createElement('script');
+    scriptElement.type = 'module';
+    scriptElement.src = `/src/js/${script}.js`;
+    document.body.appendChild(scriptElement);
+  });
+}
+
 // Añade una clase a un elemento html
 export function addClassFromId(id, className) {
   const htmlElement = document.querySelector(`#${id}`);
@@ -169,7 +189,7 @@ export function showToast(response, button, toast, toastBootstrap, title, succes
 
   titleToastHeader.innerText = title;
 
-  if (!response) {
+  if (response) {
     iconToastHeader.classList.add('fa-solid', 'fa-check');
     toastBody.innerText = `${fullName} ${successMessage}.`;
     toast.classList.add('toastSuccess');

@@ -60,7 +60,6 @@ import router from './routes';
     const token = data.token;
     document.cookie = `auth_token=${token}; path=/; secure; SameSite=Lax`;
 
-    const moduleIds = data.modules;
     localStorage.setItem('moduleIds', JSON.stringify(data.modules));
 
     router.navigate('/loadModules');

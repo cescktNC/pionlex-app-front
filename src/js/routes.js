@@ -1,5 +1,6 @@
 import Navigo from 'navigo';
-import { getCookie } from './functions';
+import { getCookie, addScripts } from './functions';
+import { initClients } from './clients';
 
 const router = new Navigo('/');
 
@@ -20,14 +21,6 @@ function requireAuth(callback) {
 // En el index.html, cargo el template y el script pasados por parámetro
 async function loadTemplate(templateName, scriptsToAdd, containerId = 'app') {
   try {
-    // Borro todos los scritps cargados menos el del main.js
-    const scripts = document.querySelectorAll('script');
-    scripts.forEach( script => {
-      if (!script.src.includes('main.js')) {
-        script.remove();
-      }
-    });
-
     // Crago el nuevo template
     const response = await fetch(`/src/templates/${templateName}.html`);
     const html = await response.text();
@@ -35,12 +28,7 @@ async function loadTemplate(templateName, scriptsToAdd, containerId = 'app') {
 
     // Añado el script correspondiente al template
     if (scriptsToAdd.length > 0) {
-      scriptsToAdd.forEach( script => {
-        const scriptElement = document.createElement('script');
-        scriptElement.type = 'module';
-        scriptElement.src = script;
-        document.body.appendChild(scriptElement);
-      });
+      addScripts(scriptsToAdd);
     }
   } catch (error) {
     console.log(`Error al cargar el template: ${templateName}`);
@@ -51,19 +39,21 @@ async function loadTemplate(templateName, scriptsToAdd, containerId = 'app') {
 // Listado de todas las rutas de la aplicación
 router
   .on('/login', () => {
-    loadTemplate('login/login', ['/src/js/login.js']);
+    loadTemplate('login/login', ['login']);
   })
   .on('/loadModules', () => {
-    loadTemplate('menu/menu', ['/src/js/modules.js']);
+    loadTemplate('menu/menu', ['modules']);
   })
-  .on('/clients', requireAuth( () => {
-    loadTemplate('crm/clients/list', ['/src/js/clients.js', '/src/js/menu.js'], 'content-page');
+  .on('/clients', requireAuth( async () => {
+    await loadTemplate('crm/clients/list', [], 'content-page');
+    initClients();
+    // loadTemplate('crm/clients/list', ['/src/js/menu.js', '/src/js/clients.js'], 'content-page');
   }))
   .on('/users', requireAuth( () => {
-    loadTemplate('crm/users/list');
+    loadTemplate('crm/users/list', [], 'content-page');
   }))
   .on('/module4Section1', requireAuth( () => {
-    loadTemplate('module4/section1/list', ['/src/js/menu.js'], 'content-page');
+    loadTemplate('module4/section1/list', [], 'content-page');
   }))
   .notFound( () => {
     document.getElementById('app').innerHTML = '<h1>404 - Página no encontrada</h1>';
