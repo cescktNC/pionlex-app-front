@@ -1,7 +1,9 @@
 const urlLogins = "http://localhost:4000/logins";
-const urlUsers = "http://localhost:4000/users";
-const urlOffices = "http://localhost:4000/offices";
-const urlDepartments = "http://localhost:4000/departments";
+export const urlUsers = "http://localhost:4000/users";
+export const urlOffices = "http://localhost:4000/offices";
+export const urlDepartments = "http://localhost:4000/departments";
+export const urlClients = "http://localhost:4000/clients";
+export const urlStatuses = "http://localhost:4000/statuses";
 
 // Inicio de sesion de un cliente
 export const login = async user => {

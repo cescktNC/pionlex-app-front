@@ -11,14 +11,12 @@ import {
   showToast,
   refreshDatatable
 } from './functions';
-import { createRecord, editRecord, getRecords, deleteRecord } from './API'
+import { urlClients, urlStatuses, createRecord, editRecord, getRecords, deleteRecord } from './API'
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 
 // Variables globales
 let statuses;
-const urlClients = "http://localhost:4000/clients";
-const urlStatuses = "http://localhost:4000/statuses";
 let addNewClientButton, deleteClientButton, deletingClientButton, saveClientButton, savingClientButton;
 let clientCreateEditModalLabel, inputName, inputSurname, inputPhone, inputEmail, inputCity, inputRegistrationDate, inputFields, selectStatus;
 let clientToast, clientDeleteModal, clientCreateEditModal, toastBootstrap;

@@ -15,7 +15,3 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import router from './routes';
 
 router.resolve();
-
-( () => {
-
-})();
