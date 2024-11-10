@@ -52,10 +52,10 @@ export function validateFields(obj) {
   return Object.values(obj).every( input => input !== '')
 }
 
-export function validatePhone(phone) {
-  // const phonePattern = /^\+?[0-9]{1,3}?[0-9]{7,15}$/; // Valida números de cualquier pais
-  const phonePattern = /^(?:\+34)?[0-9]{9}$/; // Valida números de españa
-  return phonePattern.test(phone);
+export function validatePhoneNumber(phoneNumber) {
+  // const phoneNumberPattern = /^\+?[0-9]{1,3}?[0-9]{7,15}$/; // Valida números de cualquier pais
+  const phoneNumberPattern = /^(?:\+34)?[0-9]{9}$/; // Valida números de españa
+  return phoneNumberPattern.test(phoneNumber);
 }
 
 export function validateEmail(email) {

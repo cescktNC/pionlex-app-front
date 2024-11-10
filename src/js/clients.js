@@ -1,6 +1,6 @@
 import { 
   validateFields, 
-  validatePhone, 
+  validatePhoneNumber, 
   validateEmail, 
   populateInputFields, 
   clearInputFields, 
@@ -18,7 +18,7 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 // Variables globales
 let statuses;
 let addNewClientButton, deleteClientButton, deletingClientButton, saveClientButton, savingClientButton;
-let clientCreateEditModalLabel, inputName, inputSurname, inputPhone, inputEmail, inputCity, inputRegistrationDate, inputFields, selectStatus;
+let clientCreateEditModalLabel, inputName, inputLastname, inputPhoneNumber, inputEmail, inputCity, inputRegistrationDate, inputFields, selectStatus;
 let clientToast, clientDeleteModal, clientCreateEditModal, toastBootstrap;
 
 // Funciones
@@ -37,9 +37,9 @@ async function showClients() {
       { 
         data: null,
         className: 'td td-align-left',
-        render: data => `${data.name} ${data.surname}`
+        render: data => `${data.name} ${data.lastname}`
       },
-      { data: 'phone', className: 'td td-align-center' },
+      { data: 'phoneNumber', className: 'td td-align-center' },
       { data: 'email', className: 'td td-align-center' },
       { data: 'city', className: 'td td-align-center' },
       { data: 'registrationDate', className: 'td td-align-center' },
@@ -160,7 +160,7 @@ function handleDeleteClientClick(event) {
 
   // Se guarda el nombre completo del cliente
   const rowData = row.data();
-  const fullName = `${rowData.name} ${rowData.surname}`;
+  const fullName = `${rowData.name} ${rowData.lastname}`;
 
   handleClientEditOrDelete(idClient, fullName, false);
 }
@@ -176,13 +176,13 @@ async function handleEditClientClick() {
   const row = dataTableClients.row($(editButton).closest('tr'));
 
   // Se hace el destructuring del json row.data()
-  const { name, surname, phone, email, city, registrationDate, status } = row.data();
-  const valuesInputFields = [name, surname, phone, email, city, registrationDate, status];
+  const { name, lastname, phoneNumber, email, city, registrationDate, status } = row.data();
+  const valuesInputFields = [name, lastname, phoneNumber, email, city, registrationDate, status];
 
   populateInputFields(inputFields, valuesInputFields);
   await showStatuses(status);
 
-  const fullName = `${name} ${surname}`;
+  const fullName = `${name} ${lastname}`;
   handleClientEditOrDelete(idClient, fullName);
 }
 
@@ -250,8 +250,8 @@ async function deleteClient() {
 async function saveClient() {
   const id = saveClientButton.dataset.idClient;
   const name = inputName.value;
-  const surname = inputSurname.value;
-  const phone = inputPhone.value;
+  const lastname = inputLastname.value;
+  const phoneNumber = inputPhoneNumber.value;
   const email = inputEmail.value;
   const city = inputCity.value;
   const registrationDate = inputRegistrationDate.value;
@@ -259,15 +259,15 @@ async function saveClient() {
 
   let client;
   id === ''
-  ? client = { name, surname, phone, email, city, registrationDate, status }
-  : client = { id, name, surname, phone, email, city, registrationDate, status };
+  ? client = { name, lastname, phoneNumber, email, city, registrationDate, status }
+  : client = { id, name, lastname, phoneNumber, email, city, registrationDate, status };
   
   if (!validateFields(client)) {
     showError('Todos los campos son obligatorios.', 'errorAlert');
     return;
   }
 
-  if (!validatePhone(phone)) {
+  if (!validatePhoneNumber(phoneNumber)) {
     showError('Teléfono incorrecto.', 'errorAlert');
     return;
   }
@@ -310,7 +310,25 @@ async function saveClient() {
 
 }
 
-export function initClients() {
+function applyDataTableStyles() {
+  // Sección de 'Mostrar' n elementos por página
+  const lengthElement = document.querySelector('#clientsTable_wrapper .dt-length');
+  lengthElement.classList.add('lengthElementDataTable');
+
+  // Sección de 'Buscar'
+  const searchElement = document.querySelector('#clientsTable_wrapper .dt-search');
+  searchElement.classList.add('searchElementDataTable');
+
+  // Sección de información (Mostrando 1 a 10 de 28 elementos)
+  const infoElement = document.querySelector('#clientsTable_wrapper .dt-info');
+  infoElement.classList.add('infoElementDataTable');
+
+  // Sección de Paginación
+  const pagingElement = document.querySelector('#clientsTable_wrapper .dt-paging');
+  pagingElement.classList.add('pagingElementDataTable');
+}
+
+export async function initClients() {
   // Inicializar variables
   addNewClientButton = document.querySelector('#addNewClientButton');
   deleteClientButton = document.querySelector('#deleteClientButton');
@@ -322,12 +340,12 @@ export function initClients() {
 
   clientCreateEditModalLabel = document.querySelector('#clientCreateEditModalLabel');
   inputName = document.querySelector('#name');
-  inputSurname = document.querySelector('#surname');
-  inputPhone = document.querySelector('#phone');
+  inputLastname = document.querySelector('#lastname');
+  inputPhoneNumber = document.querySelector('#phoneNumber');
   inputEmail = document.querySelector('#email');
   inputCity = document.querySelector('#city');
   inputRegistrationDate = document.querySelector('#registrationDate');
-  inputFields = [inputName, inputSurname, inputPhone, inputEmail, inputCity, inputRegistrationDate];
+  inputFields = [inputName, inputLastname, inputPhoneNumber, inputEmail, inputCity, inputRegistrationDate];
   selectStatus = document.querySelector('#status');
 
   // Instanciar componentes de Bootstrap
@@ -341,5 +359,6 @@ export function initClients() {
   saveClientButton.addEventListener('click', saveClient);
 
   // Lógica
-  showClients();
+  await showClients();
+  applyDataTableStyles();
 }

@@ -1,7 +1,7 @@
-<h3 id="client-title">Clientes</h3>
-<div class="clients-content">
+<h3 id="client-title" class="section-title">Clientes</h3>
+<div class="section-content">
   <div class="form--light--theme">
-    <button id="addNewClientButton" type="button" data-bs-toggle="modal" data-bs-target="#clientCreateEditModal" class="btn form__button">
+    <button id="addNewClientButton" type="button" data-bs-toggle="modal" data-bs-target="#clientCreateEditModal" class="btn form__button add-new-item-button">
       Añadir Cliente
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -31,7 +31,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ¿Seguro que quieres eliminar a este usuario?
+        ¿Seguro que quieres eliminar a este cliente?
       </div>
       <div class="modal-footer form--light--theme">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -55,8 +55,8 @@
       <div class="modal-body">
         <form id="clientCreateEditForm" method="POST" class="form--light--theme" autocomplete="off" novalidate>
           <input id="name" type="text" name="name" class="form-control form__input" placeholder="Nombre" required />
-          <input id="surname" type="text" name="surname" class="form-control form__input" placeholder="Apellidos" required />
-          <input id="phone" type="tel" name="phone" class="form-control form__input" placeholder="Teléfono" required />
+          <input id="lastname" type="text" name="lastname" class="form-control form__input" placeholder="Apellidos" required />
+          <input id="phoneNumber" type="tel" name="phoneNumber" class="form-control form__input" placeholder="Teléfono" required />
           <input id="email" type="email" name="email" class="form-control form__input" placeholder="nombre@ejemplo.com" required />
           <input id="city" type="text" name="city" class="form-control form__input mb-2" placeholder="Población" required />
           <label for="registrationDate" class="form__label mb-1">Fecha de Alta</label>
