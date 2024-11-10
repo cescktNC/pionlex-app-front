@@ -205,6 +205,129 @@ export function showToast(response, button, toast, toastBootstrap, title, succes
 /**                             DATATABLES                                **/
 /***************************************************************************/
 
+// Devuelve las traducciones del datatable
+export function languageDatatable(idLanguage) {
+  const language = {
+    es: {
+      "lengthMenu": "Mostrar _MENU_ clientes",
+      "search": "Buscar:",
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ clientes",
+      "infoEmpty": "Mostrando 0 a 0 de 0 clientes",
+      "infoFiltered": "(filtrado de _MAX_ clientes en total)",
+      "infoPostFix": "", // Añade información al final del 'info'
+      "paginate": {
+        "first": "Primero",
+        "last": "Último",
+        "next": "Siguiente",
+        "previous": "Anterior"
+      },
+      "emptyTable": "No hay información",
+      "loadingRecords": "Cargando...",
+      "processing": "Procesando...",
+      "zeroRecords": "No se encontraron resultados",
+      "thousands": ".",
+      "decimal": ",",
+      // Añade una descripción de que se puede ordenar de forma ascendente y descendente para lectores de pantalla (accesibilidad)
+      "aria": {
+        "sortAscending": ": activar para ordenar la columna de manera ascendente",
+        "sortDescending": ": activar para ordenar la columna de manera descendente"
+      }
+    },
+    en: {
+      "lengthMenu": "Show _MENU_ clients",
+      "search": "Search:",
+      "info": "Showing _START_ to _END_ of _TOTAL_ clients",
+      "infoEmpty": "Showing 0 to 0 of 0 clients",
+      "infoFiltered": "(filtered from _MAX_ total clients)",
+      "infoPostFix": "",
+      "paginate": {
+        "first": "First",
+        "last": "Last",
+        "next": "Next",
+        "previous": "Previous"
+      },
+      "emptyTable": "No data available",
+      "loadingRecords": "Loading...",
+      "processing": "Processing...",
+      "zeroRecords": "No matching records found",
+      "thousands": ",",
+      "decimal": ".",
+      "aria": {
+        "sortAscending": ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+      }
+    },
+    fr: {
+      "lengthMenu": "Afficher _MENU_ clients",
+      "search": "Rechercher:",
+      "info": "Affichage de _START_ à _END_ sur _TOTAL_ clients",
+      "infoEmpty": "Affichage de 0 à 0 sur 0 clients",
+      "infoFiltered": "(filtré de _MAX_ clients au total)",
+      "infoPostFix": "",
+      "paginate": {
+        "first": "Premier",
+        "last": "Dernier",
+        "next": "Suivant",
+        "previous": "Précédent"
+      },
+      "emptyTable": "Aucune donnée disponible",
+      "loadingRecords": "Chargement...",
+      "processing": "Traitement...",
+      "zeroRecords": "Aucun résultat trouvé",
+      "thousands": " ",
+      "decimal": ",",
+      "aria": {
+        "sortAscending": ": activer pour trier la colonne de manière ascendante",
+        "sortDescending": ": activer pour trier la colonne de manière descendante"
+      }
+    },
+    pt: {
+      "lengthMenu": "Mostrar _MENU_ clientes",
+      "search": "Buscar:",
+      "info": "Mostrando _START_ até _END_ de _TOTAL_ clientes",
+      "infoEmpty": "Mostrando 0 até 0 de 0 clientes",
+      "infoFiltered": "(filtrado de _MAX_ clientes no total)",
+      "infoPostFix": "",
+      "paginate": {
+        "first": "Primeiro",
+        "last": "Último",
+        "next": "Próximo",
+        "previous": "Anterior"
+      },
+      "emptyTable": "Nenhuma informação disponível",
+      "loadingRecords": "Carregando...",
+      "processing": "Processando...",
+      "zeroRecords": "Nenhum resultado encontrado",
+      "thousands": ".",
+      "decimal": ",",
+      "aria": {
+        "sortAscending": ": ativar para ordenar a coluna de forma ascendente",
+        "sortDescending": ": ativar para ordenar a coluna de forma descendente"
+      }
+    }
+  };
+  return language[idLanguage] || language['es']; // Por defecto en español si no existe el idioma
+}
+
+// Se aplican los estilos al datatTable
+export function applyDataTableStyles(idTable) {
+  // Sección de 'Mostrar' n elementos por página
+  const lengthElement = document.querySelector(`#${idTable}_wrapper .dt-length`);
+  lengthElement.classList.add('lengthElementDataTable');
+
+  // Sección de 'Buscar'
+  const searchElement = document.querySelector(`#${idTable}_wrapper .dt-search`);
+  searchElement.classList.add('searchElementDataTable');
+
+  // Sección de información (Mostrando 1 a 10 de 28 elementos)
+  const infoElement = document.querySelector(`#${idTable}_wrapper .dt-info`);
+  infoElement.classList.add('infoElementDataTable');
+
+  // Sección de Paginación
+  const pagingElement = document.querySelector(`#${idTable}_wrapper .dt-paging`);
+  pagingElement.classList.add('pagingElementDataTable');
+}
+
 // Se refresca el datatable actualizando el listado
 export async function refreshDatatable(dataTableName, data) {
   const dataTable = $(`#${dataTableName}`).DataTable();

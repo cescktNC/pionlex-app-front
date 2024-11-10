@@ -9,6 +9,8 @@ import {
   removeSelectedOption, 
   showError,
   showToast,
+  languageDatatable,
+  applyDataTableStyles,
   refreshDatatable
 } from './functions';
 import { urlClients, urlStatuses, createRecord, editRecord, getRecords, deleteRecord } from './API'
@@ -79,31 +81,7 @@ async function showClients() {
         }
       }
     ],
-    language: {
-      "lengthMenu": "Mostrar _MENU_ clientes",
-      "search": "Buscar:",
-      "info": "Mostrando _START_ a _END_ de _TOTAL_ clientes",
-      "infoEmpty": "Mostrando 0 a 0 de 0 clientes",
-      "infoFiltered": "(filtrado de _MAX_ clientes en total)",
-      "infoPostFix": "", // Añade información al final del 'info'
-      "paginate": {
-        "first": "Primero",
-        "last": "Último",
-        "next": "Siguiente",
-        "previous": "Anterior"
-      },
-      "emptyTable": "No hay información",
-      "loadingRecords": "Cargando...",
-      "processing": "Procesando...",
-      "zeroRecords": "No se encontraron resultados",
-      "thousands": ".",
-      "decimal": ",",
-      // Añade una descripción de que se puede ordenar de forma ascendente y descendente para lectores de pantalla (accesibilidad)
-      "aria": {
-        "sortAscending": ": activar para ordenar la columna de manera ascendente",
-        "sortDescending": ": activar para ordenar la columna de manera descendente"
-      }
-    },
+    language: languageDatatable('es'),
     createdRow: function(row, data) {
       const statusCell = $('td', row).eq(5);
       let div = statusCell.find('div');
@@ -310,24 +288,6 @@ async function saveClient() {
 
 }
 
-function applyDataTableStyles() {
-  // Sección de 'Mostrar' n elementos por página
-  const lengthElement = document.querySelector('#clientsTable_wrapper .dt-length');
-  lengthElement.classList.add('lengthElementDataTable');
-
-  // Sección de 'Buscar'
-  const searchElement = document.querySelector('#clientsTable_wrapper .dt-search');
-  searchElement.classList.add('searchElementDataTable');
-
-  // Sección de información (Mostrando 1 a 10 de 28 elementos)
-  const infoElement = document.querySelector('#clientsTable_wrapper .dt-info');
-  infoElement.classList.add('infoElementDataTable');
-
-  // Sección de Paginación
-  const pagingElement = document.querySelector('#clientsTable_wrapper .dt-paging');
-  pagingElement.classList.add('pagingElementDataTable');
-}
-
 export async function initClients() {
   // Inicializar variables
   addNewClientButton = document.querySelector('#addNewClientButton');
@@ -360,5 +320,5 @@ export async function initClients() {
 
   // Lógica
   await showClients();
-  applyDataTableStyles();
+  applyDataTableStyles('clientsTable');
 }
