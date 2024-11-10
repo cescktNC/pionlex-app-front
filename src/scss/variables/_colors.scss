@@ -10,3 +10,47 @@ $colors: (
   input-text-color: #212529,
   light-red: #f0838e
 );
+
+$colors-status: (
+  in-progress: (
+    color: #003C62,
+    background-color: #87CEFA
+  ),
+  awaiting-documentation: (
+    color: #3E2800,
+    background-color: #FFA500
+  ),
+  closed: (
+    color: #fff,
+    background-color: #696969
+  ),
+  new: (
+    color: #005100,
+    background-color: #90EE90
+  ),
+  pending-payment: (
+    color: #fff,
+    background-color: #009227
+  ),
+  under-review: (
+    color: #564800,
+    background-color: #FFD700
+  ),
+  awaiting-resolution: (
+    color: #00264A,
+    background-color: #1E90FF
+  ),
+  overdue: (
+    color: #fff,
+    background-color: #FF4500
+  ),
+  archived: (
+    color: #271300,
+    background-color: #CD853F
+  ),
+  pending-resolution: (
+    color: #fff,
+    background-color: #9E49EC
+  ),
+   
+);

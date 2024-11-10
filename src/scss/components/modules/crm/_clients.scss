@@ -1,0 +1,79 @@
+@use '../../../variables/colors';
+
+#clientsTable {
+  .client-status {
+    display: block;
+    font-size: 10px;
+    width: 100%;
+    margin: 0 auto;
+    height: 60%;
+    line-height: 12px;
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 8px 15px;
+
+    span {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .in-progress {
+    color: map-get(map-get(colors.$colors-status, 'in-progress'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'in-progress'), 'background-color');
+  }
+
+  .awaiting-documentation {
+    color: map-get(map-get(colors.$colors-status, 'awaiting-documentation'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'awaiting-documentation'), 'background-color');
+  }
+  .closed {
+    color: map-get(map-get(colors.$colors-status, 'closed'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'closed'), 'background-color');
+  }
+  .new {
+    color: map-get(map-get(colors.$colors-status, 'new'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'new'), 'background-color');
+  }
+  .pending-payment {
+    color: map-get(map-get(colors.$colors-status, 'pending-payment'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'pending-payment'), 'background-color');
+  }
+  .under-review {
+    color: map-get(map-get(colors.$colors-status, 'under-review'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'under-review'), 'background-color');
+  }
+  .awaiting-resolution {
+    color: map-get(map-get(colors.$colors-status, 'awaiting-resolution'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'awaiting-resolution'), 'background-color');
+  }
+  .overdue {
+    color: map-get(map-get(colors.$colors-status, 'overdue'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'overdue'), 'background-color');
+  }
+  .archived {
+    color: map-get(map-get(colors.$colors-status, 'archived'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'archived'), 'background-color');
+  }
+  .pending-resolution {
+    color: map-get(map-get(colors.$colors-status, 'pending-resolution'), 'color');
+    background-color: map-get(map-get(colors.$colors-status, 'pending-resolution'), 'background-color');
+  }
+
+}
+
+#clientCreateEditModal {
+  #errorAlert {
+    height: 37px;
+    margin-top: 17px;
+    margin-bottom: 0;
+  }
+}
+
+#clientToast {
+  strong {
+    margin-left: 5px;
+  }
+}
