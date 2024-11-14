@@ -9,6 +9,7 @@
 @use 'components/menu';
 @use 'components/modules/crm/crm';
 @use 'components/modules/crm/clients';
+@use 'components/modules/crm/users';
 @use 'components/datatables';
 
 @include fonts.google-font("Montserrat");

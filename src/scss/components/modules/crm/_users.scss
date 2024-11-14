@@ -1,0 +1,25 @@
+#usersTable {
+  .profile-photo {
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+}
+
+#userCreateEditForm {
+  .gender {
+    margin-bottom: 13px;
+    display: flex;
+    align-items: center;
+
+    .male {
+      margin-left: 20px;
+    }
+
+    .female {
+      margin-left: 20px;
+    }
+  }
+}

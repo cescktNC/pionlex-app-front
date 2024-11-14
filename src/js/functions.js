@@ -68,6 +68,18 @@ export function populateInputFields(inputFields, valuesInputFields) {
   inputFields.forEach( (inputField, key) => inputField.value = valuesInputFields[key] );
 }
 
+// Marca como seleccionado el radio button cuyo id coincide con el value
+export function setRadioValue(inputRadios, value) {
+  inputRadios.forEach(radio => radio.checked = radio.id === value.toLowerCase());
+}
+
+// Resetea los radio button seleccionando sólamente el primero
+export function clearRadioFields(inputRadios) {
+  inputRadios.forEach( (radio, key) => {
+    radio.checked = key === 0;
+  });
+}
+
 // Limpia los valores de los input
 export function clearInputFields(inputFields) {
   inputFields.forEach( inputField => inputField.value = '' );

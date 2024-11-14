@@ -1,7 +1,7 @@
-<h3 id="users-title">Usuarios</h3>
-<div class="users-content">
+<h3 id="users-title" class="section-title">Usuarios</h3>
+<div class="section-content">
   <div class="form--light--theme">
-    <button id="addNewUserButton" type="button" data-bs-toggle="modal" data-bs-target="#userCreateEditModal" class="btn form__button">
+    <button id="addNewUserButton" type="button" data-bs-toggle="modal" data-bs-target="#userCreateEditModal" class="btn form__button add-new-item-button">
       Añadir Usuario
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -9,15 +9,100 @@
   <table id="usersTable" class="table table-striped" style="width:100%">
     <thead>
       <tr>
-          <th class="fw-bold">Cliente</th>
+          <th class="fw-bold">Usuario</th>
           <th class="fw-bold">Teléfono</th>
           <th class="fw-bold">Email</th>
-          <th class="fw-bold">Población</th>
-          <th class="fw-bold">Fecha de Alta</th>
-          <th class="fw-bold">Estado</th>
+          <th class="fw-bold">Cargo</th>
+          <th class="fw-bold">Departamento</th>
           <th class="fw-bold">Acción</th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
+</div>
+
+<!-- Modals -->
+<div class="modal fade" id="userDeleteModal" tabindex="-1" aria-labelledby="userDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="userDeleteModalLabel">Borrar Usuario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Seguro que quieres eliminar a este usuario?
+      </div>
+      <div class="modal-footer form--light--theme">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button id="deleteUserButton" type="button" class="btn form__button">Eliminar</button>
+        <button id="deletingUserButton" class="btn form__button d-none" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span role="status">Eliminando...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="userCreateEditModal" tabindex="-1" aria-labelledby="userCreateEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="userCreateEditModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="userCreateEditForm" method="POST" class="form--light--theme" autocomplete="off" novalidate>
+          <input id="name" type="text" name="name" class="form-control form__input" placeholder="Nombre" required />
+          <input id="lastname" type="text" name="lastname" class="form-control form__input" placeholder="Apellidos" required />
+          <label for="birthdate" class="form__label mb-1">Fecha de Nacimiento</label>
+          <div class="form__input__date">
+            <input id="birthdate" type="date" name="birthdate" class="form-control form__input" required />
+            <i class="bi bi-calendar"></i>
+          </div>
+          
+          <div class="gender">
+            <label for="gender" class="form__label">Género:</label>
+            <div class="male">
+              <input class="form-check-input form__radio" type="radio" name="gender" id="male">
+              <label class="form-check-label form__label" for="hombre">Hombre</label>
+            </div>
+            <div class="female">
+              <input class="form-check-input form__radio" type="radio" name="gender" id="female">
+              <label class="form-check-label form__label" for="mujer">Mujer</label>
+            </div>
+          </div>
+          <input id="phoneNumber" type="tel" name="phoneNumber" class="form-control form__input" placeholder="Teléfono" required />
+          <input id="email" type="email" name="email" class="form-control form__input" placeholder="nombre@ejemplo.com" required />
+          <label for="department" class="form__label mb-1">Departamento</label>
+          <select id="department" name="department" class="form-select form__input" aria-label="Select para el departamento del usuario" required>
+            <option selected disabled value="">Selecciona el departamento</option>
+          </select>
+          <input id="position" type="text" name="position" class="form-control form__input mb-3" placeholder="Cargo" required />
+        </form>
+        <p id="errorAlert"></p>
+      </div>
+      <div class="modal-footer form--light--theme">
+        <button id="cancelUserButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button id="saveUserButton" type="button" class="btn form__button">Guardar</button>
+        <button id="savingUserButton" class="btn form__button d-none" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span role="status">Guardando...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="userToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class=""></i>
+      <strong class="ms-2 me-auto"></strong>
+      <small>Ahora</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body"></div>
+  </div>
 </div>

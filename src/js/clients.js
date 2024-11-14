@@ -143,7 +143,7 @@ function handleDeleteClientClick(event) {
   handleClientEditOrDelete(idClient, fullName, false);
 }
 
-async function handleEditClientClick() {
+async function handleEditClientClick(event) {
   const editButton = event.target.parentElement;
   const idClient = editButton.dataset.id;
 

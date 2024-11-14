@@ -1,6 +1,6 @@
 @use '../variables/colors';
 
-#clientsTable_wrapper {
+.section-content [id*="Table_wrapper"] {
   .lengthElementDataTable,
   .searchElementDataTable {
     color: #2C3E50;
@@ -28,6 +28,7 @@
     vertical-align: middle;
     border-color: #a4a7aa;
     font-weight: 500;
+    font-size: 14px;
     height: 50px;
   }
 
@@ -37,6 +38,10 @@
 
   .td-align-left {
     text-align: start;
+  }
+
+  .td-w-300 {
+    width: 300px;
   }
 
   .btn-edit,

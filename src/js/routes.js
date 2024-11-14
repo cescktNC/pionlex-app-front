@@ -1,6 +1,7 @@
 import Navigo from 'navigo';
 import { getCookie, addScripts } from './functions';
 import { initClients } from './clients';
+import { initUsers } from './users';
 
 const router = new Navigo('/');
 
@@ -47,10 +48,10 @@ router
   .on('/clients', requireAuth( async () => {
     await loadTemplate('crm/clients/list', [], 'content-page');
     initClients();
-    // loadTemplate('crm/clients/list', ['/src/js/menu.js', '/src/js/clients.js'], 'content-page');
   }))
-  .on('/users', requireAuth( () => {
-    loadTemplate('crm/users/list', [], 'content-page');
+  .on('/users', requireAuth( async () => {
+    await loadTemplate('crm/users/list', [], 'content-page');
+    initUsers();
   }))
   .on('/module4Section1', requireAuth( () => {
     loadTemplate('module4/section1/list', [], 'content-page');

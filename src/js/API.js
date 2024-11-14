@@ -87,6 +87,23 @@ export const deleteRecord = async (id, url) => {
   }
 }
 
+// Obtieneun registro
+export const getRecord = async (id, url) => {
+  try {
+    const response = await fetch(`${url}/${id}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error(`Error en la solicitud: ${response.status}`);
+      return false;
+    }
+  } catch (error) {
+    console.error('Error en la conexión o en la solicitud:', error);
+    return null;
+  }
+}
+
 // Obtiene registros
 export const getRecords = async url => {
   try {
