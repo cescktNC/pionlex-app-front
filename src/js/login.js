@@ -82,7 +82,6 @@ async function validateUserSignUp(e) {
     emailAddress,
     department,
     position,
-    invitationCodeUser,
     passwordSignUp
   }
 
@@ -90,6 +89,8 @@ async function validateUserSignUp(e) {
     showAlert('Todos los campos son obligatorios.', 'form-user-sign-up');
     return;
   }
+
+  userSignUp.invitationCodeUser = invitationCodeUser;
 
   const data = await createRecord(userSignUp, urlUsers);
   if (!userHasBeenAdded(data)) {
