@@ -1,5 +1,6 @@
 @mixin form-title($title-type) {
   font-family: map-get($title-type, 'font-family');
+  font-size: map-get($title-type, 'fs');
   font-weight: map-get($title-type, 'font-weight');
   color: map-get($title-type, 'color');
 }

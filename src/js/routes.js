@@ -1,7 +1,8 @@
 import Navigo from 'navigo';
-import { getCookie, addScripts } from './functions';
+import { getCookie, removeAllScriptsExceptMain, addScripts } from './functions';
 import { initClients } from './clients';
 import { initUsers } from './users';
+import { initLegalDocs } from './legalDocs';
 
 const router = new Navigo('/');
 
@@ -37,6 +38,33 @@ async function loadTemplate(templateName, scriptsToAdd, containerId = 'app') {
   }
 }
 
+async function loadLegalContentTemplate(templateName, scriptsToAdd, loadScript) {
+  try {
+    const legalContent = document.querySelector('#legal-content');
+    // Si no existe el menú lateral lo cargo
+    if (!legalContent) {
+      // Crago el nuevo template
+      const response = await fetch(`/src/templates/legal/legal-docs.html`);
+      const html = await response.text();
+      document.getElementById('app').innerHTML = html;
+    }
+
+    // Crago el template Legal pasado por parámetro
+    const response = await fetch(`/src/templates/${templateName}.html`);
+    const html = await response.text();
+    document.getElementById('legal-content').innerHTML = html;
+
+    // Añado el script correspondiente al template
+    if (loadScript && scriptsToAdd.length > 0) {
+      removeAllScriptsExceptMain();
+      addScripts(scriptsToAdd);
+    }
+  } catch (error) {
+    console.log(`Error al cargar el template: ${templateName}`);
+    document.getElementById('app').innerHTML = '<p>Error al cargar la vista</p>';
+  }
+}
+
 // Listado de todas las rutas de la aplicación
 router
   .on('/login', () => {
@@ -44,6 +72,12 @@ router
   })
   .on('/loadModules', () => {
     loadTemplate('menu/menu', ['modules']);
+  })
+  .on('/legal-docs/:docType/:loadScript', async (params) => {
+    const docType = params.data.docType;
+    const loadScript = params.data.loadScript === '1';
+    await loadLegalContentTemplate(`legal/${docType}`, ['legalDocs'], loadScript);
+    loadScript ? initLegalDocs(docType) : null;
   })
   .on('/clients', requireAuth( async () => {
     await loadTemplate('crm/clients/list', [], 'content-page');

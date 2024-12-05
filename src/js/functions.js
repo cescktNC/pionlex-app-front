@@ -52,6 +52,11 @@ export function validateFields(obj) {
   return Object.values(obj).every( input => input !== '')
 }
 
+// Validación de campos de tipo checkBox de un formulario
+export function validateCheckBoxes(obj) {
+  return Object.values(obj).every( input => input !== false)
+}
+
 export function validatePhoneNumber(phoneNumber) {
   // const phoneNumberPattern = /^\+?[0-9]{1,3}?[0-9]{7,15}$/; // Valida números de cualquier pais
   const phoneNumberPattern = /^(?:\+34)?[0-9]{9}$/; // Valida números de españa
@@ -83,6 +88,11 @@ export function clearRadioFields(inputRadios) {
 // Limpia los valores de los input
 export function clearInputFields(inputFields) {
   inputFields.forEach( inputField => inputField.value = '' );
+}
+
+// Limpia los valores de los checkbox
+export function clearCheckBoxFields(checkboxFields) {
+  checkboxFields.forEach( checkboxField => checkboxField.checked = false );
 }
 
 // Rellena un elemento <select> dejando la opción 'optionToSelect' seleccionada

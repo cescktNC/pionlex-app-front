@@ -54,6 +54,34 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
     @include mixins-forms.form-select-option($login-form-select-option);
   }
 
+  .policy-terms {
+    text-align: start;
+    padding: 0 110px;
+    .form__label-checkbox {
+      color: map-get(vars-colors.$colors, "white-opacity");
+      font-size: 12px;
+      margin-top: 8px;
+  
+      a {
+        text-decoration: underline;
+        color: map-get(vars-colors.$colors, "white-opacity");
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        text-decoration: underline;
+        color: map-get(vars-colors.$colors, "white-opacity");
+      }
+    }
+  }
+
+  .form__label-checkbox:last-of-type {
+    margin-top: 0;
+  }
+
   .form__checkbox {
     @include mixins-forms.form-checkbox($login-form-checkbox);
   }

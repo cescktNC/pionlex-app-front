@@ -1,4 +1,3 @@
-// import { showClients } from './clients';
 import router from './routes';
 
 const clientsCrmButton = document.querySelector('#clients-crm-button');

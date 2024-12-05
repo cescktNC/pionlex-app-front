@@ -5,13 +5,14 @@ $forms: (
   login: (
     title: (
       font-family: typography.$montserrat,
+      fs: 30px,
       font-weight: 600,
       color: map-get(colors.$colors, 'custom-white')
     ),
     input: (
       border: .75px solid map-get(colors.$colors, 'white-opacity'),
       bg: map-get(colors.$colors, 'input-bg'),
-      mb: 15px,
+      mb: 14px,
       ff: typography.$montserrat,
       fs: 14px,
       fw: 400,

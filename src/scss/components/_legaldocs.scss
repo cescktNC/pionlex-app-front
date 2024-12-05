@@ -1,0 +1,66 @@
+@use '../variables/colors';
+@use '../variables/typography';
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.legal-nav-link-active {
+  background-color: map-get(colors.$colors, 'start-gradient') !important;
+}
+
+.legal {
+  display: flex;
+  background-color: map-get(colors.$colors, 'dark-grey');
+  color: map-get(colors.$colors, 'custom-white');
+  font-family: typography.$montserrat;
+
+  .legal-menu {
+    border-right: .5px solid map-get(colors.$colors, 'light-grey');
+
+    .logo {
+      margin: 0 auto;
+      padding: 30px 0;
+      width: 120px;
+    }
+
+    .legal-nav {
+      display: flex;
+      flex-direction: column;
+      width: 320px;
+  
+      .legal-nav-link {
+        display: flex;
+        align-items: center;
+        padding: 10px 25px;
+        font-weight: 600;
+        color: map-get(colors.$colors, 'custom-white');
+        background-color: transparent;
+        border: none;
+      }
+    }
+  }
+
+  .legal-content {
+    padding: 30px 50px;
+
+    ol {
+      a {
+        display: block;
+        width: 320px;
+        color: map-get(colors.$colors, 'start-gradient');
+      }
+    }
+
+    h2 {
+      margin-top: 30px;
+    }
+
+    ul li {
+      padding-bottom: 8px;
+    }
+  }
+  
+}

@@ -1,4 +1,12 @@
-import { showAlert, validateFields, addClassFromId, removeClassFromId } from './functions';
+import { 
+  showAlert, 
+  validateFields, 
+  validateCheckBoxes, 
+  clearRadioFields, 
+  clearInputFields, 
+  clearCheckBoxFields, 
+  addClassFromId, 
+  removeClassFromId } from './functions';
 import { urlUsers, urlOffices, urlDepartments, login, createRecord, getRecords } from './API';
 import router from './routes';
 
@@ -14,6 +22,8 @@ const officeSignUpLink = document.querySelector('#office-sign-up-link');
 const returnLinkToLoginForm = document.querySelector('#return-link-to-login-form');
 const userSignUpLinkToSelectSignUpForm = document.querySelector('#user-return-link-to-select-sign-up-form');
 const officeReturnLinkToSelectSignUpForm = document.querySelector('#office-return-link-to-select-sign-up-form');
+const dataPolicyLink = document.querySelector('#data-policy');
+const termsOfUseLink = document.querySelector('#terms-of-use');
 
 // Eventos
 formLogin.addEventListener('submit', validateUser);
@@ -27,6 +37,8 @@ officeSignUpLink.addEventListener('click', () => changeForms('container-select-s
 returnLinkToLoginForm.addEventListener('click', () => changeForms('container-select-sign-up', 'container-login'));
 userSignUpLinkToSelectSignUpForm.addEventListener('click', () => changeForms('container-user-sign-up', 'container-select-sign-up'));
 officeReturnLinkToSelectSignUpForm.addEventListener('click', () => changeForms('container-office-sign-up', 'container-select-sign-up'));
+dataPolicyLink.addEventListener('click', redirectToLegalTemplate);
+termsOfUseLink.addEventListener('click', redirectToLegalTemplate);
 
 // Funciones
 async function validateUser(e) {
@@ -62,31 +74,43 @@ async function validateUser(e) {
 async function validateUserSignUp(e) {
   e.preventDefault();
 
-  const userSignUpName = document.querySelector('#user-sign-up-name').value;
-  const lastname = document.querySelector('#lastname').value;
-  const username = createUserName(userSignUpName, lastname);
-  const birthdate = document.querySelector('#birthdate').value;
+  const userSignUpName = document.querySelector('#user-sign-up-name');
+  const lastname = document.querySelector('#lastname');
+  const username = createUserName(userSignUpName.value, lastname.value);
+  const birthdate = document.querySelector('#birthdate');
   const gender = document.querySelector('input[name="gender"]:checked').id;
-  const emailAddress = document.querySelector('#emailAddress').value;
-  const department = document.querySelector('#department').value;
-  const position = document.querySelector('#position').value;
-  const invitationCodeUser = document.querySelector('#invitation-code-user').value;
-  const passwordSignUp = document.querySelector('#password-sign-up').value;
+  const emailAddress = document.querySelector('#emailAddress');
+  const department = document.querySelector('#department');
+  const position = document.querySelector('#position');
+  const invitationCodeUser = document.querySelector('#invitation-code-user');
+  const passwordSignUp = document.querySelector('#password-sign-up');
+  const dataPolicy = document.querySelector('#dataPolicy');
+  const termsOfUse = document.querySelector('#termsOfUse');
 
   const userSignUp = {
-    userSignUpName,
-    lastname,
-    username,
-    birthdate,
+    userSignUpName: userSignUpName.value,
+    lastname: lastname.value,
+    username: username.value,
+    birthdate: birthdate.value,
     gender,
-    emailAddress,
-    department,
-    position,
-    passwordSignUp
+    emailAddress: emailAddress.value,
+    department: department.value,
+    position: position.value,
+    passwordSignUp: passwordSignUp.value
   }
 
   if (!validateFields(userSignUp)) {
     showAlert('Todos los campos son obligatorios.', 'form-user-sign-up');
+    return;
+  }
+
+  const policyTerms = {
+    dataPolicy: dataPolicy.checked,
+    termsOfUse: termsOfUse.checked
+  }
+
+  if (!validateCheckBoxes(policyTerms)) {
+    showAlert('Políticas y Términos obligatorios.', 'form-user-sign-up');
     return;
   }
 
@@ -98,8 +122,24 @@ async function validateUserSignUp(e) {
     return;
   }
 
+  // Reseteo el formulario
+  const inputFields = [userSignUpName, lastname, birthdate, emailAddress, department, position, passwordSignUp];
+  const checkboxFields = [dataPolicy, termsOfUse];
+  clearUserForm(inputFields, checkboxFields);
+
   changeForms('container-user-sign-up', 'container-login');
   document.querySelector('#username').value = username;
+}
+
+// Borra todos los campos del formulario de registro de un usuario
+function clearUserForm(inputFields, checkboxFields) {
+  clearInputFields(inputFields);
+  clearCheckBoxFields(checkboxFields);
+
+  const inputGenderMale = document.querySelector('#male');
+  const inputGenderFemale = document.querySelector('#female');
+  const inputRadios = [inputGenderMale, inputGenderFemale];
+  clearRadioFields(inputRadios);
 }
 
 async function validateOfficeSignUp(e) {
@@ -169,6 +209,11 @@ function createUserName(name, lastname) {
   username = username.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   return username;
+}
+
+function redirectToLegalTemplate(e) {
+  const templateName = e.target.id;
+  router.navigate(`/legal-docs/${templateName}/1`);
 }
 
 showDepartments();
