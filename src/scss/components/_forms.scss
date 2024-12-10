@@ -9,13 +9,10 @@ $login-form: map-get(vars-forms.$forms, 'login');
 $login-form-title: map-get($login-form, 'title');
 $login-form-input: map-get($login-form, 'input');
 $login-form-checkbox: map-get($login-form, 'checkbox');
-$login-form-radio: map-get($login-form, 'radio');
-$login-form-select-option: map-get($login-form, 'select-option');
 $login-form-label: map-get($login-form, 'label');
-$login-form-link: map-get($login-form, 'link');
 $login-form-button: map-get($login-form, 'button');
+$login-form-button-link: map-get($login-form, 'button-link');
 $login-form-icon: map-get($login-form, 'icon');
-$login-form-message-error: map-get($login-form, 'errorMessage');
 
 // Light Form
 $light-mode-form: map-get(vars-forms.$forms, 'light-theme');
@@ -31,83 +28,39 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
 
 // Styles
 .form--login--sign-up {
+  width: min(65%, 45rem);
+  margin: 0 auto;
+
   .form__title {
     @include mixins-forms.form-title($login-form-title);
   }
 
   .form__input {
+    margin-bottom: 1.4rem;
     @include mixins-forms.form-input($login-form-input);
-  }
-
-  .form__input__date {
-    position: relative;
-    .bi-calendar {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      color: map-get(vars-colors.$colors, 'white-opacity');
-    }
-  }
-
-  option {
-    @include mixins-forms.form-select-option($login-form-select-option);
-  }
-
-  .policy-terms {
-    text-align: start;
-    padding: 0 110px;
-    .form__label-checkbox {
-      color: map-get(vars-colors.$colors, "white-opacity");
-      font-size: 12px;
-      margin-top: 8px;
-  
-      a {
-        text-decoration: underline;
-        color: map-get(vars-colors.$colors, "white-opacity");
-      }
-
-      button {
-        background-color: transparent;
-        border: none;
-        padding: 0;
-        margin: 0;
-        text-decoration: underline;
-        color: map-get(vars-colors.$colors, "white-opacity");
-      }
-    }
-  }
-
-  .form__label-checkbox:last-of-type {
-    margin-top: 0;
   }
 
   .form__checkbox {
     @include mixins-forms.form-checkbox($login-form-checkbox);
   }
 
-  .form__radio {
-    @include mixins-forms.form-radio($login-form-radio);
-  }
-
   .form__label {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
     @include mixins-forms.form-label($login-form-label);
-  }
-
-  .form__link {
-    @include mixins-forms.form-link($login-form-link);
   }
 
   .form__button {
     @include mixins-forms.form-button($login-form-button);
   }
 
-  .form__icon {
-    @include mixins-forms.form-icon($login-form-icon);
+  .form__button__link {
+    @include mixins-forms.form-button-link($login-form-button-link);
   }
 
-  .form__error__message {
-    @include mixins-forms.form-error-message($login-form-message-error);
+  .form__icon {
+    @include mixins-forms.form-icon($login-form-icon);
   }
 }
 

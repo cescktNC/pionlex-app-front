@@ -15,7 +15,7 @@ img {
   display: flex;
   background-color: map-get(colors.$colors, 'dark-grey');
   color: map-get(colors.$colors, 'custom-white');
-  font-family: typography.$montserrat;
+  font-size: 1.5rem;
 
   .legal-menu {
     border-right: .5px solid map-get(colors.$colors, 'light-grey');
@@ -46,20 +46,25 @@ img {
   .legal-content {
     padding: 30px 50px;
 
-    ol {
-      a {
-        display: block;
-        width: 320px;
-        color: map-get(colors.$colors, 'start-gradient');
-      }
+    h1 {
+      margin-top: 0;
     }
 
     h2 {
       margin-top: 30px;
     }
 
-    ul li {
-      padding-bottom: 8px;
+    ul {
+      list-style: disc;
+      margin-left: 2rem;
+    }
+
+    ol {
+      a {
+        display: block;
+        width: 320px;
+        color: map-get(colors.$colors, 'start-gradient');
+      }
     }
   }
   

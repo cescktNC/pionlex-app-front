@@ -143,28 +143,24 @@ export function showAlert(message, containerSelector) {
     return;
   }
 
-  let alert = document.querySelector('.bg-danger-subtle');
+  let alert = container.querySelector('.danger');
 
   if (!alert) {
     alert = document.createElement('div');
-    alert.classList.add('row', 'justify-content-center');
     alert.innerHTML = `
-      <div class="col-11 col-sm-10 col-lg-8">
-        <p class="rounded bg-danger-subtle text-danger text-center px-1 py-1 mt-3">
-          <strong class="fw-bold">¡Error!</strong>
-          <span>${message}</span>
-        </p>
-      </div>
+      <p class="danger">
+        <strong>¡Error!</strong>
+        <span>${message}</span>
+      </p>
     `;
     container.appendChild(alert);
   } else {
     alert.innerHTML = `
-      <strong class="fw-bold">¡Error!</strong>
+      <strong>¡Error!</strong>
       <span>${message}</span>
     `;
   }
 
-  clearTimeout(alertTimeout);
   alertTimeout = setTimeout( () => {
     alert.remove();
   }, 3000);

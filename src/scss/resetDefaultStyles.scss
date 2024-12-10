@@ -1,0 +1,65 @@
+@use 'variables/typography';
+@use 'normalize.css';
+
+/*** RESETEO ETIQUETAS DE HTML ***/
+/** Reset de Box Model **/
+/* Este código establece 'border-box' como el modelo de caja predeterminado en toda la página, asegurando que las dimensiones 
+de los elementos sean más fáciles de gestionar y consistentes. Por tanto si una caja tiene un width de 100px, y por ejemplo,
+se le agrega un padding de 10px y un border de 5px, el tamaño total seguirá siendo de 100px en lugar de sumarse a 130px*/
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 10px = 1rem. Mejor usar rem pq se adapta mejor a diferentes resoluciones de mucha densidad de pixeles */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit; /* ·Todos los elementos heredan el valor de box-sizing de su elemento padre que será 'html' */
+}
+
+/** Estilos a todo el body **/
+body {
+  font-family: typography.$montserrat;
+  font-size: 1.8rem;
+  line-height: 2;
+}
+
+/** Headings **/
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3.8rem;
+}
+
+h3{
+  font-size: 2.6rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+/** Globales **/
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input[type="checkbox"] {
+  margin: 0;
+}

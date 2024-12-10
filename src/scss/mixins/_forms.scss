@@ -1,23 +1,21 @@
 @mixin form-title($title-type) {
-  font-family: map-get($title-type, 'font-family');
   font-size: map-get($title-type, 'fs');
   font-weight: map-get($title-type, 'font-weight');
   color: map-get($title-type, 'color');
+  text-align: map-get($title-type, 'ta');
 }
 
 @mixin form-input($input-type) {
   border: map-get($input-type, 'border');
   outline: map-get($input-type, 'outline');
   background-color: map-get($input-type, 'bg');
-  margin-bottom: map-get($input-type, 'mb');
-  font-family: map-get($input-type, 'ff');
   font-size: map-get($input-type, 'fs');
   font-weight: map-get($input-type, 'fw');
   color: map-get($input-type, 'color');
   border-radius: map-get($input-type, 'br');
   padding: map-get($input-type, 'padding');
-  width: map-get($input-type, 'width');
   max-width: map-get($input-type, 'mw');
+  height: map-get($input-type, 'height');
   transition: map-get($input-type, 'transition');
 
   &::placeholder {
@@ -34,8 +32,8 @@
 @mixin form-checkbox($checkbox-type) {
   border: map-get($checkbox-type, 'border');
   background-color: map-get($checkbox-type, 'bg');
+  font-size: map-get($checkbox-type, 'fs');
   transition: map-get($checkbox-type, 'transition');
-
   &:focus {
     box-shadow: map-get(map-get($checkbox-type, 'focus'), 'box-shadow');
     border-color: map-get(map-get($checkbox-type, 'focus'), 'border-color');
@@ -63,27 +61,27 @@
   color: map-get($label-type, 'color');
 }
 
-@mixin form-link($link-type) {
-  font-size: map-get($link-type, 'font-size');
-  font-weight: map-get($link-type, 'font-weight');
-  opacity: map-get($link-type, 'opacity');
-  color: map-get($link-type, 'color');
-}
-
 @mixin form-button($button-type) {
   background-color: map-get($button-type, 'bg');
   width: map-get($button-type, 'width');
   height: map-get($button-type, 'height');
   font-size: map-get($button-type, 'font-size');
   font-weight: map-get($button-type, 'font-weight');
-  font-family: map-get($button-type, 'font-family');
   color: map-get($button-type, 'color');
-  margin-top: map-get($button-type, 'mt');
+  border-radius: map-get($button-type, 'br');
+  border: map-get($button-type, 'border');
   transition: map-get($button-type , 'transition');
 
   &:hover {
     background-color: map-get(map-get($button-type, 'hover'), 'bc');
   }
+}
+
+@mixin form-button-link($button-link-type) {
+  background-color: map-get($button-link-type, "bc");
+  border: map-get($button-link-type, "border");
+  text-decoration: map-get($button-link-type, "td");
+  color: map-get($button-link-type, "color");
 }
 
 @mixin form-icon($icon-type) {
@@ -92,11 +90,6 @@
   top: map-get($icon-type, 'top');
   transform: map-get($icon-type, 'transform');
   color: map-get($icon-type, 'color');
-}
-
-@mixin form-error-message($error-message-type) {
-  color: map-get($error-message-type, 'color');
-  font-size: map-get($error-message-type, 'fs');
-  font-weight: map-get($error-message-type, 'fw');
-  margin: map-get($error-message-type, 'm');
+  font-size: map-get($icon-type, 'fs');
+  width: map-get($icon-type, 'width');
 }

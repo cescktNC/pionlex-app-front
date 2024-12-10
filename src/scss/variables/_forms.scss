@@ -4,20 +4,19 @@
 $forms: (
   login: (
     title: (
-      font-family: typography.$montserrat,
-      fs: 30px,
+      fs: 3rem,
       font-weight: 600,
-      color: map-get(colors.$colors, 'custom-white')
+      color: map-get(colors.$colors, 'custom-white'),
+      ta: center
     ),
     input: (
       border: .75px solid map-get(colors.$colors, 'white-opacity'),
       bg: map-get(colors.$colors, 'input-bg'),
-      mb: 14px,
-      ff: typography.$montserrat,
-      fs: 14px,
+      fs: 1.4rem,
       fw: 400,
       color: map-get(colors.$colors, 'white-opacity'),
-      transition: box-shadow .5s,
+      height: 4rem,
+      transition: all .3s,
       placeholder: (
         color: map-get(colors.$colors, 'white-opacity')
       ),
@@ -29,59 +28,42 @@ $forms: (
     checkbox: (
       border: .75px solid map-get(colors.$colors, 'light-grey'),
       bg: map-get(colors.$colors, 'input-bg'),
-      transition: all .5s,
+      fs: 1.5rem,
+      transition: all .3s,
       focus: (
         box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
         border-color: rgba(255, 255, 255, 0.7)
       )
     ),
-    radio: (
-      border: 3px solid map-get(colors.$colors, 'white-opacity'),
-      bg: transparent,
-      width: 15px,
-      height: 15px,
-      checked: (
-        box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.2)
-      )
-    ),
-    select-option: (
-      bg: map-get(colors.$colors, 'dark-grey')
-    ),
     label: (
-      font-family: typography.$montserrat,
-      font-size: 13px,
+      font-size: 1.5rem,
       font-weight: 400,
       color: map-get(colors.$colors, 'white-opacity')
     ),
-    link: (
-      font-size: 12px,
-      font-weight: 400,
-      opacity: 0.47,
-      color: map-get(colors.$colors, "custom-white"),
-    ),
     button: (
       bg: map-get(colors.$colors, "start-gradient"),
-      width: 120px,
-      height: 35px,
-      font-family: typography.$montserrat,
-      font-size: 14px,
+      width: 12rem,
+      height: 3.5rem,
+      font-size: 1.4rem,
       font-weight: 600,
       color: map-get(colors.$colors, "dark-grey"),
-      mt: 25px,
+      br: .5rem,
+      border: none,
       transition: all .3s,
       hover: (
         bc: map-get(colors.$colors, "start-gradient-opacity")
       )
     ),
+    button-link: (
+      bc: transparent,
+      border: none,
+      td: underline,
+      color: map-get(colors.$colors, "white-opacity")
+    ),
     icon: (
       color: map-get(colors.$colors, "custom-white"),
-      font-size: 16px
-    ),
-    errorMessage: (
-      color: map-get(colors.$colors, "light-red"),
-      fs: 12px,
-      fw: 600,
-      m: 5px 0,
+      fs: 1.8rem,
+      width: 3rem
     )
   ),
   light-theme: (
@@ -106,10 +88,6 @@ $forms: (
     ),
     button: (
       bg: map-get(colors.$colors, "start-gradient"),
-      // width: 90px,
-      // height: 38px,
-      font-family: typography.$montserrat,
-      // font-size: 14px,
       font-weight: 600,
       color: map-get(colors.$colors, "dark-grey"),
       transition: all .3s,
@@ -122,7 +100,6 @@ $forms: (
     input: (
       border: .75px solid map-get(colors.$colors, 'white-opacity'),
       bg: map-get(colors.$colors, 'input-bg'),
-      font-family: typography.$montserrat,
       font-size: 14px,
       font-weight: 400,
       color: map-get(colors.$colors, 'white-opacity'),
@@ -140,12 +117,13 @@ $forms: (
     ),
     button: (
       bg: map-get(colors.$colors, "start-gradient"),
-      width: 90px,
-      height: 35px,
-      font-family: typography.$montserrat,
-      font-size: 14px,
+      width: 12rem,
+      height: 3.5rem,
+      font-size: 1.4rem,
       font-weight: 600,
       color: map-get(colors.$colors, "dark-grey"),
+      br: .5rem,
+      border: none,
       transition: all .3s,
       hover: (
         bc: map-get(colors.$colors, "start-gradient-opacity")

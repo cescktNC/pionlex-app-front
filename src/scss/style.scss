@@ -1,7 +1,10 @@
+// Variables
 @use 'variables/colors';
 
+// Mixins
 @use 'mixins/fonts';
 
+@use 'resetDefaultStyles.scss';
 @use 'components/general';
 @use 'components/utilities';
 @use 'components/login';
@@ -13,5 +16,5 @@
 @use 'components/datatables';
 @use 'components/legaldocs';
 
-@include fonts.google-font("Montserrat");
+// @include fonts.google-font("Montserrat");
 @include fonts.google-icon("apps");

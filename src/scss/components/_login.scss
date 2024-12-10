@@ -2,8 +2,21 @@
 @use '../variables/typography';
 
 .background {
-  font-family: typography.$montserrat;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
   background: linear-gradient(to bottom left, map-get(colors.$colors, "start-gradient"), map-get(colors.$colors, "end-gradient"));
+
+  .translucent-layer-1,
+  .translucent-layer-2,
+  .translucent-layer-3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: .25;
+  }
 
   .translucent-layer-1 {
     clip-path: polygon(27% 100%, 0% 100%, 0% 64%);
@@ -17,254 +30,159 @@
     clip-path: polygon(27% 100%, 0% 100%, 0% 0%, 55% 0%);
   }
 
-  .card-body {
-    background-color: map-get(colors.$colors, "dark-grey");
-  }
-
   #container-login, 
-  #container-select-sign-up,
-  #container-user-sign-up,
-  #container-office-sign-up {
-    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  #container-sign-up {
+    transition: transform 0.6s ease-in-out;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  #login-link-from-user-sign-up, 
-  #login-link-from-office-sign-up {
-    font-size: 14px;
-    cursor: pointer;
-  }
+  .container-cards {
+    width: min(95%, 72.5rem);
 
-  #login-link-from-user-sign-up:hover, 
-  #login-link-from-office-sign-up:hover {
-    text-decoration: underline;
-  }
+    .card {
+      border: none;
 
-  #card-login,
-  #card-select-sign-up,
-  #card-user-sign-up,
-  #card-office-sign-up {
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
-  }
-
-  #card-login {
-    height: 620px;
-
-    img {
-      height: 250px;
-    }
-
-    .card-body {
-      .save-lost-password {
-        font-size: 14px;
-        color: map-get(colors.$colors, "white-opacity");
-
-        a {
-          color: map-get(colors.$colors, "white-opacity");
-        }
-      }
-
-      .bg-danger-subtle {
-        font-size: 15px;
-      }
-    }
-  }
-  
-  .sign-up-div {
-    height: 60px;
-  }
-
-  #sign-up-link {
-    cursor: pointer;
-  }
-
-  #sign-up-link:hover {
-    text-decoration: underline;
-  }
-
-  .footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 30px;
-    font-size: 16px;
-  }
-
-  @media (max-width: 1400px) {
-    #card-login {
       .card-body {
-        .save-lost-password {
-          font-size: 12px;
+        background-color: map-get(colors.$colors, "dark-grey");
+
+        .input-group {
+          input {
+            padding-left: 1.5rem;
+          }
         }
 
-        .bg-danger-subtle {
-          font-size: 14px;
-        }
-      }
-    }
-
-    .footer {
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 992px) {
-    #card-login {
-      .card-body {
-        .bg-danger-subtle {
-          font-size: 13px;
+        .form__label {
+          input {
+            margin-right: .8rem;
+          }
         }
 
-        .bg-danger-subtle {
-          font-size: 13px;
-        }
-      }
-    }
-
-    .sign-up-div {
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    #card-login {
-      .card-body {
-        .bg-danger-subtle {
-          font-size: 11px;
-        }
-      }
-    }
-
-    .sign-up-div {
-      font-size: 12px;
-    }
-
-    .footer {
-      font-size: 14px;
-    }
-  }
-
-  #card-select-sign-up {
-    height: 490px;
-
-    img {
-      height: 490px;
-    }
-
-    .card-body {
-      height: 100%;
-
-      #user-sign-up-link,
-      #office-sign-up-link {
-          background-color: map-get(colors.$colors, "dark-grey");
-          height: 60px;
-          font-size: 18px;
-          font-weight: 600;
-          color: map-get(colors.$colors, "custom-white");
-          transition: all 0.3s ease-in-out;
+        .button {
+          display: flex;
+          justify-content: center;
         }
 
-        #user-sign-up-link:hover, 
-        #office-sign-up-link:hover {
-          color: map-get(colors.$colors, "dark-grey");
-          background-color: map-get(colors.$colors, "custom-white");
-        }
-      }
-
-      @media (max-width: 992px) {
-        height: 390px;
-
-        img {
-          height: 390px;
-        }
-
-        h3 {
-          font-size: 20px;
-        }
-
-        .card-body {
-          #user-sign-up-link,
-          #office-sign-up-link {
-            height: 50px;
-            font-size: 14px;
-            font-weight: 500;
+        .danger {
+          display: flex;
+          justify-content: center;
+          font-size: 1.7rem;
+          border-radius: .5rem;
+          background-color: map-get(colors.$colors, "bg-danger");
+          color: map-get(colors.$colors, "text-danger");
+    
+          strong {
+            font-weight: 600;
           }
         }
 
       }
-
-      @media (max-width: 768px) {
-        height: 550px;
-        img {
-          height: 160px;
-        }
-        .card-body {
-          height: 390px;
-        }
+    }
+  
+    .sign-up-div {
+      text-align: center;
+      color: white;
+      font-size: 1.6rem;
+      height: 6rem;
+  
+      #sign-up-link,
+      #login-link {
+        cursor: pointer;
+        margin-left: 1rem;
+        text-decoration: underline;
+        font-weight: 600;
       }
+    }
   }
 
-  #card-user-sign-up {
-    height: 820px;
+  #card-login {
+    img {
+      height: 36.5rem;
+      object-fit: cover;
+    }
+
+    .card-body {
+      height: 42rem;
+
+      .form__title {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .form__label {
+        justify-content: space-between;
+
+        .save-password {
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .button {
+        margin-top: 3rem;
+      }
+
+      .danger {
+        margin-top: 3rem;
+      }
+
+    }
+  }
+
+  #card-sign-up {
 
     img {
-      height: 150px;
+      height: 14.5rem;
+      object-fit: cover;
     }
 
-    @media (max-width: 576px) {
-      height: 910px;
-    }
+    .card-body {
+      height: 67rem;
 
-    @media (max-width: 425px) {
-      .bg-danger-subtle {
-        font-size: 13px;
+      .form__title {
+        margin-top: .5rem;
+        margin-bottom: 1rem;
+      }
+
+      .form__input {
+        padding-left: 2rem;
+      }
+
+      .form__input:last-of-type {
+        margin-bottom: .5rem;
+      }
+
+      .policy-terms {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .button {
+        margin-top: 2rem;
+      }
+
+      .danger {
+        margin-top: 2rem;
       }
     }
 
-    @media (max-width: 375px) {
-      .bg-danger-subtle {
-        font-size: 11px;
-      }
-    }
-
-    @media (max-width: 320px) {
-      .bg-danger-subtle {
-        font-size: 10px;
-      }
-    }
   }
 
-  #card-office-sign-up {
-    height: 550px;
-
-    img {
-      height: 150px;
-    }
-
-    @media (max-width: 576px) {
-      height: 600px;
-    }
-
-    @media (max-width: 425px) {
-      .bg-danger-subtle {
-        font-size: 13px;
-      }
-    }
-
-    @media (max-width: 375px) {
-      .bg-danger-subtle {
-        font-size: 11px;
-      }
-    }
-
-    @media (max-width: 320px) {
-      .bg-danger-subtle {
-        font-size: 10px;
-      }
-    }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: white;
   }
 
+}
+
+.modal-body {
+  line-height: 2.5rem;
 }

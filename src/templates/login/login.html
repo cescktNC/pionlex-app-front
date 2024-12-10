@@ -1,14 +1,14 @@
-<div class="position-relative background text-center">
 
-  <div class="bg-white w-100 h-100 opacity-25 position-absolute translucent-layer-1"></div>
-  <div class="bg-white w-100 h-100 opacity-25 position-absolute translucent-layer-2"></div>
-  <div class="bg-white w-100 h-100 opacity-25 position-absolute translucent-layer-3"></div>
+<div class="background">
+  <div class="translucent-layer-1"></div>
+  <div class="translucent-layer-2"></div>
+  <div class="translucent-layer-3"></div>
 
-  <div id="container-login" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
+  <div id="container-login" class="container-cards">
 
-    <div id="card-login" class="row w-100 justify-content-center">
+    <div id="card-login">
 
-      <div class="col-sm-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 card border border-0 p-0">
+      <div class="card">
 
         <img src="/images/card-image-top-login.jpg" class="card-img-top" alt="Pion Lex Logo">
         
@@ -16,54 +16,32 @@
 
           <form id="form-login" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
 
-            <div class="row justify-content-center mt-2 mb-3">
-              <div class="col-11 col-sm-9 col-lg-9">
-                <h1 class="form__title">LOGIN</h1>
-              </div>
+            <h1 class="form__title">LOGIN</h1>
+
+            <div class="input-group">
+              <span class="input-group-text form__input">
+                <i class="bi bi-person-fill form__icon"></i>
+              </span>
+              <input type="text" class="form-control form__input" id="username" name="username" placeholder="USUARIO" required />
             </div>
 
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-9 col-lg-9">
-                <div class="input-group">
-                  <span class="input-group-text form__input">
-                    <i class="bi bi-person-fill form__icon"></i>
-                  </span>
-                  <input type="text" class="form-control form__input" id="username" name="username" placeholder="USUARIO" required />
-                </div>
-              </div>
+            <div class="input-group">
+              <span class="input-group-text form__input">
+                <i class="bi bi-key-fill form__icon"></i>
+              </span>
+              <input type="password" class="form-control form__input" id="password-login" name="passwordLogin" placeholder="CONTRASEÑA" required />
             </div>
 
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-9 col-lg-9">
-                <div class="input-group">
-                  <span class="input-group-text form__input">
-                    <i class="bi bi-key-fill form__icon"></i>
-                  </span>
-                  <input type="password" class="form-control form__input" id="password-login" name="passwordLogin" placeholder="CONTRASEÑA" required />
-                </div>
+            <label class="form__label">
+              <div class="save-password">
+                <input type="checkbox" id="save-password" class="form-check-input form__checkbox" name="remember" />
+                Guardar contraseña
               </div>
-            </div>
+              <button id="lost-password" type="button" class="form__button__link">¿Has olvidado tu contraseña?</button>
+            </label>
 
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-9 col-lg-9">
-                <div class="row save-lost-password">
-                  <div class="col-12 col-sm-5 text-center text-sm-start">
-                    <label>
-                      <input id="save-password" class="form-check-input form__checkbox" type="checkbox" name="remember" />
-                      Guardar contraseña
-                    </label>
-                  </div>
-                  <div class="col-12 col-sm-7 text-center text-sm-end">
-                    <a id="lost-password" href="#">¿Has olvidado tu contraseña?</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row justify-content-center mt-1 mb-1">
-              <div class="col-11 col-sm-9 col-lg-3">
-                <button type="submit" class="btn form__button">ENTRAR</button>
-              </div>
+            <div class="button">
+              <button type="submit" class="form__button">ENTRAR</button>
             </div>
 
           </form>
@@ -74,157 +52,54 @@
       
     </div>
 
-    <div class="row w-100 justify-content-center mt-2 text-white sign-up-div">
-      <div class="col-11">
-        <span class="fw-light">¿No tienes usuario?</span>
-        <span id="sign-up-link" class="fw-semibold">Regístrate</span>
-      </div>
+    <div class="sign-up-div">
+      <span>¿No tienes usuario?</span>
+      <span id="sign-up-link">Regístrate</span>
     </div>
 
   </div>
 
-  <div id="container-select-sign-up" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center d-none">
+  <div id="container-sign-up" class="container-cards d-none">
 
-    <div id="card-select-sign-up" class="w-100 col-xl-10 card border border-0 p-0">
+    <div id="card-sign-up">
 
-      <div class="row g-0">
-        <div class="col-12 col-md-5">
-          <img src="/images/card-image-top-select-sign-up.jpg" alt="Pion Lex Logo">
-        </div>
-        
-        <div class="col-12 col-md-7 card-body d-flex flex-column justify-content-between form--login--sign-up">
-          <h3 class="card-title mt-4 mt-lg-5 mb-4 text-white text-center">¿Qué tipo de registro necesitas?</h3>
-          <div class="d-flex flex-column align-items-center">
-            <button id="user-sign-up-link" class="w-50 border border-white border-2 rounded-pill mt-4 mt-lg-5">USUARIO</button>
-            <button id="office-sign-up-link" class="w-50 border border-white border-2 rounded-pill mt-4">DESPACHO</button>
-          </div>
-
-          <div class="d-flex justify-content-center mt-auto">
-            <button id="return-link-to-login-form" class="btn form__button mb-4">VOLVER</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div id="container-user-sign-up" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center d-none">
-
-    <div id="card-user-sign-up" class="row w-100 justify-content-center">
-
-      <div class="col-sm-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 card border border-0 p-0">
+      <div class="card">
 
         <img src="/images/card-image-top-sign-up.jpg" class="card-img-top" alt="Pion Lex Logo">
         
         <div class="card-body">
 
-          <form id="form-user-sign-up" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
+          <form id="form-sign-up" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
 
-            <div class="row justify-content-center mt-2">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <h1 class="form__title">USUARIO</h1>
-              </div>
-            </div>
+            <h1 class="form__title">DESPACHO</h1>
 
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="text" class="form-control form__input" id="user-sign-up-name" name="userSignUpName" placeholder="N&#8203;ombre" required />
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="text" class="form-control form__input" id="lastname" name="lastname" placeholder="Apellidos" required />
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8 text-start">
-                <label for="birthdate" class="form__label mb-1">Fecha de Nacimiento</label>
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <div class="row">
-                  <div class="col-12 col-sm-6">
-                    <div class="form__input__date">
-                      <input type="date" class="form-control form__input" id="birthdate" name="birthdate" required />
-                      <i class="bi bi-calendar"></i>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-3 pt-sm-1 pb-3 pb-sm-0 text-sm-start">
-                    <input class="form-check-input form__radio" type="radio" name="gender" id="male" checked>
-                    <label class="form-check-label form__label" for="hombre">Hombre</label>
-                  </div>
-                  <div class="col-6 col-sm-3 pt-sm-1 pb-3 pb-sm-0 text-sm-start">
-                    <input class="form-check-input form__radio" type="radio" name="gender" id="female">
-                    <label class="form-check-label form__label" for="mujer">Mujer</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="email" class="form-control form__input" id="emailAddress" name="ema&#8203;ilAddress" placeholder="name@ejemplo.com" required />
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <select class="form-select form__input" id="department" name="department" aria-label="Default select example" required>
-                  <option selected disabled value="">Selecciona el departamento</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="text" class="form-control form__input" id="position" name="position" placeholder="Cargo" required />
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="text" class="form-control form__input" id="invitation-code-user" name="invitationCodeUser" placeholder="Código de invitación" />
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="password" class="form-control form__input mb-0 h-36" id="password-sign-up" name="passwordSignUp" placeholder="Contraseña" required />
-              </div>
-            </div>
+            <input type="text" class="form-control form__input" id="officeName" name="officeName" placeholder="Nombre Despacho" required />
+            <input type="text" class="form-control form__input" id="cif" name="cif" placeholder="CIF" required />
+            <input type="text" class="form-control form__input" id="invitationCode" name="invitationCode" placeholder="Código de invitación" required />
+            <input type="text" class="form-control form__input" id="name" name="name" placeholder="N&#8203;ombre" required />
+            <input type="text" class="form-control form__input" id="lastname" name="lastname" placeholder="Apellidos" required />
+            <input type="email" class="form-control form__input" id="emailAddress" name="ema&#8203;ilAddress" placeholder="name@ejemplo.com" required />
+            <input type="password" class="form-control form__input" id="passwordSignUp" name="passwordSignUp" placeholder="Contraseña" required />
+            <input type="password" class="form-control form__input" id="confirmPasswordSignUp" name="confirmPasswordSignUp" placeholder="Confirmar Contraseña" required />
 
             <div class="policy-terms">
-              <label class="form__label-checkbox">
+              <label class="form__label">
                 <input type="checkbox" id="dataPolicy" class="form-check-input form__checkbox" name="dataPolicy" required />
                 He leído y acepto la 
-                <button id="data-policy" type="button" class="legalDocsLink">Política de Protección de Datos</button>
+                <button id="data-policy" type="button" class="form__button__link">Política de Protección de Datos</button>
               </label>
             
-              <label class="form__label-checkbox">
+              <label class="form__label">
                 <input type="checkbox" id="termsOfUse" class="form-check-input form__checkbox" name="termsOfUse" required />
                 He leído y acepto los 
-                <button id="terms-of-use" type="button" class="legalDocsLink">Términos y Condiciones de Uso</button>
+                <button id="terms-of-use" type="button" class="form__button__link">Términos y Condiciones de Uso</button>
               </label>
             </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <div class="row">
-                  <div class="col-12 col-sm-6">
-                    <button type="submit" class="btn form__button">REGISTRAR</button>
-                  </div>
-                  <div class="col-12 col-sm-6">
-                    <button id="user-return-link-to-select-sign-up-form" type="button" class="btn form__button">VOLVER</button>
-                  </div>
-                </div>
-              </div>
+            
+            <div class="button">
+              <button type="submit" class="form__button">REGISTRAR</button>
             </div>
-
+            
           </form>
 
         </div>
@@ -233,83 +108,33 @@
       
     </div>
 
-    <div class="row w-100 justify-content-center mt-2 text-white sign-up-div">
-      <div class="col-11">
-        <span class="fw-light">¿Ya tienes usuario?</span>
-        <span id="login-link-from-user-sign-up" class="fw-semibold">LogIn</span>
-      </div>
+    <div class="sign-up-div">
+        <span>¿Ya tienes usuario?</span>
+        <span id="login-link">LogIn</span>
     </div>
 
   </div>
 
-  <div id="container-office-sign-up" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center d-none">
-
-    <div id="card-office-sign-up" class="row w-100 justify-content-center">
-
-      <div class="col-sm-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 card border border-0 p-0">
-
-        <img src="/images/card-image-top-sign-up.jpg" class="card-img-top" alt="Pion Lex Logo">
-        
-        <div class="card-body">
-
-          <form id="form-office-sign-up" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
-
-            <div class="row justify-content-center mt-2 mb-3">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <h1 class="form__title">DESPACHO</h1>
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="text" class="form-control form__input" id="name-office-sign-up" name="nameOfficeSignUp" placeholder="Nombre" required />
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="text" class="form-control form__input" id="cif" name="cif" placeholder="CIF" required />
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <input type="text" class="form-control form__input" id="invitation-code-office" name="invitationCodeOffice" placeholder="Código de invitación" required />
-              </div>
-            </div>
-
-            <div class="row justify-content-center">
-              <div class="col-11 col-sm-10 col-lg-8">
-                <div class="row">
-                  <div class="col-12 col-sm-6">
-                    <button type="submit" class="btn form__button">REGISTRAR</button>
-                  </div>
-                  <div class="col-12 col-sm-6">
-                    <button id="office-return-link-to-select-sign-up-form" type="button" class="btn form__button">VOLVER</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </form>
-
-        </div>
-
-      </div>
-      
-    </div>
-
-    <div class="row w-100 justify-content-center mt-2 text-white sign-up-div">
-      <div class="col-11">
-        <span class="fw-light">¿Ya tienes usuario?</span>
-        <span id="login-link-from-office-sign-up" class="fw-semibold">LogIn</span>
-      </div>
-    </div>
-
-  </div>
-
-  <footer class="footer pb-1 text-white">
-    &copy;2024 - Pion Lex. Todos los derechos reservados.
+  <footer class="footer">
+    <p>&copy;2024 - Pion Lex. Todos los derechos reservados.</p>
   </footer>
 
+</div>
+
+<!-- Modals -->
+<div class="modal fade" id="userVerifyModal" tabindex="-1" aria-labelledby="userVerifyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content form--dark--theme">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="userVerifyModalLabel">Verificar Usuario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Te hemos enviado un correo electrónico para que confirmes tu usuario
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="form__button" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
 </div>
