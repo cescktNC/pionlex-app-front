@@ -1,5 +1,6 @@
 import Navigo from 'navigo';
 import { getCookie, removeAllScriptsExceptMain, addScripts } from './functions';
+import { initLogin } from './login';
 import { initClients } from './clients';
 import { initUsers } from './users';
 import { initLegalDocs } from './legalDocs';
@@ -9,7 +10,7 @@ const router = new Navigo('/');
 // Se comprueba si el usuario está logeado
 function requireAuth(callback) {
   return () => {
-    if (getCookie('auth_token')) {
+    if (localStorage.getItem('auth_token')) {
       // En caso de que el usuario refresque la pagina
       !document.getElementById('asidenav-menu-modules')
       ? router.navigate('/loadModules')
@@ -67,8 +68,18 @@ async function loadLegalContentTemplate(templateName, scriptsToAdd, loadScript) 
 
 // Listado de todas las rutas de la aplicación
 router
-  .on('/login', () => {
-    loadTemplate('login/login', ['login']);
+  .on('/', () => {
+    console.log('Página principal cargada');
+  })
+  .on('/login', async () => {
+    await loadTemplate('login/login', ['login']);
+    initLogin();
+  })
+  .on('/login/:action/:urlVerification', async ( params ) => {
+    const action = params.data.action;
+    const urlVerification = params.data.urlVerification;
+    await loadTemplate('login/login', ['login']);
+    initLogin( { [action]: true }, urlVerification );
   })
   .on('/loadModules', () => {
     loadTemplate('menu/menu', ['modules']);
@@ -79,6 +90,9 @@ router
     await loadLegalContentTemplate(`legal/${docType}`, ['legalDocs'], loadScript);
     loadScript ? initLegalDocs(docType) : null;
   })
+  .on('/dashboard/overview', requireAuth( () => {
+    loadTemplate('dashboard/overview', [], 'content-page');
+  }))
   .on('/clients', requireAuth( async () => {
     await loadTemplate('crm/clients/list', [], 'content-page');
     initClients();

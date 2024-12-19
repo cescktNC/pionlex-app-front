@@ -1,5 +1,5 @@
 import { 
-  validateFields, 
+  validateEmptyFields, 
   validatePhoneNumber, 
   validateEmail, 
   populateInputFields,
@@ -15,7 +15,7 @@ import {
   applyDataTableStyles,
   refreshDatatable
 } from './functions';
-import { urlUsers, urlDepartments, createRecord, editRecord, getRecord, getRecords, deleteRecord } from './API'
+import { usersUrl, departmentsUrl, createRecord, editRecord, getRecord, getRecords, deleteRecord } from './API'
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 
@@ -28,8 +28,8 @@ let userToast, userDeleteModal, userCreateEditModal, toastBootstrap;
 // Funciones
 // Muestra el listado de usuarios en un datatable
 async function showUsers() {
-  const users = await getRecords(urlUsers);
-  departments = await getRecords(urlDepartments);
+  const users = await getRecords(usersUrl);
+  departments = await getRecords(departmentsUrl);
 
   // Si ya existe una instancia del DataTable 'usersTable', se destruye
   if ($.fn.DataTable.isDataTable('#usersTable')) {
@@ -51,7 +51,7 @@ async function showUsers() {
         }
       },
       { data: 'phoneNumber', className: 'td td-align-center' },
-      { data: 'emailAddress', className: 'td td-align-center' },
+      { data: 'email', className: 'td td-align-center' },
       { data: 'position', className: 'td td-align-center' },
       { 
         data: null,
@@ -109,9 +109,9 @@ async function handleEditUserClick(event) {
 
   userCreateEditModalLabel.innerText = 'Editar Usuario';
 
-  const user = await getRecord(idUser, urlUsers);
-  const { name, lastname, birthdate, gender, phoneNumber, emailAddress, department, position } = user;
-  const valuesInputFields = [name, lastname, birthdate, phoneNumber, emailAddress, position];
+  const user = await getRecord(idUser, usersUrl);
+  const { name, lastname, birthdate, gender, phoneNumber, email, department, position } = user;
+  const valuesInputFields = [name, lastname, birthdate, phoneNumber, email, position];
 
   populateInputFields(inputFields, valuesInputFields);
   setRadioValue(inputRadios, gender);
@@ -158,7 +158,7 @@ function clearUserForm() {
 // Elimina un usuario de la BD
 async function deleteUser() {
   const idUser = parseInt(deleteUserButton.dataset.idUser);
-  const response = await deleteRecord(idUser, urlUsers);
+  const response = await deleteRecord(idUser, usersUrl);
 
   deleteUserButton.classList.add('d-none');
   deletingUserButton.classList.remove('d-none');
@@ -167,7 +167,7 @@ async function deleteUser() {
     userDeleteModal.hide();
     deleteUserButton.classList.remove('d-none');
     deletingUserButton.classList.add('d-none');
-    const users = await getRecords(urlUsers);
+    const users = await getRecords(usersUrl);
     refreshDatatable('usersTable', users);
     showToast(response, deleteUserButton, userToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
   }, 2000);
@@ -176,7 +176,7 @@ async function deleteUser() {
   // userDeleteModal.hide();
   // deleteUserButton.classList.remove('d-none');
   // deletingUserButton.classList.add('d-none');
-  // const users = await getRecords(urlUsers);
+  // const users = await getRecords(usersUrl);
   // refreshDatatable('usersTable', users);
   // showToast(response, deleteUserButton, userToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
 }
@@ -190,17 +190,17 @@ async function saveUser() {
   const birthdate = inputBirthdate.value;
   const gender = document.querySelector('input[name="gender"]:checked').id;
   const phoneNumber = inputPhoneNumber.value;
-  const emailAddress = inputEmail.value;
+  const email = inputEmail.value;
   const department = selectDepartment.value;
   const position = inputPosition.value;
 
   let user;
   id === ''
-  ? user = { name, lastname, birthdate, gender, phoneNumber, emailAddress, department, position }
-  : user = { id, name, lastname, birthdate, gender, phoneNumber, emailAddress, department, position };
+  ? user = { name, lastname, birthdate, gender, phoneNumber, email, department, position }
+  : user = { id, name, lastname, birthdate, gender, phoneNumber, email, department, position };
   console.log(user);
   
-  if (!validateFields(user)) {
+  if (!validateEmptyFields(user)) {
     showError('Todos los campos son obligatorios.', 'errorAlert');
     return;
   }
@@ -210,18 +210,18 @@ async function saveUser() {
     return;
   }
 
-  if (!validateEmail(emailAddress)) {
+  if (!validateEmail(email)) {
     showError('Email incorrecto.', 'errorAlert');
     return;
   }
 
   let response, successMessage, errorMessage;
   if (saveUserButton.dataset.idUser === '') {
-    response = await createRecord(user, urlUsers);
+    response = await createRecord(user, usersUrl);
     successMessage = 'Usuario creado correctamente';
     errorMessage = 'No se ha podido crear el usuario';
   } else {
-    response = await editRecord(user, urlUsers);
+    response = await editRecord(user, usersUrl);
     successMessage = 'se ha modificado correctamente';
     errorMessage = 'no ha podido ser modificado';
   }
@@ -233,7 +233,7 @@ async function saveUser() {
     userCreateEditModal.hide();
     saveUserButton.classList.remove('d-none');
     savingUserButton.classList.add('d-none');
-    const users = await getRecords(urlUsers);
+    const users = await getRecords(usersUrl);
     refreshDatatable('usersTable', users);
     showToast(response, saveUserButton, userToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
   }, 2000);
@@ -242,7 +242,7 @@ async function saveUser() {
   // userCreateEditModal.hide();
   // saveUserButton.classList.remove('d-none');
   // savingUserButton.classList.add('d-none');
-  // const users = await getRecords(urlUsers);
+  // const users = await getRecords(usersUrl);
   // refreshDatatable('usersTable', users);
   // showToast(response, saveUserButton, userToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
 

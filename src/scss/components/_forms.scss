@@ -8,6 +8,7 @@
 $login-form: map-get(vars-forms.$forms, 'login');
 $login-form-title: map-get($login-form, 'title');
 $login-form-input: map-get($login-form, 'input');
+$login-form-validation-error: map-get($login-form, 'validation-error');
 $login-form-checkbox: map-get($login-form, 'checkbox');
 $login-form-label: map-get($login-form, 'label');
 $login-form-button: map-get($login-form, 'button');
@@ -27,7 +28,7 @@ $dark-mode-form-icon: map-get($dark-mode-form, 'icon');
 $dark-mode-form-button: map-get($dark-mode-form, 'button');
 
 // Styles
-.form--login--sign-up {
+.form--login--register {
   width: min(65%, 45rem);
   margin: 0 auto;
 
@@ -36,8 +37,11 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
   }
 
   .form__input {
-    margin-bottom: 1.4rem;
     @include mixins-forms.form-input($login-form-input);
+  }
+
+  .form__validation__error {
+    @include mixins-forms.form-validation-error($login-form-validation-error);
   }
 
   .form__checkbox {

@@ -1,5 +1,5 @@
 import { 
-  validateFields, 
+  validateEmptyFields, 
   validatePhoneNumber, 
   validateEmail, 
   populateInputFields, 
@@ -13,7 +13,7 @@ import {
   applyDataTableStyles,
   refreshDatatable
 } from './functions';
-import { urlClients, urlStatuses, createRecord, editRecord, getRecords, deleteRecord } from './API'
+import { clientsUrl, statusesUrl, createRecord, editRecord, getRecords, deleteRecord } from './API'
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 
@@ -25,8 +25,8 @@ let clientToast, clientDeleteModal, clientCreateEditModal, toastBootstrap;
 
 // Funciones
 async function showClients() {
-  const clients = await getRecords(urlClients);
-  statuses = await getRecords(urlStatuses);
+  const clients = await getRecords(clientsUrl);
+  statuses = await getRecords(statusesUrl);
 
   // Si ya existe una instancia del DataTable 'clientsTable', se destruye
   if ($.fn.DataTable.isDataTable('#clientsTable')) {
@@ -202,7 +202,7 @@ function clearClientForm() {
 // Elimina un cliente de la BD
 async function deleteClient() {
   const idClient = parseInt(deleteClientButton.dataset.idClient);
-  const response = await deleteRecord(idClient, urlClients);
+  const response = await deleteRecord(idClient, clientsUrl);
 
   deleteClientButton.classList.add('d-none');
   deletingClientButton.classList.remove('d-none');
@@ -211,7 +211,7 @@ async function deleteClient() {
     clientDeleteModal.hide();
     deleteClientButton.classList.remove('d-none');
     deletingClientButton.classList.add('d-none');
-    const clients = await getRecords(urlClients);
+    const clients = await getRecords(clientsUrl);
     refreshDatatable('clientsTable', clients);
     showToast(response, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
   }, 2000);
@@ -220,7 +220,7 @@ async function deleteClient() {
   // clientDeleteModal.hide();
   // deleteClientButton.classList.remove('d-none');
   // deletingClientButton.classList.add('d-none');
-  // const clients = await getRecords(urlClients);
+  // const clients = await getRecords(clientsUrl);
   // refreshDatatable('clientsTable', clients);
   // showToast(response, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
 }
@@ -240,7 +240,7 @@ async function saveClient() {
   ? client = { name, lastname, phoneNumber, email, city, registrationDate, status }
   : client = { id, name, lastname, phoneNumber, email, city, registrationDate, status };
   
-  if (!validateFields(client)) {
+  if (!validateEmptyFields(client)) {
     showError('Todos los campos son obligatorios.', 'errorAlert');
     return;
   }
@@ -257,11 +257,11 @@ async function saveClient() {
 
   let response, successMessage, errorMessage;
   if (saveClientButton.dataset.idClient === '') {
-    response = await createRecord(client, urlClients);
+    response = await createRecord(client, clientsUrl);
     successMessage = 'Cliente creado correctamente';
     errorMessage = 'No se ha podido crear el cliente';
   } else {
-    response = await editRecord(client, urlClients);
+    response = await editRecord(client, clientsUrl);
     successMessage = 'se ha modificado correctamente';
     errorMessage = 'no ha podido ser modificado';
   }
@@ -273,7 +273,7 @@ async function saveClient() {
     clientCreateEditModal.hide();
     saveClientButton.classList.remove('d-none');
     savingClientButton.classList.add('d-none');
-    const clients = await getRecords(urlClients);
+    const clients = await getRecords(clientsUrl);
     refreshDatatable('clientsTable', clients);
     showToast(response, saveClientButton, clientToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
   }, 2000);
@@ -282,7 +282,7 @@ async function saveClient() {
   // clientCreateEditModal.hide();
   // saveClientButton.classList.remove('d-none');
   // savingClientButton.classList.add('d-none');
-  // const clients = await getRecords(urlClients);
+  // const clients = await getRecords(clientsUrl);
   // refreshDatatable('clientsTable', clients);
   // showToast(response, saveClientButton, clientToast, toastBootstrap, 'Guradar', 'se ha modificado correctamente', 'no ha podido ser modificado');
 

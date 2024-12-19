@@ -1,3 +1,4 @@
+import { passwordMinLength, userFieldLabels, errorMessages } from './constants';
 import $ from 'jquery';
 
 /***************************************************************************/
@@ -43,29 +44,132 @@ export function removeClassFromId(id, className) {
   htmlElement.classList.remove(className);
 }
 
+// Intercambia dos elementos ocultando el primero y mostrando el segundo
+export function toggleElements(elementToHide, elementToShow) {
+  elementToHide.classList.add('d-none');
+  elementToShow.classList.remove('d-none');
+}
+
 /***************************************************************************/
 /**                            FORMULARIOS                                **/
 /***************************************************************************/
 
+export function validateErrors(obj, checkBoxes = {}) {
+  let errors = {};
+  
+  errors = validateEmptyFields(obj);
+  
+  if (!errors.email) {
+    errors = {...errors, ...validateEmail(obj.email)};
+  }
+  
+  if (!errors.password) {
+    errors = {...errors, ...validatePassword(obj)};
+  }
+
+  if (Object.keys(checkBoxes).length !== 0) {
+    errors = {...errors, ...validateCheckBoxes(checkBoxes)};
+  }
+
+  return errors;
+}
+
+export function showFieldErrors(form, errors) {
+  for (let [key, value] of Object.entries(errors)) {
+    if (Array.isArray(value)) {
+      value = value.pop();
+    }
+    const fieldName = userFieldLabels[key] || key;
+    showErrorForm(form, key, value.replace(key, fieldName));
+  }
+}
+
+export function clearFieldErrors(form, classNameErrors, classNameInputs, inputClass = 'mb-14', spanClass = 'd-none') {
+  const spanErrors = form.querySelectorAll(`${classNameErrors}`);
+  spanErrors.forEach( span => span.classList.add(spanClass) );
+  
+  const inputs = form.querySelectorAll(`${classNameInputs}`);
+  
+  inputs.forEach( input => input.classList.add(inputClass) );
+}
+
+function showErrorForm(form, fieldId, errorMessage, inputClass = 'mb-14', spanClass = 'd-none') {
+  const input = form.querySelector(`[data-${fieldId}]`);
+  if (!input) return;
+  
+  input.classList.remove(inputClass);
+  
+  const span = form.querySelector(`.form__validation__error[data-error-for="${fieldId}"]`);
+
+  if (span) {
+    span.classList.remove(spanClass);
+    span.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i>${errorMessage}`;
+  }
+}
+
 // Validación de campos vacios de un formulario
-export function validateFields(obj) {
-  return Object.values(obj).every( input => input !== '')
+export function validateEmptyFields(obj) {
+  let emptyFields = {};
+
+  for (let [key, value] of Object.entries(obj)) {
+    if (value === '' && key !== 'password_confirmation') {
+      emptyFields[key] = errorMessages.required.replace(':field', key);
+    }
+  }
+  
+  return emptyFields;
+}
+
+// Se valida que el formato del email es correcto
+export function validateEmail(email) {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  
+  if (!emailPattern.test(email)) {
+    return {
+      email: errorMessages.email.replace(':field', 'email'),
+    };
+  }
+
+  return {};
+}
+
+// Se valida que las dos contraseñas son correctas
+function validatePassword(obj) {
+  if (obj.password.length < passwordMinLength) {
+    return {
+      password: errorMessages.min.string
+                  .replace(':field', 'password')
+                  .replace(':min', passwordMinLength),
+    };
+  }
+
+  if (obj.password_confirmation && obj.password !== obj.password_confirmation) {
+    console.log('hola');
+    return {
+      password: errorMessages.confirmed.replace(':field', 'password'),
+    };
+  }
+
+  return {};
 }
 
 // Validación de campos de tipo checkBox de un formulario
-export function validateCheckBoxes(obj) {
-  return Object.values(obj).every( input => input !== false)
+function validateCheckBoxes(obj) {
+  let emptyCheckFields = {};
+  
+  for (let [key, value] of Object.entries(obj)) {
+    if (!value) {
+      emptyCheckFields[key] = errorMessages.policiesAndTerms;
+    }
+  }
+
+  return emptyCheckFields;
 }
 
 export function validatePhoneNumber(phoneNumber) {
   // const phoneNumberPattern = /^\+?[0-9]{1,3}?[0-9]{7,15}$/; // Valida números de cualquier pais
   const phoneNumberPattern = /^(?:\+34)?[0-9]{9}$/; // Valida números de españa
   return phoneNumberPattern.test(phoneNumber);
-}
-
-export function validateEmail(email) {
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  return emailPattern.test(email);
 }
 
 // Rellena los inputs
@@ -163,7 +267,7 @@ export function showAlert(message, containerSelector) {
 
   alertTimeout = setTimeout( () => {
     alert.remove();
-  }, 3000);
+  }, 10000);
 }
 
 // Muestra mensaje de error en un formulario cuando no se han rellenado todos los campos.
@@ -191,7 +295,7 @@ export function showError(message, containerSelector) {
   errorTimeout = setTimeout( () => {
     container.innerText = '';
     container.classList.remove('errorAlert');
-  }, 3000);
+  }, 5000);
 }
 
 /***************************************************************************/

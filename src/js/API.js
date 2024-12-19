@@ -1,26 +1,32 @@
-const urlLogins = "http://localhost:4000/logins";
-export const urlUsers = "http://localhost:4000/users";
-export const urlOffices = "http://localhost:4000/offices";
-export const urlDepartments = "http://localhost:4000/departments";
-export const urlClients = "http://localhost:4000/clients";
-export const urlStatuses = "http://localhost:4000/statuses";
+const loginsUrl = "http://localhost:4000/logins";
+export const usersUrl = "http://localhost:4000/users";
+export const officesUrl = "http://localhost:4000/offices";
+export const departmentsUrl = "http://localhost:4000/departments";
+export const clientsUrl = "http://localhost:4000/clients";
+export const statusesUrl = "http://localhost:4000/statuses";
+
+export const loginURL = 'http://localhost:8000/api/v1/login';
+export const registerUserURL = 'http://localhost:8000/api/v1/register';
 
 // Inicio de sesion de un cliente
 export const login = async user => {
   try {
-    const response = await fetch(urlLogins, {
+    const response = await fetch(loginURL, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
       }
     });
+
     const data = await response.json();
-    const dataTemp = {
-      token: 'jus5648sanm546123lo8iuysdaaAsU5ghj151Z65',
-      modules: [3, 4, 5]
-    };
-    return dataTemp;
+
+    if (!response.ok) {
+      console.error(`Error en la solicitud: ${data.message}`);
+    }
+    
+    return data;
   } catch (error) {
     console.error('Error en la conexión o en la solicitud:', error);
   }
@@ -36,6 +42,7 @@ export const createRecord = async (record, url) => {
         'Content-Type': 'application/json'
       }
     });
+    
     if (response.ok) {
       const data = await response.json();
       return data;
@@ -117,6 +124,28 @@ export const getRecords = async url => {
     }
   } catch (error) {
     console.error('Error en la conexión o en la solicitud:', error);
+    return null;
+  }
+}
+
+export const verifyEmailUser = async (urlVerification, authToken) => {
+  try {
+    const response = await fetch(urlVerification, {
+      method: 'GET',
+      headers: {
+          'Authorization': `Bearer ${authToken}`
+      }
+    });
+
+    if (!response.ok) {
+      console.error(`Error en la solicitud: ${response.status}`);
+      return null;
+    } 
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al verificar:", error);
     return null;
   }
 }

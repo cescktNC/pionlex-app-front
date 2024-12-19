@@ -4,9 +4,9 @@
   <div class="translucent-layer-2"></div>
   <div class="translucent-layer-3"></div>
 
-  <div id="container-login" class="container-cards">
+  <div id="login-container" class="cards-container">
 
-    <div id="card-login">
+    <div id="login-card">
 
       <div class="card">
 
@@ -14,7 +14,7 @@
         
         <div class="card-body">
 
-          <form id="form-login" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
+          <form id="login-form" method="POST" class="form--login--register" autocomplete="off" novalidate>
 
             <h1 class="form__title">LOGIN</h1>
 
@@ -22,15 +22,17 @@
               <span class="input-group-text form__input">
                 <i class="bi bi-person-fill form__icon"></i>
               </span>
-              <input type="text" class="form-control form__input" id="username" name="username" placeholder="USUARIO" required />
+              <input type="text" class="form-control form__input mb-14" data-email name="email" placeholder="EMAIL" required />
             </div>
+            <span class="form__validation__error d-none" data-error-for="email"></span>
 
             <div class="input-group">
               <span class="input-group-text form__input">
                 <i class="bi bi-key-fill form__icon"></i>
               </span>
-              <input type="password" class="form-control form__input" id="password-login" name="passwordLogin" placeholder="CONTRASEÑA" required />
+              <input type="password" class="form-control form__input mb-14" data-password name="password" placeholder="CONTRASEÑA" required />
             </div>
+            <span class="form__validation__error d-none" data-error-for="password"></span>
 
             <label class="form__label">
               <div class="save-password">
@@ -41,7 +43,11 @@
             </label>
 
             <div class="button">
-              <button type="submit" class="form__button">ENTRAR</button>
+              <button id="loginUserButton" type="submit" class="form__button">ENTRAR</button>
+              <button id="logingUserButton" class="form__button loadingButton d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Entrando...</span>
+              </button>
             </div>
 
           </form>
@@ -52,52 +58,68 @@
       
     </div>
 
-    <div class="sign-up-div">
+    <div class="register-div">
       <span>¿No tienes usuario?</span>
-      <span id="sign-up-link">Regístrate</span>
+      <span id="register-link">Regístrate</span>
     </div>
 
   </div>
 
-  <div id="container-sign-up" class="container-cards d-none">
+  <div id="register-container" class="cards-container d-none">
 
-    <div id="card-sign-up">
+    <div id="register-card">
 
       <div class="card">
 
-        <img src="/images/card-image-top-sign-up.jpg" class="card-img-top" alt="Pion Lex Logo">
+        <img src="/images/card-image-top-register.jpg" class="card-img-top" alt="Pion Lex Logo">
         
         <div class="card-body">
 
-          <form id="form-sign-up" method="POST" class="form--login--sign-up" autocomplete="off" novalidate>
+          <form id="register-form" method="POST" class="form--login--register" autocomplete="off" novalidate>
 
             <h1 class="form__title">DESPACHO</h1>
 
-            <input type="text" class="form-control form__input" id="officeName" name="officeName" placeholder="Nombre Despacho" required />
-            <input type="text" class="form-control form__input" id="cif" name="cif" placeholder="CIF" required />
-            <input type="text" class="form-control form__input" id="invitationCode" name="invitationCode" placeholder="Código de invitación" required />
-            <input type="text" class="form-control form__input" id="name" name="name" placeholder="N&#8203;ombre" required />
-            <input type="text" class="form-control form__input" id="lastname" name="lastname" placeholder="Apellidos" required />
-            <input type="email" class="form-control form__input" id="emailAddress" name="ema&#8203;ilAddress" placeholder="name@ejemplo.com" required />
-            <input type="password" class="form-control form__input" id="passwordSignUp" name="passwordSignUp" placeholder="Contraseña" required />
-            <input type="password" class="form-control form__input" id="confirmPasswordSignUp" name="confirmPasswordSignUp" placeholder="Confirmar Contraseña" required />
+            <input type="text" class="form-control form__input mb-14" data-officeName name="officeName" placeholder="Nombre Despacho" required />
+            <span class="form__validation__error d-none" data-error-for="officeName"></span>
 
-            <div class="policy-terms">
-              <label class="form__label">
-                <input type="checkbox" id="dataPolicy" class="form-check-input form__checkbox" name="dataPolicy" required />
-                He leído y acepto la 
-                <button id="data-policy" type="button" class="form__button__link">Política de Protección de Datos</button>
-              </label>
-            
-              <label class="form__label">
-                <input type="checkbox" id="termsOfUse" class="form-check-input form__checkbox" name="termsOfUse" required />
-                He leído y acepto los 
-                <button id="terms-of-use" type="button" class="form__button__link">Términos y Condiciones de Uso</button>
-              </label>
-            </div>
+            <input type="text" class="form-control form__input mb-14" data-cif name="cif" placeholder="CIF" required />
+            <span class="form__validation__error d-none" data-error-for="cif"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+            <input type="text" class="form-control form__input mb-14" data-invitationCode name="invitationCode" placeholder="Código de invitación" required />
+            <span class="form__validation__error d-none" data-error-for="invitationCode"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+            <input type="text" class="form-control form__input mb-14" data-name name="name" placeholder="Nombre" required />
+            <span class="form__validation__error d-none" data-error-for="name"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+            <input type="text" class="form-control form__input mb-14" data-lastname name="lastname" placeholder="Apellidos" required />
+            <span class="form__validation__error d-none" data-error-for="lastname"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+            <input type="email" class="form-control form__input mb-14" data-email name="email" placeholder="Email" required />
+            <span class="form__validation__error d-none" data-error-for="email"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+            <input type="password" class="form-control form__input mb-14" data-password name="password" placeholder="Contraseña" required />
+            <span class="form__validation__error d-none" data-error-for="password"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+            <input type="password" class="form-control form__input mb-14" data-passwordConfirmation name="passwordConfirmation" placeholder="Confirmar Contraseña" required />
+            <span class="form__validation__error d-none" data-error-for="passwordConfirmation"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+            <label class="form__label">
+              <input type="checkbox" data-policyTerms class="form-check-input form__checkbox" name="dataPolicy" required />
+              Acepto la
+              <button id="data-policy" type="button" class="form__button__link">Política de Privacidad</button>
+              y
+              <button id="terms-of-use" type="button" class="form__button__link">Términos de Uso.</button>
+            </label>
+            <span class="form__validation__error" data-error-for="policyTerms">
+              <i class="fa-solid fa-circle-exclamation d-none"></i>
+            </span>
             
             <div class="button">
-              <button type="submit" class="form__button">REGISTRAR</button>
+              <button id="saveUserButton" type="submit" class="form__button">REGISTRAR</button>
+              <button id="savingUserButton" class="form__button loadingButton d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Guardando...</span>
+              </button>
             </div>
             
           </form>
@@ -108,7 +130,7 @@
       
     </div>
 
-    <div class="sign-up-div">
+    <div class="register-div">
         <span>¿Ya tienes usuario?</span>
         <span id="login-link">LogIn</span>
     </div>

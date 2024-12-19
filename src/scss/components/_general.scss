@@ -26,6 +26,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: translateX(350%);
 }
 
+.mb-14 {
+  margin-bottom: 1.4rem;
+}
+
 .active {
   color: map-get(colors.$colors, "start-gradient") !important;
   border-left: 3px solid map-get(colors.$colors, "start-gradient") !important;

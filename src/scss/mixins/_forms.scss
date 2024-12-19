@@ -29,6 +29,12 @@
   }
 }
 
+@mixin form-validation-error($validation-error-type) {
+  color: map-get($validation-error-type, 'color');
+  font-size: map-get($validation-error-type, 'fs');
+  font-weight: map-get($validation-error-type, 'fw');
+}
+
 @mixin form-checkbox($checkbox-type) {
   border: map-get($checkbox-type, 'border');
   background-color: map-get($checkbox-type, 'bg');

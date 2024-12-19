@@ -12,7 +12,7 @@ $forms: (
     input: (
       border: .75px solid map-get(colors.$colors, 'white-opacity'),
       bg: map-get(colors.$colors, 'input-bg'),
-      fs: 1.4rem,
+      fs: 1.5rem,
       fw: 400,
       color: map-get(colors.$colors, 'white-opacity'),
       height: 4rem,
@@ -24,6 +24,11 @@ $forms: (
         bs: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
         bc: rgba(255, 255, 255, 0.7)
       )
+    ),
+    validation-error: (
+      color: map-get(colors.$colors, 'light-red'),
+      fs: 1.4rem,
+      fw: 00
     ),
     checkbox: (
       border: .75px solid map-get(colors.$colors, 'light-grey'),

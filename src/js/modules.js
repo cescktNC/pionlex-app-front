@@ -3,6 +3,12 @@ import { removeAllScriptsExceptMain, addScripts } from './functions';
 
 // Variables
 const modulesMap = {
+  0: {
+    moduleTemplate: 'menu/dashboard',
+    defaultSection: '/dashboard/overview',
+    scripts: ['menu']
+    // scripts: ['menu', 'dashboard', 'overview', 'cases', 'tasks', 'calendar', 'finances', 'communications']
+  },
   1: {
     moduleTemplate: 'menu/module1',
     defaultSection: '/module1Section1',
@@ -51,7 +57,11 @@ const modulesMap = {
   }
 };
 
-const moduleIds = JSON.parse(localStorage.getItem('moduleIds'));
+let moduleIds = [0];
+if (localStorage.getItem('moduleIds')) {
+  moduleIds = [...moduleIds, ...JSON.parse(localStorage.getItem('moduleIds'))];
+  localStorage.removeItem('moduleIds');
+}
 
 // Funciones
 // Carga los scripts y los menus correspondientes a los módulos que tiene que cargar
