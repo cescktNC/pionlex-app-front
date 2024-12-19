@@ -3,7 +3,6 @@ import {
   validateErrors,
   showFieldErrors,
   clearFieldErrors,
-  validateEmptyFields,
   toggleElements,
   clearInputFields,
   clearCheckBoxFields,
@@ -14,7 +13,7 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 import router from './routes';
 
 // Variables
-let loginForm, registerForm, lostPasswordLink, registerLink, loginLinks, dataPolicyLink, termsOfUseLink, userVerifyModal, verifyEmail, urlVerifyEmail;
+let loginForm, registerForm, lostPasswordLink, registerLink, loginLinks, userVerifyModal, verifyEmail, urlVerifyEmail;
 
 // Funciones
 
@@ -187,12 +186,6 @@ function clearUserForm(inputFields, checkboxFields) {
   clearCheckBoxFields(checkboxFields);
 }
 
-// Redirige a la página de terminos legales
-function redirectToLegalTemplate(e) {
-  const templateName = e.target.id;
-  router.navigate(`/legal-docs/${templateName}/1`);
-}
-
 export async function initLogin(options = {}, urlVerification) {
   // Inicializar variables
   loginForm = document.querySelector('#login-form');
@@ -200,8 +193,6 @@ export async function initLogin(options = {}, urlVerification) {
   lostPasswordLink = document.querySelector('#lost-password-link');
   registerLink = document.querySelector('#login-container [data-registerLink]');
   loginLinks = document.querySelectorAll('[data-loginLink]');
-  dataPolicyLink = document.querySelector('#data-policy');
-  termsOfUseLink = document.querySelector('#terms-of-use');
 
   // Instanciar componentes de Bootstrap
   userVerifyModal = new bootstrap.Modal(document.querySelector('#userVerifyModal'));
@@ -215,8 +206,6 @@ export async function initLogin(options = {}, urlVerification) {
     const container = loginLink.getAttribute('data-container');
     loginLink.addEventListener('click', () => showLeftForm(container, 'login-container'));
   });
-  dataPolicyLink.addEventListener('click', redirectToLegalTemplate);
-  termsOfUseLink.addEventListener('click', redirectToLegalTemplate);
 
   // Lógica
   verifyEmail = options.verifyEmail;
