@@ -39,7 +39,7 @@
                 <input type="checkbox" id="save-password" class="form-check-input form__checkbox" name="remember" />
                 Guardar contraseña
               </div>
-              <button id="lost-password" type="button" class="form__button__link">¿Has olvidado tu contraseña?</button>
+              <button id="lost-password-link" type="button" class="form__button__link">¿Has olvidado tu contraseña?</button>
             </label>
 
             <div class="button">
@@ -60,7 +60,7 @@
 
     <div class="register-div">
       <span>¿No tienes usuario?</span>
-      <span id="register-link">Regístrate</span>
+      <span class="link" data-registerLink>Regístrate</span>
     </div>
 
   </div>
@@ -132,7 +132,7 @@
 
     <div class="register-div">
         <span>¿Ya tienes usuario?</span>
-        <span id="login-link">LogIn</span>
+        <span class="link" data-loginLink data-container="register-container">LogIn</span>
     </div>
 
   </div>
@@ -165,7 +165,7 @@
                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                 <span role="status">Continuando...</span>
               </button>
-              <button id="returnButton" type="submit" class="form__button">VOLVER</button>
+              <button id="returnButton" data-loginLink data-container="forgot-password-container" type="button" class="form__button">VOLVER</button>
             </div>
 
           </form>

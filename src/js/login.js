@@ -14,7 +14,7 @@ import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootst
 import router from './routes';
 
 // Variables
-let loginForm, registerForm, registerLink, loginLink, dataPolicyLink, termsOfUseLink, userVerifyModal, verifyEmail, urlVerifyEmail;
+let loginForm, registerForm, lostPasswordLink, registerLink, loginLinks, dataPolicyLink, termsOfUseLink, userVerifyModal, verifyEmail, urlVerifyEmail;
 
 // Funciones
 
@@ -152,11 +152,11 @@ async function registerUser(e) {
   toggleElements(savingUserButton, saveUserButton);
 
   // Se vuelve a cargar el formulario de Login
-  showLoginForm('register-container', 'login-container');
+  showLeftForm('register-container', 'login-container');
 }
 
 // Muestra el formulario de Registro
-function showRegisterForm(deleteFormName, addFormName) {
+function showRightForm(deleteFormName, addFormName) {
   addClassFromId(deleteFormName, 'slide-left');
   setTimeout( () => {
     addClassFromId(deleteFormName, 'd-none');
@@ -169,7 +169,7 @@ function showRegisterForm(deleteFormName, addFormName) {
 }
 
 // Muestra el formulario de Login
-function showLoginForm(deleteFormName, addFormName) {
+function showLeftForm(deleteFormName, addFormName) {
   addClassFromId(deleteFormName, 'slide-right');
   setTimeout( () => {
     addClassFromId(deleteFormName, 'd-none');
@@ -197,8 +197,9 @@ export async function initLogin(options = {}, urlVerification) {
   // Inicializar variables
   loginForm = document.querySelector('#login-form');
   registerForm = document.querySelector('#register-form');
-  registerLink = document.querySelector('#register-link');
-  loginLink = document.querySelector('#login-link');
+  lostPasswordLink = document.querySelector('#lost-password-link');
+  registerLink = document.querySelector('#login-container [data-registerLink]');
+  loginLinks = document.querySelectorAll('[data-loginLink]');
   dataPolicyLink = document.querySelector('#data-policy');
   termsOfUseLink = document.querySelector('#terms-of-use');
 
@@ -208,8 +209,12 @@ export async function initLogin(options = {}, urlVerification) {
   // Añadir eventos
   loginForm.addEventListener('submit', loginUser);
   registerForm.addEventListener('submit', registerUser);
-  registerLink.addEventListener('click', () => showRegisterForm('login-container', 'register-container'));
-  loginLink.addEventListener('click', () => showLoginForm('register-container', 'login-container'));
+  lostPasswordLink.addEventListener('click', () => showRightForm('login-container', 'forgot-password-container'));
+  registerLink.addEventListener('click', () => showRightForm('login-container', 'register-container'));
+  loginLinks.forEach( loginLink => {
+    const container = loginLink.getAttribute('data-container');
+    loginLink.addEventListener('click', () => showLeftForm(container, 'login-container'));
+  });
   dataPolicyLink.addEventListener('click', redirectToLegalTemplate);
   termsOfUseLink.addEventListener('click', redirectToLegalTemplate);
 

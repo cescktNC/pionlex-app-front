@@ -111,8 +111,7 @@
       font-size: 1.6rem;
       height: 6rem;
 
-      #register-link,
-      #login-link {
+      .link {
         cursor: pointer;
         margin-left: 1rem;
         text-decoration: underline;
@@ -199,6 +198,8 @@
     .card {
       display: flex;
       flex-direction: row;
+      height: 40rem;
+      margin-bottom: 3rem;
 
       img {
         width: 36rem;
@@ -214,10 +215,11 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          height: 85%;
+          height: 75%;
           width: min(77%, 45rem);
 
           .form__title {
+            margin-top: 1rem;
             margin-bottom: 1rem;
           }
 
