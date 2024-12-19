@@ -30,18 +30,22 @@
     clip-path: polygon(27% 100%, 0% 100%, 0% 0%, 55% 0%);
   }
 
-  #login-container, 
-  #register-container {
+  #login-container,
+  #register-container,
+  #forgot-password-container {
     transition: transform 0.6s ease-in-out;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: min(95%, 72.5rem);
+  }
+
+  #forgot-password-container {
+    width: min(95%, 93.5rem);
   }
 
   .cards-container {
-    width: min(95%, 72.5rem);
-
     .card {
       border: none;
 
@@ -51,7 +55,7 @@
         .form__validation__error {
           display: block;
           margin-bottom: .7rem;
-  
+
           i {
             padding-right: 1rem;
           }
@@ -72,7 +76,7 @@
             justify-content: center;
             align-items: center;
             width: 15rem;
-  
+
             span:first-child {
               margin-right: 1rem;
               width: 1.8rem;
@@ -91,7 +95,7 @@
           padding: .5rem 1rem;
           line-height: 1.2;
           text-align: center;
-    
+
           strong {
             font-weight: 600;
             margin-right: 1rem;
@@ -100,13 +104,13 @@
 
       }
     }
-  
+
     .register-div {
       text-align: center;
       color: white;
       font-size: 1.6rem;
       height: 6rem;
-  
+
       #register-link,
       #login-link {
         cursor: pointer;
@@ -167,8 +171,6 @@
     }
 
     .card-body {
-      // height: 83rem;
-
       .form__title {
         margin-top: 2rem;
         margin-bottom: 2rem;
@@ -191,6 +193,47 @@
       }
     }
 
+  }
+
+  #forgot-password-card {
+    .card {
+      display: flex;
+      flex-direction: row;
+
+      img {
+        width: 36rem;
+        object-fit: cover;
+      }
+
+      .card-body {
+        display: flex;
+        align-items: center;
+        width: 52.5rem;
+
+        .form--login--register {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 85%;
+          width: min(77%, 45rem);
+
+          .form__title {
+            margin-bottom: 1rem;
+          }
+
+          p {
+            color: white;
+            font-size: 1.6rem;
+            text-align: center;
+          }
+
+          #returnButton {
+            margin-left: 2rem;
+          }
+        }
+      }
+
+    }
   }
 
   .footer {

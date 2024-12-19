@@ -137,6 +137,47 @@
 
   </div>
 
+  <div id="forgot-password-container" class="cards-container d-none">
+
+    <div id="forgot-password-card">
+
+      <div class="card">
+
+        <img src="/images/card-image-top-forgot-password.jpg" class="card-img-top" alt="Pion Lex Logo">
+        
+        <div class="card-body">
+
+          <form id="forgot-password-form" method="POST" class="form--login--register" autocomplete="off" novalidate>
+
+            <div>
+              <h1 class="form__title">RECUPERAR CONTRASEÑA</h1>
+              <p>Introduzca la dirección de correo electrónico:</p>
+            </div>
+
+            <div>
+              <input type="email" class="form-control form__input mb-14" data-email name="email" placeholder="Email" required />
+              <span class="form__validation__error d-none" data-error-for="email"><i class="fa-solid fa-circle-exclamation"></i></span>
+            </div>
+
+            <div class="button">
+              <button id="continueButton" type="submit" class="form__button">CONTINUAR</button>
+              <button id="continuingButton" class="form__button loadingButton d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Continuando...</span>
+              </button>
+              <button id="returnButton" type="submit" class="form__button">VOLVER</button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+  </div>
+
   <footer class="footer">
     <p>&copy;2024 - Pion Lex. Todos los derechos reservados.</p>
   </footer>
