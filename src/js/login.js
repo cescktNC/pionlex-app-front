@@ -156,7 +156,7 @@ async function registerUser(e) {
   showModal('Verificar Usuario', 'Te hemos enviado un correo electrónico para que confirmes tu usuario.');
 
   // Reiniciar formulario
-  clearUserForm(
+  clearForm(
     [officeName, cif, invitationCode, name, lastname, email, password, passwordConfirmation],
     [policyTerms]
   );
@@ -167,94 +167,101 @@ async function registerUser(e) {
 
 // Manda un correo electrónico al usuario para restablecer la contraseña
 async function forgotPassword(e) {
-  // Se evita el comportamiento predeterminado del formulario (enviar los datos y recargar la página).
-  e.preventDefault();
+  e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
-  // Se capturan todos los elementos del formulario de Recuperar Contraseña
+  // Captura de los elementos del formulario
   const email = forgotPasswordForm.querySelector('[data-email]');
   
-  const user = {
-    email: email.value
-  };
+  const user = { email: email.value };
 
-  // Se valida el campo email
+  // Validación del formulario
   const errors = validateErrors(user);
+
+  // Limpieza de errores previos
+  clearFieldErrors(forgotPasswordForm, '.form__validation__error', '.form__input');
   
   // Se muestran los errores en los campos del formulario
-  if (Object.keys(errors).length !== 0) {
+  if (Object.keys(errors).length > 0) {
     showFieldErrors(forgotPasswordForm, errors);
     return;
   }
 
-  // Se muestra el botón de 'Continuando...'
+  // Gestion de los botones de continuar
   const continueButton = forgotPasswordForm.querySelector('#continueButton');
   const continuingButton = forgotPasswordForm.querySelector('#continuingButton');
   toggleElements(continueButton, continuingButton);
 
   // Se envian los datos del formulario a la Api para mandar el email de recuperar contraseña
   try {
+    // Enviar datos a la API
     const data = await fetchAPI('POST', forgotPasswordURL, user);
-    toggleElements(continuingButton, continueButton);
+    
+    // Manejo de errores devueltos por la API
     if (!data.result) {
-      if (Object.keys(data.status).length !== 0) {
+      if (Object.keys(data.status).length > 0) {
         showErrorForm(forgotPasswordForm, 'email', data.status);
-        return;
       }
+      return;
     }
   } catch (error) {
     console.error('Error al obtener los datos:', error.message);
+    return;
+  } finally {
+    toggleElements(continuingButton, continueButton);
   }
 
-  // Se muestra el modal para que el usuario restablezca la contraseña des de su correo
+  // Mostrar mensaje de restablecimiento de contraseña
   showModal('Restablecimiento de contraseña', 'Te hemos enviado un correo electrónico con la solicitud de restablecimiento de contraseña.');
 
-  // Se resetea el formulario de Registro
-  clearUserForm([email]);
+  // Reiniciar formulario
+  clearForm([email]);
 
-  // Se vuelve a cargar el formulario de Login
+  // Mostrar formulario de login
   showLeftForm('forgot-password-container', 'login-container');
 }
 
-// Muestra el formulario de Registro
+// Muestra un formulario deslizando hacia la derecha
 function showRightForm(deleteFormName, addFormName) {
-  addClassFromId(deleteFormName, 'slide-left');
-  setTimeout( () => {
-    addClassFromId(deleteFormName, 'd-none');
-    addClassFromId(addFormName, 'slide-right');
-    removeClassFromId(addFormName, 'd-none');
-    setTimeout( () => {
-      removeClassFromId(addFormName, 'slide-right');
-    }, 50);
-  }, 350);
+  toggleForms(deleteFormName, addFormName, 'slide-left', 'slide-right');
 }
 
-// Muestra el formulario de Login
+// Muestra un formulario deslizando hacia la izquierda
 function showLeftForm(deleteFormName, addFormName) {
-  addClassFromId(deleteFormName, 'slide-right');
-  setTimeout( () => {
+  toggleForms(deleteFormName, addFormName, 'slide-right', 'slide-left');
+}
+
+// Manejo genérico de la animación entre formularios
+function toggleForms(deleteFormName, addFormName, deleteAnimation, addAnimation) {
+  addClassFromId(deleteFormName, deleteAnimation);
+  setTimeout(() => {
     addClassFromId(deleteFormName, 'd-none');
-    addClassFromId(addFormName, 'slide-left');
+    addClassFromId(addFormName, addAnimation);
     removeClassFromId(addFormName, 'd-none');
-    setTimeout( () => {
-      removeClassFromId(addFormName, 'slide-left');
+
+    setTimeout(() => {
+      removeClassFromId(addFormName, addAnimation);
     }, 50);
   }, 350);
 }
 
-// Borra todos los campos del formulario de Registro
-function clearUserForm(inputFields, checkboxFields = []) {
+// Borra todos los campos del formulario
+function clearForm(inputFields, checkboxFields = []) {
   clearInputFields(inputFields);
   clearCheckBoxFields(checkboxFields);
 }
 
+// Muestra un mensaje al usuario en un modal
 function showModal(title, body) {
+  // Actualiza el título del modal
   const modalTitle = document.querySelector('.modal-title');
-  modalTitle.textContent = title;
+  if (modalTitle) modalTitle.textContent = title;
 
+  // Actualiza el cuerpo del modal
   const modalBody = document.querySelector('.modal-body');
-  modalBody.textContent = body;
+  if (modalBody) modalBody.textContent = body;
 
-  notificationModal.show();
+  // Muestra el modal usando el componente de Bootstrap
+  if (notificationModal) notificationModal.show();
 }
 
 export async function initLogin(options = {}, urlVerification) {
