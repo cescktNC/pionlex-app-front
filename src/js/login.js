@@ -14,7 +14,6 @@ import {
   registerUserURL, 
   forgotPasswordURL,
   login, 
-  createRecord, 
   verifyEmailUser } from './API';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 import router from './routes';
@@ -87,10 +86,9 @@ async function loginUser(e) {
 
 // Crea un usuario en la BD
 async function registerUser(e) {
-  // Se evita el comportamiento predeterminado del formulario (enviar los datos y recargar la página).
-  e.preventDefault();
+  e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
-  // Se capturan todos los elementos del formulario de Registro
+  // Captura de los elementos del formulario
   const officeName = registerForm.querySelector('[data-officeName]');
   const cif = registerForm.querySelector('[data-cif]');
   const invitationCode = registerForm.querySelector('[data-invitationCode]');
@@ -101,6 +99,7 @@ async function registerUser(e) {
   const passwordConfirmation = registerForm.querySelector('[data-passwordConfirmation]');
   const policyTerms = registerForm.querySelector('[data-policyTerms]');
 
+  // Construcción de los datos de usuario
   const user = {
     officeName: officeName.value,
     cif: cif.value,
@@ -112,55 +111,61 @@ async function registerUser(e) {
     password_confirmation: passwordConfirmation.value
   }
 
-  const policyTermsValue = {
-    policyTerms: policyTerms.checked
-  }
+  const policyTermsValue = { policyTerms: policyTerms.checked }
   
-  // Se valida que todos los campos del formulario de Registro
+  // Validación del formulario
   const errors = validateErrors(user, policyTermsValue);
 
-  // Se limpian los mensajes de error del formulario
+  // Limpieza de errores previos
   clearFieldErrors(registerForm, '.form__validation__error', '.form__input');
   
   // Se muestran los errores en los campos del formulario
-  if (Object.keys(errors).length !== 0) {
+  if (Object.keys(errors).length > 0) {
     showFieldErrors(registerForm, errors);
     return;
   }
   
-  // Se muestra el botón de 'Gurdando...'
+  // Gestion de los botones de guardado
   const saveUserButton = registerForm.querySelector('#saveUserButton');
   const savingUserButton = registerForm.querySelector('#savingUserButton');
   toggleElements(saveUserButton, savingUserButton);
 
-  // Se envian los datos del formulario a la Api para crear el registro en la BD
-  const dataUserRegistered = await createRecord(user, registerUserURL);
+  try {
+    // Enviar datos a la API
+    const data = await fetchAPI('POST', registerUserURL, user);
 
-  if (!dataUserRegistered.result) {
-    if (Object.keys(dataUserRegistered.status).length !== 0) {
-      showFieldErrors(registerForm, dataUserRegistered.status);
-      toggleElements(savingUserButton, saveUserButton);
+    // Manejo de errores devueltos por la API
+    if (!data.result) {
+      if (Object.keys(data.status).length > 0) {
+        showFieldErrors(registerForm, data.status);
+      }
       return;
     }
+
+    // Guardar token en localStorage
+    const dataUserLogin = await login(user);
+    localStorage.setItem('auth_token', dataUserLogin.token);
+  } catch (error) {
+    console.error('Error al obtener los datos:', error.message);
+    return;
+  } finally {
+    toggleElements(savingUserButton, saveUserButton);
   }
 
-  // Se muestra el modal para que verifique el usuario desde su correo
+  // Mostrar mensaje de verificación
   showModal('Verificar Usuario', 'Te hemos enviado un correo electrónico para que confirmes tu usuario.');
 
-  // Se guarda el token del usuario en el local storage
-  const dataUserLogin = await login(user);
-  localStorage.setItem('auth_token', dataUserLogin.token);
+  // Reiniciar formulario
+  clearUserForm(
+    [officeName, cif, invitationCode, name, lastname, email, password, passwordConfirmation],
+    [policyTerms]
+  );
 
-  // Se resetea el formulario de Registro
-  const inputFields = [officeName, cif, invitationCode, name, lastname, email, password, passwordConfirmation];
-  const checkboxFields = [policyTerms];
-  clearUserForm(inputFields, checkboxFields);
-  toggleElements(savingUserButton, saveUserButton);
-
-  // Se vuelve a cargar el formulario de Login
+  // Mostrar formulario de login
   showLeftForm('register-container', 'login-container');
 }
 
+// Manda un correo electrónico al usuario para restablecer la contraseña
 async function forgotPassword(e) {
   // Se evita el comportamiento predeterminado del formulario (enviar los datos y recargar la página).
   e.preventDefault();
