@@ -2,18 +2,25 @@ import {
   showAlert,
   validateErrors,
   showFieldErrors,
+  showErrorForm,
   clearFieldErrors,
   toggleElements,
   clearInputFields,
   clearCheckBoxFields,
   addClassFromId,
   removeClassFromId } from './functions';
-import { registerUserURL, login, createRecord, verifyEmailUser } from './API';
+import { 
+  fetchAPI,
+  registerUserURL, 
+  forgotPasswordURL,
+  login, 
+  createRecord, 
+  verifyEmailUser } from './API';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 import router from './routes';
 
 // Variables
-let loginForm, registerForm, lostPasswordLink, registerLink, loginLinks, userVerifyModal, verifyEmail, urlVerifyEmail;
+let loginForm, registerForm, forgotPasswordForm, lostPasswordLink, registerLink, loginLinks, notificationModal, verifyEmail, urlVerifyEmail;
 
 // Funciones
 
@@ -138,7 +145,7 @@ async function registerUser(e) {
   }
 
   // Se muestra el modal para que verifique el usuario desde su correo
-  userVerifyModal.show();
+  showModal('Verificar Usuario', 'Te hemos enviado un correo electrónico para que confirmes tu usuario.');
 
   // Se guarda el token del usuario en el local storage
   const dataUserLogin = await login(user);
@@ -152,6 +159,55 @@ async function registerUser(e) {
 
   // Se vuelve a cargar el formulario de Login
   showLeftForm('register-container', 'login-container');
+}
+
+async function forgotPassword(e) {
+  // Se evita el comportamiento predeterminado del formulario (enviar los datos y recargar la página).
+  e.preventDefault();
+
+  // Se capturan todos los elementos del formulario de Recuperar Contraseña
+  const email = forgotPasswordForm.querySelector('[data-email]');
+  
+  const user = {
+    email: email.value
+  };
+
+  // Se valida el campo email
+  const errors = validateErrors(user);
+  
+  // Se muestran los errores en los campos del formulario
+  if (Object.keys(errors).length !== 0) {
+    showFieldErrors(forgotPasswordForm, errors);
+    return;
+  }
+
+  // Se muestra el botón de 'Continuando...'
+  const continueButton = forgotPasswordForm.querySelector('#continueButton');
+  const continuingButton = forgotPasswordForm.querySelector('#continuingButton');
+  toggleElements(continueButton, continuingButton);
+
+  // Se envian los datos del formulario a la Api para mandar el email de recuperar contraseña
+  try {
+    const data = await fetchAPI('POST', forgotPasswordURL, user);
+    toggleElements(continuingButton, continueButton);
+    if (!data.result) {
+      if (Object.keys(data.status).length !== 0) {
+        showErrorForm(forgotPasswordForm, 'email', data.status);
+        return;
+      }
+    }
+  } catch (error) {
+    console.error('Error al obtener los datos:', error.message);
+  }
+
+  // Se muestra el modal para que el usuario restablezca la contraseña des de su correo
+  showModal('Restablecimiento de contraseña', 'Te hemos enviado un correo electrónico con la solicitud de restablecimiento de contraseña.');
+
+  // Se resetea el formulario de Registro
+  clearUserForm([email]);
+
+  // Se vuelve a cargar el formulario de Login
+  showLeftForm('forgot-password-container', 'login-container');
 }
 
 // Muestra el formulario de Registro
@@ -181,25 +237,37 @@ function showLeftForm(deleteFormName, addFormName) {
 }
 
 // Borra todos los campos del formulario de Registro
-function clearUserForm(inputFields, checkboxFields) {
+function clearUserForm(inputFields, checkboxFields = []) {
   clearInputFields(inputFields);
   clearCheckBoxFields(checkboxFields);
+}
+
+function showModal(title, body) {
+  const modalTitle = document.querySelector('.modal-title');
+  modalTitle.textContent = title;
+
+  const modalBody = document.querySelector('.modal-body');
+  modalBody.textContent = body;
+
+  notificationModal.show();
 }
 
 export async function initLogin(options = {}, urlVerification) {
   // Inicializar variables
   loginForm = document.querySelector('#login-form');
   registerForm = document.querySelector('#register-form');
+  forgotPasswordForm = document.querySelector('#forgot-password-form');
   lostPasswordLink = document.querySelector('#lost-password-link');
   registerLink = document.querySelector('#login-container [data-registerLink]');
   loginLinks = document.querySelectorAll('[data-loginLink]');
 
   // Instanciar componentes de Bootstrap
-  userVerifyModal = new bootstrap.Modal(document.querySelector('#userVerifyModal'));
+  notificationModal = new bootstrap.Modal(document.querySelector('#notificationModal'));
 
   // Añadir eventos
   loginForm.addEventListener('submit', loginUser);
   registerForm.addEventListener('submit', registerUser);
+  forgotPasswordForm.addEventListener('submit', forgotPassword);
   lostPasswordLink.addEventListener('click', () => showRightForm('login-container', 'forgot-password-container'));
   registerLink.addEventListener('click', () => showRightForm('login-container', 'register-container'));
   loginLinks.forEach( loginLink => {

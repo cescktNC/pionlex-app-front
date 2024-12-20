@@ -93,7 +93,7 @@ export function clearFieldErrors(form, classNameErrors, classNameInputs, inputCl
   inputs.forEach( input => input.classList.add(inputClass) );
 }
 
-function showErrorForm(form, fieldId, errorMessage, inputClass = 'mb-14', spanClass = 'd-none') {
+export function showErrorForm(form, fieldId, errorMessage, inputClass = 'mb-14', spanClass = 'd-none') {
   const input = form.querySelector(`[data-${fieldId}]`);
   if (!input) return;
   
@@ -116,7 +116,6 @@ export function validateEmptyFields(obj) {
       emptyFields[key] = errorMessages.required.replace(':field', key);
     }
   }
-  
   return emptyFields;
 }
 
@@ -135,19 +134,21 @@ export function validateEmail(email) {
 
 // Se valida que las dos contraseñas son correctas
 function validatePassword(obj) {
-  if (obj.password.length < passwordMinLength) {
-    return {
-      password: errorMessages.min.string
-                  .replace(':field', 'password')
-                  .replace(':min', passwordMinLength),
-    };
-  }
+  if (obj.password) {
+    if (obj.password.length < passwordMinLength) {
+      return {
+        password: errorMessages.min.string
+                    .replace(':field', 'password')
+                    .replace(':min', passwordMinLength),
+      };
+    }
 
-  if (obj.password_confirmation && obj.password !== obj.password_confirmation) {
-    console.log('hola');
-    return {
-      password: errorMessages.confirmed.replace(':field', 'password'),
-    };
+    if (obj.password_confirmation && obj.password !== obj.password_confirmation) {
+      console.log('hola');
+      return {
+        password: errorMessages.confirmed.replace(':field', 'password'),
+      };
+    }
   }
 
   return {};

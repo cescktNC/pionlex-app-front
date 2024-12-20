@@ -7,6 +7,35 @@ export const statusesUrl = "http://localhost:4000/statuses";
 
 export const loginURL = 'http://localhost:8000/api/v1/login';
 export const registerUserURL = 'http://localhost:8000/api/v1/register';
+export const forgotPasswordURL = 'http://localhost:8000/api/v1/forgot-password';
+
+export const fetchAPI = async (method, url, json = null, headers = {}) => {
+  try {
+    const options = {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        ...headers,
+      }
+    };
+  
+    if (json) {
+      options.body = JSON.stringify(json);
+    }
+  
+    const response = await fetch(url, options);
+  
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+    }
+  
+    return await response.json();
+  } catch {
+    console.error('Error en fetchAPI:', error.message);
+    throw error;
+  }
+}
 
 // Inicio de sesion de un cliente
 export const login = async user => {
