@@ -26,12 +26,12 @@ export const fetchAPI = async (method, url, json = null, headers = {}) => {
   
     const response = await fetch(url, options);
   
-    if (!response.ok) {
-      throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
-    }
+    // if (!response.ok) {
+    //   throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+    // }
   
     return await response.json();
-  } catch {
+  } catch (error) {
     console.error('Error en fetchAPI:', error.message);
     throw error;
   }

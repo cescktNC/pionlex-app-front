@@ -1,5 +1,4 @@
 import {
-  showAlert,
   validateErrors,
   showFieldErrors,
   showErrorForm,
@@ -11,9 +10,9 @@ import {
   removeClassFromId } from './functions';
 import { 
   fetchAPI,
+  loginURL,
   registerUserURL, 
   forgotPasswordURL,
-  login, 
   verifyEmailUser } from './API';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 import router from './routes';
@@ -25,59 +24,67 @@ let loginForm, registerForm, forgotPasswordForm, lostPasswordLink, registerLink,
 
 // Inicia sesión de un usuario
 async function loginUser(e) {
-  // Se evita el comportamiento predeterminado del formulario (enviar los datos y recargar la página).
-  e.preventDefault();
+  e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
-  // Se capturan todos los elementos del formulario de Login
+  // Captura de los elementos del formulario
   const email = loginForm.querySelector('[data-email]').value;
   const password = loginForm.querySelector('[data-password]').value;
 
+  // Construcción de los datos de usuario
   const user = {
     email,
     password
   };
 
-  // Se valida que todos los campos del formulario de Registro
+  // Validación del formulario
   const errors = validateErrors(user);
 
-  // Se limpian los mensajes de error del formulario
+  // Limpieza de errores previos
   clearFieldErrors(loginForm, '.form__validation__error', 'input.form__input');
 
   // Se muestran los errores en los campos del formulario
-  if (Object.keys(errors).length !== 0) {
+  if (Object.keys(errors).length > 0) {
     showFieldErrors(loginForm, errors);
     return;
   }
 
+   // Gestion de los botones de entrar
   const loginUserButton = document.querySelector('#loginUserButton');
   const logingUserButton = document.querySelector('#logingUserButton');
   toggleElements(loginUserButton, logingUserButton);
 
-  // Se envian los datos del formulario a la Api para comprobar si el usuario esta registrado al sistema
-  const dataLogin = await login(user);
+  try {
+    // Enviar datos a la API
+    const data = await fetchAPI('POST', loginURL, user);
 
-  if (dataLogin.errors) {
-    showFieldErrors(loginForm, dataLogin.errors);
-    toggleElements(logingUserButton, loginUserButton);
+    // Manejo de errores devueltos por la API
+    if (data.errors && Object.keys(data.errors).length > 0) {
+      showFieldErrors(loginForm, data.errors);
+      return;
+    }
+
+    if (verifyEmail) {
+      // Verificar usuario
+      const response = await verifyEmailUser(urlVerifyEmail, token);
+      console.log('Response: ', response);
+    } else if (!data.user.verified) {
+      showErrorForm(loginForm, 'email', 'Cuenta no verificada revisa el correo electrónico.');
+      return;
+    }
+
+    // Guardar token en localStorage
+    const token = data.token;
+    localStorage.setItem('auth_token', token);
+
+    // Guardar id's de los módulos en Local Storage
+    if (data.user.modules) {
+      localStorage.setItem('moduleIds', JSON.stringify(data.user.modules));
+    }
+  } catch (error) {
+    console.error('Error al obtener los datos:', error.message);
     return;
-  }
-
-  // Se guarda el token del usuario a una cookie
-  const token = dataLogin.token;
-  localStorage.setItem('auth_token', token);
-
-  // Se guardan los id's, de los módulos contratados, en el Local Storage
-  if (dataLogin.user.modules) {
-    localStorage.setItem('moduleIds', JSON.stringify(dataLogin.user.modules));
-  }
-
-  if (verifyEmail) {
-    const response = await verifyEmailUser(urlVerifyEmail, token);
-    console.log('Response: ', response);
-  } else if (!dataLogin.user.verified) {
+  } finally {
     toggleElements(logingUserButton, loginUserButton);
-    showAlert('Por favor, verifica tu cuenta revisando tu correo electrónico.', 'login-form');
-    return;
   }
 
   // Se redirige a la pantalla del CRM
@@ -143,7 +150,7 @@ async function registerUser(e) {
     }
 
     // Guardar token en localStorage
-    const dataUserLogin = await login(user);
+    const dataUserLogin = await fetchAPI('POST', loginURL, user);
     localStorage.setItem('auth_token', dataUserLogin.token);
   } catch (error) {
     console.error('Error al obtener los datos:', error.message);
@@ -172,6 +179,7 @@ async function forgotPassword(e) {
   // Captura de los elementos del formulario
   const email = forgotPasswordForm.querySelector('[data-email]');
   
+  // Construcción de los datos de usuario
   const user = { email: email.value };
 
   // Validación del formulario
