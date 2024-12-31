@@ -59,15 +59,15 @@ export function validateErrors(obj, checkBoxes = {}) {
   
   errors = validateEmptyFields(obj);
   
-  if (!errors.email) {
+  if (("email" in obj) && !errors.email) {
     errors = {...errors, ...validateEmail(obj.email)};
   }
   
-  if (!errors.password) {
+  if (("password" in obj) && !errors.password) {
     errors = {...errors, ...validatePassword(obj)};
   }
 
-  if (Object.keys(checkBoxes).length !== 0) {
+  if (Object.keys(checkBoxes).length > 0) {
     errors = {...errors, ...validateCheckBoxes(checkBoxes)};
   }
 
@@ -142,9 +142,7 @@ function validatePassword(obj) {
                     .replace(':min', passwordMinLength),
       };
     }
-
-    if (obj.password_confirmation && obj.password !== obj.password_confirmation) {
-      console.log('hola');
+    if (("password_confirmation" in obj) && obj.password !== obj.password_confirmation) {
       return {
         password: errorMessages.confirmed.replace(':field', 'password'),
       };

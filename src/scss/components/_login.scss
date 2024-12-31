@@ -32,7 +32,8 @@
 
   #login-container,
   #register-container,
-  #forgot-password-container {
+  #forgot-password-container,
+  #recover-password-container {
     transition: transform 0.6s ease-in-out;
     min-height: 100vh;
     display: flex;
@@ -41,7 +42,8 @@
     width: min(95%, 72.5rem);
   }
 
-  #forgot-password-container {
+  #forgot-password-container,
+  #recover-password-container {
     width: min(95%, 93.5rem);
   }
 
@@ -199,7 +201,8 @@
 
   }
 
-  #forgot-password-card {
+  #forgot-password-card,
+  #recover-password-container {
     .card {
       display: flex;
       flex-direction: row;
@@ -226,6 +229,7 @@
           .form__title {
             margin-top: 1rem;
             margin-bottom: 1rem;
+            font-size: 2.8rem;
           }
 
           .form__input {

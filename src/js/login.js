@@ -13,12 +13,13 @@ import {
   loginURL,
   registerUserURL, 
   forgotPasswordURL,
+  resetPasswordURL,
   verifyEmailUser } from './API';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 import router from './routes';
 
 // Variables
-let loginForm, registerForm, forgotPasswordForm, lostPasswordLink, registerLink, loginLinks, notificationModal, verifyEmail, urlVerifyEmail;
+let loginForm, registerForm, forgotPasswordForm, recoverPasswordForm, lostPasswordLink, registerLink, loginLinks, notificationModal, verifyEmail, urlVerifyEmail, tokenPasswordreset, emailPasswordreset;
 
 // Funciones
 
@@ -228,6 +229,63 @@ async function forgotPassword(e) {
   showLeftForm('forgot-password-container', 'login-container');
 }
 
+async function recoverPassword(e) {
+  e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
+
+  // Construcción de los datos de usuario
+  const password = recoverPasswordForm.querySelector('[data-password]');
+  const passwordConfirmation = recoverPasswordForm.querySelector('[data-passwordConfirmation]');
+
+  // Construcción de los datos de usuario
+  const user = { 
+    password: password.value,
+    password_confirmation: passwordConfirmation.value
+  };
+
+  // Validación del formulario
+  const errors = validateErrors(user);
+
+  // Limpieza de errores previos
+  clearFieldErrors(recoverPasswordForm, '.form__validation__error', '.form__input');
+
+  // Se muestran los errores en los campos del formulario
+  if (Object.keys(errors).length > 0) {
+    showFieldErrors(recoverPasswordForm, errors);
+    return;
+  }
+
+  // Gestion de los botones de continuar
+  const confirmButton = recoverPasswordForm.querySelector('#confirmButton');
+  const confirmingButton = recoverPasswordForm.querySelector('#confirmingButton');
+  toggleElements(confirmButton, confirmingButton);
+
+  // Se envian los datos del formulario a la Api para mandar el email de recuperar contraseña
+  try {
+    // Enviar datos a la API
+    user.token = tokenPasswordreset;
+    user.email = emailPasswordreset;
+    const data = await fetchAPI('POST', resetPasswordURL, user);
+    console.log(!data.result);
+    
+    // Manejo de errores devueltos por la API
+    if (!data.result) {
+      showErrorForm(recoverPasswordForm, 'password', data.status);
+      return;
+    }
+  } catch (error) {
+    console.error('Error al obtener los datos:', error.message);
+    return;
+  } finally {
+    toggleElements(confirmingButton, confirmButton);
+  }
+
+  // Mostrar mensaje de restablecimiento de contraseña
+  showModal('Restablecimiento de contraseña', 'Tu contraseña se ha cambiada correctamente.');
+
+  // Reiniciar formulario
+  clearForm([password, passwordConfirmation]);
+}
+
 // Muestra un formulario deslizando hacia la derecha
 function showRightForm(deleteFormName, addFormName) {
   toggleForms(deleteFormName, addFormName, 'slide-left', 'slide-right');
@@ -272,11 +330,33 @@ function showModal(title, body) {
   if (notificationModal) notificationModal.show();
 }
 
-export async function initLogin(options = {}, urlVerification) {
+function loadOptions(options) {
+
+  if ('verifyEmail' in options) {
+    verifyEmail = options.verifyEmail;
+    urlVerifyEmail = options.urlVerification;
+  }
+
+  if ('passwordReset' in options) {
+    tokenPasswordreset = options.token;
+    emailPasswordreset = options.email;
+
+    const containers = document.querySelectorAll('[id*="container"]');
+
+    containers.forEach( container => {
+      container.id.includes('recover-password')
+      ? container.classList.remove('d-none')
+      : container.classList.add('d-none');
+    });
+  }
+}
+
+export async function initLogin(options = {}) {
   // Inicializar variables
   loginForm = document.querySelector('#login-form');
   registerForm = document.querySelector('#register-form');
   forgotPasswordForm = document.querySelector('#forgot-password-form');
+  recoverPasswordForm = document.querySelector('#recover-password-form');
   lostPasswordLink = document.querySelector('#lost-password-link');
   registerLink = document.querySelector('#login-container [data-registerLink]');
   loginLinks = document.querySelectorAll('[data-loginLink]');
@@ -288,6 +368,7 @@ export async function initLogin(options = {}, urlVerification) {
   loginForm.addEventListener('submit', loginUser);
   registerForm.addEventListener('submit', registerUser);
   forgotPasswordForm.addEventListener('submit', forgotPassword);
+  recoverPasswordForm.addEventListener('submit', recoverPassword);
   lostPasswordLink.addEventListener('click', () => showRightForm('login-container', 'forgot-password-container'));
   registerLink.addEventListener('click', () => showRightForm('login-container', 'register-container'));
   loginLinks.forEach( loginLink => {
@@ -295,7 +376,8 @@ export async function initLogin(options = {}, urlVerification) {
     loginLink.addEventListener('click', () => showLeftForm(container, 'login-container'));
   });
 
-  // Lógica
-  verifyEmail = options.verifyEmail;
-  urlVerifyEmail = urlVerification;
+  // Cargar opciones en caso de verificar email o resetar password
+  if (Object.keys(options).length > 0) {
+    loadOptions(options);
+  }
 }

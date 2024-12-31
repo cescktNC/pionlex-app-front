@@ -178,6 +178,49 @@
 
   </div>
 
+  <div id="recover-password-container" class="cards-container d-none">
+
+    <div id="recover-password-card">
+
+      <div class="card">
+
+        <img src="/images/card-image-top-forgot-password.jpg" class="card-img-top" alt="Pion Lex Logo">
+        
+        <div class="card-body">
+
+          <form id="recover-password-form" method="POST" class="form--login--register" autocomplete="off" novalidate>
+
+            <div>
+              <h1 class="form__title">RESTABLECER CONTRASEÑA</h1>
+              <p>Introduzca la nueva contraseña:</p>
+            </div>
+
+            <div>
+              <input type="password" class="form-control form__input mb-14" data-password name="password" placeholder="Nueva Contraseña" required />
+              <span class="form__validation__error d-none" data-error-for="password"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+              <input type="password" class="form-control form__input mb-14" data-passwordConfirmation name="passwordConfirmation" placeholder="Confirmar Contraseña" required />
+              <span class="form__validation__error d-none" data-error-for="passwordConfirmation"><i class="fa-solid fa-circle-exclamation"></i></span>
+            </div>
+
+            <div class="button">
+              <button id="confirmButton" type="submit" class="form__button">CONFIRMAR</button>
+              <button id="confirmingButton" class="form__button loadingButton d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Confirmando...</span>
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+  </div>
+
   <footer class="footer">
     <p>&copy;2024 - Pion Lex. Todos los derechos reservados.</p>
   </footer>

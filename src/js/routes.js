@@ -79,7 +79,20 @@ router
     const action = params.data.action;
     const urlVerification = params.data.urlVerification;
     await loadTemplate('login/login', ['login']);
-    initLogin( { [action]: true }, urlVerification );
+    initLogin( { 
+      [action]: true,
+      urlVerification: urlVerification
+     }, urlVerification );
+  })
+  .on('/password-reset/:token', async ( params ) => {
+    const token = params.data.token;
+    const email = params.params.email;
+    await loadTemplate('login/login', ['login']);
+    initLogin( { 
+      passwordReset: true,
+      token: token,
+      email: email
+    } );
   })
   .on('/loadModules', () => {
     loadTemplate('menu/menu', ['modules']);

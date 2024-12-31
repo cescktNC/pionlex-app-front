@@ -60,7 +60,6 @@ const modulesMap = {
 let moduleIds = [0];
 if (localStorage.getItem('moduleIds')) {
   moduleIds = [...moduleIds, ...JSON.parse(localStorage.getItem('moduleIds'))];
-  localStorage.removeItem('moduleIds');
 }
 
 // Funciones
