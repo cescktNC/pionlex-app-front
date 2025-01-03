@@ -13,9 +13,7 @@
         <p>&copy;2024 - Pion Lex</p>
         <p>Todos los derechos reservados</p>
       </div>
-      <div class="img-footer">
-        <img src="/images/logo_pionlex_footer.png" alt="logotipo">
-      </div>
+      <img src="/images/logo_pionlex_footer.png" alt="logotipo">
     </footer>
   </div>
   <div id="navbar-menu" class="navbar-menu">
@@ -29,7 +27,112 @@
         <button class="btn form__button right-rounded-button" type="submit">Buscar</button>
       </form>
     </div>
-    <div class="navbar-menu-right">
+    <ul class="navbar-menu-right">
+      <li class="dropdown">
+        <a class="dropdown-toggle arrow-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-grip-vertical"></i>
+        </a>
+        <div class="dropdown-menu">
+          <div class="dropdown-row-items">
+            <a class="dropdown-icon-item" href="#">
+              <img src="/images/slack.png" alt="slack">
+              <span>Slack</span>
+            </a>
+            <a class="dropdown-icon-item" href="#">
+              <img src="/images/gmail.png" alt="gmail">
+              <span>Gmail</span>
+            </a>
+            <a class="dropdown-icon-item" href="#">
+              <img src="/images/microsoft_office.png" alt="microsoft office">
+              <span>Office</span>
+            </a>
+          </div>
+          <div class="dropdown-row-items">
+            <a class="dropdown-icon-item" href="#">
+              <img src="/images/google_calendar.png" alt="google calendar">
+              <span>Calendar</span>
+            </a>
+            <a class="dropdown-icon-item" href="#">
+              <img src="/images/freshbooks.png" alt="freshbooks">
+              <span>Freshbooks</span>
+            </a>
+            <a class="dropdown-icon-item" href="#">
+              <img src="/images/dropbox.png" alt="dropbox">
+              <span>Dropbox</span>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle arrow-none position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-bell"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            4
+          </span>
+        </a>
+        <div class="dropdown-menu">
+          <div class="dropdown-notification">
+            <a class="dropdown-notification-item" href="#">
+              <img src="/images/slack.png" alt="slack">
+              <div class="dropdown-notification-item-text">
+                <strong><span>Nuevo Mensaje de Jordi</span></strong>
+                <span class="truncate">Hola, ¿puedes revisar el caso 5423? Ha habido un problema y tenemos que solucionarlo lo más rápido posible</span>
+              </div>
+            </a>
+            <button type="button" class="dropdown-notification-item-close" aria-label="Cerrar">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="dropdown-notification">
+            <a class="dropdown-notification-item" href="#">
+              <img src="/images/dropbox.png" alt="dropbox">
+              <div class="dropdown-notification-item-text">
+                <strong><span>Nuevo documento en Dropbox</span></strong>
+                <span class="truncate">Contrato_Alba_Caso5423.pdf compartido por Juan Pérez.</span>
+              </div>
+            </a>
+            <button type="button" class="dropdown-notification-item-close" aria-label="Cerrar">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="dropdown-notification">
+            <a class="dropdown-notification-item" href="#">
+              <img src="/images/google_calendar.png" alt="google calendar">
+              <div class="dropdown-notification-item-text">
+                <strong><span>Nueva cita</span></strong>
+                <span class="truncate">Reunión con el cliente María López, 15:00 en Sala 2.</span>
+              </div>
+            </a>
+            <button type="button" class="dropdown-notification-item-close" aria-label="Cerrar">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="dropdown-notification">
+            <a class="dropdown-notification-item" href="#">
+              <i class="fa-solid fa-clock"></i>
+              <div class="dropdown-notification-item-text">
+                <strong><span>Tarea pendiente</span></strong>
+                <span class="truncate">Revisar el expediente del caso 1234 antes de mañana.</span>
+              </div>
+            </a>
+            <button type="button" class="dropdown-notification-item-close" aria-label="Cerrar">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle arrow-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-moon moon"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </li>
+    </ul>
+    <!--<div class="navbar-menu-right">
       <div class="icons">
         <span class="material-symbols-outlined app-dots">apps</span>
         <i class="fa-solid fa-gear gear"></i>
@@ -40,11 +143,9 @@
           <p class="name-user">Andrea Garcia</p>
           <p class="position-user">Abogada Laboral</p>
         </div>
-        <div class="img-profile">
-          <img src="images/profile_picture/carme_sole_roca.jpg" alt="Imagen de perfil" class="profile-photo">
-        </div>
+        <img src="images/profile_picture/carme_sole_roca.jpg" alt="Imagen de perfil" class="profile-photo">
       </div>
-    </div>
+    </div>-->
   </div>
   <div id="content-page" class="content-page"></div>
 </div>
