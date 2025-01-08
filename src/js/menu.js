@@ -1,10 +1,16 @@
 // Variables
 let scrollTimeOut;
+const page = document.querySelector('.page');
+const navbarMenu = document.querySelector('.navbar-menu');
 const asidenavMenu = document.querySelector('.asidenav-menu');
 const asidenavMenuModules = document.querySelector('#asidenav-menu-modules');
 const notAccordionItems = asidenavMenuModules.querySelectorAll('.not-accordion-item');
 const accordionItems = asidenavMenuModules.querySelectorAll('.accordion-item');
 const sectionItems = asidenavMenuModules.querySelectorAll('.list-group-item-custom-level-1');
+const sunIcon = document.querySelector('#sun-icon');
+const moonIcon = document.querySelector('#moon-icon');
+const themeSwitcher = document.querySelector('#theme-switcher');
+const contentPage = document.querySelector('#content-page');
 
 // Eventos
 asidenavMenu.addEventListener('scroll', scroll);
@@ -16,6 +22,13 @@ accordionItems.forEach( accordionItem => {
 });
 sectionItems.forEach( sectionItem => {
   sectionItem.addEventListener('click', addSelection);
+});
+themeSwitcher.addEventListener('click', () => {
+  page.classList.toggle('form--dark--theme');
+  navbarMenu.classList.toggle('dark-theme');
+  sunIcon.classList.toggle('d-none');
+  moonIcon.classList.toggle('d-none');
+  contentPage.classList.toggle('dark-theme-content-page');
 });
 
 function scroll() {

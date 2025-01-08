@@ -20,6 +20,7 @@
 
   &::placeholder {
     color: map-get(map-get($input-type, 'placeholder'), 'color');
+    font-weight: map-get(map-get($input-type, 'placeholder'), 'fw');
   }
 
   &:focus {

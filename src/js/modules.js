@@ -57,7 +57,8 @@ const modulesMap = {
   }
 };
 
-let moduleIds = [0];
+// let moduleIds = [0];
+let moduleIds = [];
 if (localStorage.getItem('moduleIds')) {
   moduleIds = [...moduleIds, ...JSON.parse(localStorage.getItem('moduleIds'))];
 }

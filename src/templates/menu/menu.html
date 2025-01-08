@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page form--default--theme">
   <div class="asidebar-menu">
     <div class="logo">
       <img src="/images/logo_pionlex_alargado.png" alt="logotipo">
@@ -18,10 +18,10 @@
   </div>
   <div id="navbar-menu" class="navbar-menu">
     <div class="navbar-menu-left">
-      <button type="button" class="button">
-        <i class="fa-solid fa-bars fa-xl burger"></i>
-      </button>
-      <form class="form--dark--theme" role="search">
+      <div type="button" class="burger">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </div>
+      <form role="search">
         <i class="fa-solid fa-magnifying-glass form__icon"></i>
         <input class="form-control form__input" type="search" placeholder="Buscar..." aria-label="Search">
         <button class="btn form__button right-rounded-button" type="submit">Buscar</button>
@@ -29,9 +29,9 @@
     </div>
     <ul class="navbar-menu-right">
       <li class="dropdown">
-        <a class="dropdown-toggle arrow-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-grip-vertical"></i>
-        </a>
+        </div>
         <div class="dropdown-menu">
           <div class="dropdown-row-items">
             <a class="dropdown-icon-item" href="#">
@@ -64,12 +64,12 @@
         </div>
       </li>
       <li class="dropdown">
-        <a class="dropdown-toggle arrow-none position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown-toggle arrow-none position-relative" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-bell"></i>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             4
           </span>
-        </a>
+        </div>
         <div class="dropdown-menu">
           <div class="dropdown-notification">
             <a class="dropdown-notification-item" href="#">
@@ -121,31 +121,40 @@
           </div>
         </div>
       </li>
+      <li id="theme-switcher">
+        <i id="sun-icon" class="fa-solid fa-sun d-none"></i>
+        <i id="moon-icon" class="fa-solid fa-moon moon"></i>
+      </li>
       <li class="dropdown">
-        <a class="dropdown-toggle arrow-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-moon moon"></i>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
+        <div class="dropdown-toggle arrow-none profile" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="images/profile_picture/carme_sole_roca.jpg" alt="Imagen de perfil" class="profile-photo">
+          <div class="data-profile">
+            <p class="name-user">Andrea Garcia</p>
+            <p class="position-user">Abogada Laboral</p>
+          </div>
+        </div>
+        <div class="dropdown-menu">
+          <div class="dropdown-profile">
+            <a class="dropdown-profile-item" href="#">
+              <i class="fa-solid fa-user"></i>
+              <span>Cuenta</span>
+            </a>
+          </div>
+          <div class="dropdown-profile">
+            <a class="dropdown-profile-item" href="#">
+              <i class="fa-solid fa-gear"></i>
+              <span>Configuración</span>
+            </a>
+          </div>
+          <div class="dropdown-profile">
+            <a class="dropdown-profile-item" href="#">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Cerrar Sesión</span>
+            </a>
+          </div>
+        </div>
       </li>
     </ul>
-    <!--<div class="navbar-menu-right">
-      <div class="icons">
-        <span class="material-symbols-outlined app-dots">apps</span>
-        <i class="fa-solid fa-gear gear"></i>
-        <i class="fa-solid fa-moon moon"></i>
-      </div>
-      <div class="profile">
-        <div class="data-profile">
-          <p class="name-user">Andrea Garcia</p>
-          <p class="position-user">Abogada Laboral</p>
-        </div>
-        <img src="images/profile_picture/carme_sole_roca.jpg" alt="Imagen de perfil" class="profile-photo">
-      </div>
-    </div>-->
   </div>
   <div id="content-page" class="content-page"></div>
 </div>

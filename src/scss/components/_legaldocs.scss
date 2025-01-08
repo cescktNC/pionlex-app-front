@@ -8,17 +8,17 @@ img {
 }
 
 .legal-nav-link-active {
-  background-color: map-get(colors.$colors, 'start-gradient') !important;
+  background-color: map-get(colors.$colors, 'start-gradient-primary') !important;
 }
 
 .legal {
   display: flex;
-  background-color: map-get(colors.$colors, 'dark-grey');
+  background-color: map-get(colors.$colors, 'dark-grey-primary');
   color: map-get(colors.$colors, 'custom-white');
   font-size: 1.5rem;
 
   .legal-menu {
-    border-right: .5px solid map-get(colors.$colors, 'light-grey');
+    border-right: .5px solid map-get(colors.$colors, 'light-grey-secondary');
 
     .logo {
       margin: 0 auto;
@@ -63,7 +63,7 @@ img {
       a {
         display: block;
         width: 320px;
-        color: map-get(colors.$colors, 'start-gradient');
+        color: map-get(colors.$colors, 'start-gradient-primary');
       }
     }
   }

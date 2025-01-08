@@ -8,6 +8,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  appearance: none; /* Se elimina el símbolo 'x' */
+}
+
 .slide-up {
   transform: translateY(-150%);
   opacity: 0;
@@ -31,8 +35,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .active {
-  color: map-get(colors.$colors, "start-gradient") !important;
-  border-left: 3px solid map-get(colors.$colors, "start-gradient") !important;
+  color: map-get(colors.$colors, "start-gradient-primary") !important;
+  border-left: 3px solid map-get(colors.$colors, "start-gradient-primary") !important;
   border-radius: 3px !important;
 }
 
@@ -51,4 +55,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   text-align: center;
   padding: 5px 0;
   font-weight: 600;
+}
+
+.navbar-menu.dark-theme {
+  background-color: map-get(colors.$colors, "dark-grey-primary");
+  color: map-get(colors.$colors, "custom-white");
+
+  .navbar-menu-right {
+    .dropdown {
+      a {
+        color: map-get(colors.$colors, "custom-white");
+      }
+
+      .dropdown-menu {
+        background-color: map-get(colors.$colors, "dark-grey-primary");
+      }
+    }
+  }
+}
+
+.content-page.dark-theme-content-page {
+  background-color: map-get(colors.$colors, "dark-grey-primary");
+  color: map-get(colors.$colors, "custom-white");
 }

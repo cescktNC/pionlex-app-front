@@ -1,11 +1,14 @@
 $colors: (
   custom-white: #fff,
-  start-gradient: #00DBDE,
-  start-gradient-opacity: #00BFC1,
+  start-gradient-primary: #00DBDE,
+  start-gradient-primary-disabled: #CAFEFF,
+  start-gradient-secondary: #00BFC1,
   end-gradient: #FC00FF,
-  dark-grey: #2C3E50,
-  light-grey: #7F8C8D,
-  white-opacity: #8391A2,
+  dark-grey-primary: #2C3E50,
+  dark-grey-secondary: #232D37,
+  light-grey-primary: #F8F9FC,
+  light-grey-secondary: #8391A2,
+  light-white: #f0f1f5,
   input-bg: rgba(0, 0, 0, 0.22),
   input-text-color: #212529,
   light-red: #f0838e,
@@ -54,5 +57,4 @@ $colors-status: (
     color: #fff,
     background-color: #9E49EC
   ),
-   
 );

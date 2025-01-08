@@ -5,7 +5,7 @@
   position: relative;
   height: 100vh;
   min-height: 100vh;
-  background-color: map-get(colors.$colors, "dark-grey");
+  color: map-get(colors.$colors, "custom-white");
 }
 
 .asidebar-menu {
@@ -18,7 +18,7 @@
   width: map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width");
   height: 100vh;
   min-width: map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width");
-  background-color: map-get(colors.$colors, "dark-grey");
+  background-color: map-get(colors.$colors, "dark-grey-primary");
 
   .logo {
     display: flex;
@@ -47,7 +47,7 @@
         display: flex;
         align-items: center;
         background-color: transparent;
-        color: map-get(colors.$colors, "white-opacity");
+        color: map-get(colors.$colors, "light-grey-secondary");
         border: none;
         padding: 0;
         width: 100%;
@@ -81,12 +81,12 @@
       .arrow-button-custom {
         transition: transform 0.3s ease;
       }
-      
+
       .accordion-button:not(.collapsed) .arrow-button-custom {
         transform: rotate(0deg);
         color: white;
       }
-      
+
       .accordion-button.collapsed .arrow-button-custom {
         transform: rotate(-90deg);
       }
@@ -101,7 +101,7 @@
             display: flex;
             align-items: center;
             background-color: transparent;
-            color: map-get(colors.$colors, "white-opacity");
+            color: map-get(colors.$colors, "light-grey-secondary");
             border: none;
             transition: color 0.3s ease;
             width: 100%;
@@ -111,7 +111,7 @@
               text-align: center;
               font-size: 1.3rem;
             }
-    
+
             .text-button {
               flex-basis: 88%;
               text-align: start;
@@ -121,7 +121,7 @@
           }
         }
       }
-      
+
     }
   }
 
@@ -153,9 +153,9 @@
       align-items: end;
       gap: 1.5rem;
       font-weight: 600;
-      
+
       p {
-        color: map-get(colors.$colors, "white-opacity");
+        color: map-get(colors.$colors, "light-grey-secondary");
         line-height: 0;
       }
     }
@@ -173,31 +173,35 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: map-get(colors.$colors, "dark-grey");
   height: map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height");
   min-height: map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height");
   width: calc(100% - map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width"));
+  background-color: map-get(colors.$colors, "custom-white");
+  color: map-get(colors.$colors, "dark-grey-primary");
+  transition: background-color 0.3s, color 0.3s;
 
   .navbar-menu-left {
     display: flex;
     justify-content: start;
     align-items: center;
 
-    .button {
-      background-color: transparent;
-      border: 0;
+    .burger {
       margin: 0 2.5rem;
-      cursor: pointer;
-  
-      .burger {
-        color: map-get(colors.$colors, "custom-white");
+      color: map-get(colors.$colors, "dark-grey-secondary");
+    }
+
+    form {
+      position: relative;
+      display: flex;
+
+      .right-rounded-button {
+        border-radius: 0 .5rem .5rem 0;
       }
     }
   }
 
   .navbar-menu-right {
     display: flex;
-    // justify-content: end;
     align-items: center;
     height: 100%;
     gap: 1.5rem;
@@ -206,15 +210,21 @@
       display: none;
     }
 
+    i:not(.fa-xmark) {
+      font-size: 2.1rem;
+    }
+
     .dropdown {
+      height: 100%;
+      display: flex;
+      align-items: center;
 
       a {
-        color: map-get(colors.$colors, "custom-white");
-        cursor: pointer;
+        color: map-get(colors.$colors, "dark-grey-primary");
+      }
 
-        i {
-          font-size: 2.1rem;
-        }
+      .dropdown-toggle {
+        cursor: pointer;
 
         img {
           width: 1.9rem;
@@ -225,10 +235,53 @@
         }
       }
 
+      .dropdown-toggle.profile {
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+        height: 100%;
+        transition: .3s background-color;
+
+        img {
+          width: 4rem;
+          height: 4rem;
+          object-fit: cover;
+          border-radius: 50%;
+          outline: .1rem solid map-get(colors.$colors, "dark-grey-secondary");
+        }
+
+        .data-profile {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          color: map-get(colors.$colors, "dark-grey-secondary");
+          height: 4rem;
+          gap: 1.8rem;
+          padding-left: 1rem;
+
+          .name-user {
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 0;
+          }
+
+          .position-user {
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 0;
+          }
+        }
+      }
+
+      .dropdown-toggle.profile:hover {
+        background-color: map-get(colors.$colors, "light-white");
+      }
+
       .dropdown-menu {
-        background-color: map-get(colors.$colors, "dark-grey");
-        border-color: map-get(colors.$colors, "white-opacity");
+        border-color: map-get(colors.$colors, "light-grey-secondary");
         padding: 1rem;
+
 
         .dropdown-row-items {
           display: flex;
@@ -240,21 +293,25 @@
             flex-direction: column;
             align-items: center;
             padding: 1rem;
+            width: 100%;
 
             img {
               width: 2.4rem;
             }
-  
+
             span {
               font-size: 1.3rem;
             }
           }
         }
 
+        .dropdown-icon-item:hover {
+          background-color: map-get(colors.$colors, "light-white");
+        }
+
         .dropdown-notification {
           display: flex;
           justify-content: space-between;
-          color: map-get(colors.$colors, "custom-white");
           width: 35rem;
           padding: 1rem;
 
@@ -262,23 +319,20 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            color: map-get(colors.$colors, "dark-grey-secondary");
 
             .dropdown-notification-item-text {
               display: flex;
               flex-direction: column;
-
-              strong {
-                // border-bottom: .2rem solid map-get(colors.$colors, "custom-white");
-              }
-
-              span {
-                // margin-top: 1rem;
-              }
             }
 
             img,
             i {
               width: 2.4rem;
+            }
+
+            i {
+              color: map-get(colors.$colors, "dark-grey-secondary");
             }
 
             span {
@@ -295,7 +349,7 @@
           }
 
           .dropdown-notification-item-close {
-            color: map-get(colors.$colors, "custom-white");
+            color: map-get(colors.$colors, "dark-grey-secondary");
             background: none;
             border: none;
             display: flex;
@@ -303,64 +357,26 @@
             justify-content: center;
           }
         }
+
+        .dropdown-notification:hover,
+        .dropdown-profile:hover .dropdown-profile-item {
+          background-color: map-get(colors.$colors, "light-white");
+        }
+
+        .dropdown-profile-item {
+          display: flex;
+          align-items: center;
+          gap: .5rem;
+          font-size: 1.4rem;
+          padding: .2rem .5rem;
+          color: map-get(colors.$colors, "dark-grey-secondary");
+
+          i {
+            font-size: 1.3rem;
+          }
+        }
       }
     }
-    
-
-    // .icons {
-    //   display: flex;
-    //   align-items: center;
-    //   margin-right: 2.5rem;
-
-    //   .app-dots,
-    //   .gear,
-    //   .moon {
-    //     color: map-get(colors.$colors, "custom-white");
-    //     margin: 0 1rem;
-    //     font-size: 2.3rem;
-    //     cursor: pointer;
-    //   }
-
-    //   .app-dots {
-    //     font-size: 3.2rem;
-    //   }
-    // }
-
-    // .profile {
-    //   display: flex;
-    //   align-items: center;
-    //   padding: 0 2rem;
-    //   height: 100%;
-    //   cursor: pointer;
-
-    //   .data-profile {
-    //     display: flex;
-    //     flex-direction: column;
-    //     align-items: end;
-    //     color: map-get(colors.$colors, "custom-white");
-    //     margin-right: 1.5rem;
-
-    //     .name-user {
-    //       font-size: 1.6rem;
-    //       font-weight: 600;
-    //       margin: 0 0 -.5rem 0;
-    //     }
-
-    //     .position-user {
-    //       font-size: 1.2rem;
-    //       font-weight: 200;
-    //       margin: 0;
-    //     }
-    //   }
-
-    //   img {
-    //     width: 4rem;
-    //     height: 4rem;
-    //     object-fit: cover;
-    //     border-radius: 50%;
-    //   }
-    // }
-
   }
 }
 
@@ -370,8 +386,9 @@
   top:map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height");
   height: calc(100vh - map-get(sizes.$sizes-aside-nav-menu, "navbar-menu-height"));
   width: calc(100% - map-get(sizes.$sizes-aside-nav-menu, "asidenav-menu-width"));
-  border-top-left-radius: 1rem;
-  background-color: #fff;
+  background-color: map-get(colors.$colors, "light-grey-primary");
   padding: 2rem 3rem;
   overflow-y: auto;
+  transition: background-color 0.3s, color 0.3s;
+  color: map-get(colors.$colors, "dark-grey-primary");
 }

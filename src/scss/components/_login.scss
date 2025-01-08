@@ -6,7 +6,7 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
-  background: linear-gradient(to bottom left, map-get(colors.$colors, "start-gradient"), map-get(colors.$colors, "end-gradient"));
+  background: linear-gradient(to bottom left, map-get(colors.$colors, "start-gradient-primary"), map-get(colors.$colors, "end-gradient"));
 
   .translucent-layer-1,
   .translucent-layer-2,
@@ -52,7 +52,7 @@
       border: none;
 
       .card-body {
-        background-color: map-get(colors.$colors, "dark-grey");
+        background-color: map-get(colors.$colors, "dark-grey-primary");
 
         .form__validation__error {
           display: block;
