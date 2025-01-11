@@ -25,16 +25,16 @@
 <!-- Modals -->
 <div class="modal fade" id="clientDeleteModal" tabindex="-1" aria-labelledby="clientDeleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content formModalContent">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="clientDeleteModalLabel">Borrar Cliente</h1>
+        <h1 class="modal-title form__title" id="clientDeleteModalLabel">Borrar Cliente</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         ¿Seguro que quieres eliminar a este cliente?
       </div>
       <div class="modal-footer form--default--theme">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn form__button form__button__cancel" data-bs-dismiss="modal">Cancelar</button>
         <button id="deleteClientButton" type="button" class="btn form__button">Eliminar</button>
         <button id="deletingClientButton" class="btn form__button d-none" type="button" disabled>
           <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
@@ -47,7 +47,7 @@
 
 <div class="modal fade" id="clientCreateEditModal" tabindex="-1" aria-labelledby="clientCreateEditModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content clientCreateEditModalContent">
+    <div class="modal-content formModalContent">
       <div class="modal-header">
         <h1 class="modal-title form__title" id="clientCreateEditModalLabel"></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -81,11 +81,10 @@
             <option selected disabled value="">Selecciona el estado</option>
           </select>
           <span class="form__validation__error d-none" data-error-for="status"></span>
-
         </form>
       </div>
       <div class="modal-footer form--default--theme">
-        <button id="cancelClientButton" type="button" class="btn form__button form__button__cancel" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn form__button form__button__cancel" data-bs-dismiss="modal">Cancelar</button>
         <button id="saveClientButton" type="button" class="btn form__button">Guardar</button>
         <button id="savingClientButton" class="btn form__button d-none" type="button" disabled>
           <span class="spinner-border" aria-hidden="true"></span>

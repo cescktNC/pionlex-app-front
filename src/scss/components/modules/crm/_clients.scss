@@ -62,9 +62,27 @@
 
 }
 
-#clientCreateEditModal {
-  .clientCreateEditModalContent {
-    padding: 2rem;
+.formModalContent {
+  padding: 1.5rem;
+
+  .modal-header {
+    padding-top: 0;
+  }
+
+  .modal-body {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .modal-footer {
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+  }
+}
+
+#clientCreateEditForm {
+  .form__input:last-of-type {
+    margin: 0;
   }
 }
 
