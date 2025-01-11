@@ -233,28 +233,46 @@ function clearClientForm() {
 
 // Elimina un cliente de la BD
 async function deleteClient() {
-  const idClient = parseInt(deleteClientButton.dataset.idClient);
-  const response = await deleteRecord(idClient, clientsUrl);
+  // Gestion de los botones de guardado
+  toggleElements(deleteClientButton, deletingClientButton);
 
-  deleteClientButton.classList.add('d-none');
-  deletingClientButton.classList.remove('d-none');
-  // Esto es temporal para simular el tiempo de respuesta del backend
-  setTimeout( async () => {
+  const id = deleteClientButton.dataset.idClient;
+  if (id === '') {
     clientDeleteModal.hide();
-    deleteClientButton.classList.remove('d-none');
-    deletingClientButton.classList.add('d-none');
-    const clients = await fetchAPI('GET', clientsUrl);
-    refreshDatatable('clientsTable', clients);
-    showToast(response, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
-  }, 2000);
+    toggleElements(deletingClientButton, deleteClientButton);
+    showToast(false, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
+    console.error("No existe un id de usuario en el boton de Eliminar.");
+    return;
+  }
 
-  // Cuando se quite el codigo temporal anterior hay que descomentar estas líneas
-  // clientDeleteModal.hide();
-  // deleteClientButton.classList.remove('d-none');
-  // deletingClientButton.classList.add('d-none');
-  // const clients = await fetchAPI('GET', clientsUrl);
-  // refreshDatatable('clientsTable', clients);
-  // showToast(response, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
+  const url = `${clientsUrl}/${id}`;
+
+  try {
+    // Enviar datos a la API
+    const data = await fetchAPI('DELETE', url);
+    
+    // Manejo de errores devueltos por la API
+    // if (!data.result) {
+      // if (Object.keys(data.status).length > 0) {
+      //   showFieldErrors(registerForm, data.status);
+      // }
+    //   return;
+    // }
+    
+
+  } catch (error) {
+    console.error('Error al obtener los datos:', error.message);
+    return;
+  } finally {
+    toggleElements(deletingClientButton, deleteClientButton);
+  }
+
+  clientDeleteModal.hide();
+
+  const clients = await fetchAPI('GET', clientsUrl);
+  refreshDatatable('clientsTable', clients);
+
+  showToast(true, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'Cliente eliminado correctamente', 'No se ha podido eliminar el cliente')
 }
 
 async function saveClient() {
