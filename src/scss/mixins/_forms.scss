@@ -3,37 +3,40 @@
   font-weight: map-get($title-type, 'font-weight');
   color: map-get($title-type, 'color');
   text-align: map-get($title-type, 'ta');
+  margin-top: map-get($title-type, 'mt');
 }
 
 @mixin form-input($input-type) {
-  border: map-get($input-type, 'border');
-  outline: map-get($input-type, 'outline');
-  background-color: map-get($input-type, 'bg');
   font-size: map-get($input-type, 'fs');
   font-weight: map-get($input-type, 'fw');
-  color: map-get($input-type, 'color');
   border-radius: map-get($input-type, 'br');
+  box-shadow: map-get($input-type, 'bs');
   padding: map-get($input-type, 'padding');
-  max-width: map-get($input-type, 'mw');
+  color: map-get($input-type, 'color');
+  border: map-get($input-type, 'border');
   height: map-get($input-type, 'height');
+  background-color: map-get($input-type, 'bg');
+  margin-bottom:map-get($input-type, 'mb');
   transition: map-get($input-type, 'transition');
-
   &::placeholder {
     color: map-get(map-get($input-type, 'placeholder'), 'color');
-    font-weight: map-get(map-get($input-type, 'placeholder'), 'fw');
   }
 
   &:focus {
-    box-shadow: map-get(map-get($input-type, 'focus'), 'bs');
     border-color: map-get(map-get($input-type, 'focus'), 'bc');
-    outline-color: map-get(map-get($input-type, 'focus'), 'oc');
   }
 }
 
 @mixin form-validation-error($validation-error-type) {
+  display: map-get($validation-error-type, 'display');;
   color: map-get($validation-error-type, 'color');
   font-size: map-get($validation-error-type, 'fs');
   font-weight: map-get($validation-error-type, 'fw');
+  margin-bottom: map-get($validation-error-type, 'mb');
+}
+
+@mixin form-validation-error-icon($validation-error-type) {
+  margin-right: map-get($validation-error-type, 'mr');;
 }
 
 @mixin form-checkbox($checkbox-type) {
@@ -58,10 +61,12 @@
 }
 
 @mixin form-select-option($select-option-type) {
-  background-color: map-get($select-option-type, 'bg');;
+  background-color: map-get($select-option-type, 'bg');
 }
 
 @mixin form-label($label-type) {
+  display: map-get($label-type, 'display');
+  align-items: map-get($label-type, 'ai');
   font-family: map-get($label-type, 'font-family');
   font-size: map-get($label-type, 'font-size');
   font-weight: map-get($label-type, 'font-weight');
@@ -69,7 +74,7 @@
 }
 
 @mixin form-button($button-type) {
-  background-color: map-get($button-type, 'bg');
+  background-color: map-get($button-type, 'bc');
   width: map-get($button-type, 'width');
   height: map-get($button-type, 'height');
   font-size: map-get($button-type, 'font-size');
@@ -94,6 +99,7 @@
 @mixin form-icon($icon-type) {
   position: map-get($icon-type, 'position');
   left: map-get($icon-type, 'left');
+  right: map-get($icon-type, 'right');
   top: map-get($icon-type, 'top');
   transform: map-get($icon-type, 'transform');
   color: map-get($icon-type, 'color');

@@ -33,7 +33,7 @@
       <div class="modal-body">
         ¿Seguro que quieres eliminar a este cliente?
       </div>
-      <div class="modal-footer form--light--theme">
+      <div class="modal-footer form--default--theme">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button id="deleteClientButton" type="button" class="btn form__button">Eliminar</button>
         <button id="deletingClientButton" class="btn form__button d-none" type="button" disabled>
@@ -47,35 +47,48 @@
 
 <div class="modal fade" id="clientCreateEditModal" tabindex="-1" aria-labelledby="clientCreateEditModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content clientCreateEditModalContent">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="clientCreateEditModalLabel"></h1>
+        <h1 class="modal-title form__title" id="clientCreateEditModalLabel"></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="clientCreateEditForm" method="POST" class="form--light--theme" autocomplete="off" novalidate>
-          <input id="name" type="text" name="name" class="form-control form__input" placeholder="Nombre" required />
-          <input id="lastname" type="text" name="lastname" class="form-control form__input" placeholder="Apellidos" required />
-          <input id="phoneNumber" type="tel" name="phoneNumber" class="form-control form__input" placeholder="Teléfono" required />
-          <input id="email" type="email" name="email" class="form-control form__input" placeholder="nombre@ejemplo.com" required />
-          <input id="city" type="text" name="city" class="form-control form__input mb-2" placeholder="Población" required />
+        <form id="clientCreateEditForm" method="POST" class="form--default--theme" autocomplete="off" novalidate>
+          <input type="text" class="form-control form__input mb-14" data-input data-name name="name" placeholder="Nombre" required />
+          <span class="form__validation__error d-none" data-error-for="name"></span>
+
+          <input type="text" class="form-control form__input mb-14" data-input data-lastname name="lastname" placeholder="Apellidos" required />
+          <span class="form__validation__error d-none" data-error-for="lastname"></span>
+
+          <input type="tel" class="form-control form__input mb-14" data-input data-phoneNumber name="phoneNumber" placeholder="Teléfono" required />
+          <span class="form__validation__error d-none" data-error-for="phoneNumber"></span>
+
+          <input type="email" class="form-control form__input mb-14" data-input data-email name="email" placeholder="nombre@ejemplo.com" required />
+          <span class="form__validation__error d-none" data-error-for="email"></span>
+
+          <input type="text" class="form-control form__input mb-2" data-input data-city name="city" placeholder="Población" required />
+          <span class="form__validation__error d-none" data-error-for="city"></span>
+
           <label for="registrationDate" class="form__label mb-1">Fecha de Alta</label>
-          <div class="form__input__date">
-            <input id="registrationDate" type="date" name="registrationDate" class="form-control form__input mb-2" required />
-            <i class="bi bi-calendar"></i>
+          <div class="position-relative">
+            <input type="date" class="form-control form__input mb-2" data-input data-registrationDate name="registrationDate" required min="1950-01-01" />
+            <i class="bi bi-calendar form__icon form__icon__right"></i>
           </div>
+          <span class="form__validation__error d-none" data-error-for="registrationDate"></span>
+
           <label for="status" class="form__label mb-1">Estado</label>
-          <select id="status" name="status" class="form-select form__input" aria-label="Select para el estado del cliente" required>
+          <select data-input data-status name="status" class="form-select form__input" aria-label="Select para el estado del cliente" required>
             <option selected disabled value="">Selecciona el estado</option>
           </select>
+          <span class="form__validation__error d-none" data-error-for="status"></span>
+
         </form>
-        <p id="errorAlert"></p>
       </div>
-      <div class="modal-footer form--light--theme">
-        <button id="cancelClientButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      <div class="modal-footer form--default--theme">
+        <button id="cancelClientButton" type="button" class="btn form__button form__button__cancel" data-bs-dismiss="modal">Cancelar</button>
         <button id="saveClientButton" type="button" class="btn form__button">Guardar</button>
         <button id="savingClientButton" class="btn form__button d-none" type="button" disabled>
-          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span class="spinner-border" aria-hidden="true"></span>
           <span role="status">Guardando...</span>
         </button>
       </div>

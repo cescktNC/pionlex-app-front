@@ -15,17 +15,18 @@ $login-form-button: map-get($login-form, 'button');
 $login-form-button-link: map-get($login-form, 'button-link');
 $login-form-icon: map-get($login-form, 'icon');
 
-// Light Form
-$light-mode-form: map-get(vars-forms.$forms, 'light-theme');
-$light-mode-form-input: map-get($light-mode-form, 'input');
-$light-mode-form-label: map-get($light-mode-form, 'label');
-$light-mode-form-button: map-get($light-mode-form, 'button');
-
 // Default Form
 $default-mode-form: map-get(vars-forms.$forms, 'default-theme');
+$default-mode-form-title: map-get($default-mode-form, 'title');
 $default-mode-form-input: map-get($default-mode-form, 'input');
+$default-mode-form-label: map-get($default-mode-form, 'label');
 $default-mode-form-button: map-get($default-mode-form, 'button');
+$default-mode-form-button-cancel: map-get($default-mode-form, 'button-cancel');
 $default-mode-form-icon: map-get($default-mode-form, 'icon');
+$default-mode-form-icon-left: map-get($default-mode-form, 'icon-left');
+$default-mode-form-icon-right: map-get($default-mode-form, 'icon-right');
+$default-mode-form-validation-error: map-get($default-mode-form, 'validation-error');
+$default-mode-form-validation-error-icon: map-get($default-mode-form, 'validation-error-icon');
 
 // Dark Form
 $dark-mode-form: map-get(vars-forms.$forms, 'dark-theme');
@@ -55,9 +56,6 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
   }
 
   .form__label {
-    display: flex;
-    align-items: center;
-    font-size: 1.3rem;
     @include mixins-forms.form-label($login-form-label);
   }
 
@@ -74,42 +72,45 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
   }
 }
 
-.form--light--theme {
-  .form__input {
-    @include mixins-forms.form-input($light-mode-form-input);
+.form--default--theme {
+  .form__title {
+    @include mixins-forms.form-title($default-mode-form-title);
   }
 
-  .form__input__date {
-    position: relative;
-    .bi-calendar {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      color: map-get(vars-colors.$colors, 'light-grey-secondary');
-    }
+  .form__input {
+    @include mixins-forms.form-input($default-mode-form-input);
   }
 
   .form__label {
-    @include mixins-forms.form-label($light-mode-form-label);
-  }
-
-  .form__button {
-    @include mixins-forms.form-button($light-mode-form-button);
-  }
-}
-
-.form--default--theme {
-  .form__input {
-    @include mixins-forms.form-input($default-mode-form-input);
+    @include mixins-forms.form-label($default-mode-form-label);
   }
 
   .form__button {
     @include mixins-forms.form-button($default-mode-form-button);
   }
 
+  .form__button__cancel {
+    @include mixins-forms.form-button($default-mode-form-button-cancel);
+  }
+
   .form__icon {
     @include mixins-forms.form-icon($default-mode-form-icon);
+  }
+
+  .form__icon__left {
+    @include mixins-forms.form-icon($default-mode-form-icon-left);
+  }
+
+  .form__icon__right {
+    @include mixins-forms.form-icon($default-mode-form-icon-right);
+  }
+
+  .form__validation__error {
+    @include mixins-forms.form-validation-error($default-mode-form-validation-error);
+  }
+
+  .form__validation__error__icon {
+    @include mixins-forms.form-validation-error-icon($default-mode-form-validation-error-icon);
   }
 }
 
@@ -118,8 +119,7 @@ $dark-mode-form-button: map-get($dark-mode-form, 'button');
     @include mixins-forms.form-input($dark-mode-form-input);
   }
 
-
-  .form__icon {
+  .form__icon__left {
     @include mixins-forms.form-icon($dark-mode-form-icon);
   }
 }

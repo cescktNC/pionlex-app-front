@@ -15,7 +15,7 @@ import {
   applyDataTableStyles,
   refreshDatatable
 } from './functions';
-import { usersUrl, departmentsUrl, createRecord, editRecord, getRecord, getRecords, deleteRecord } from './API'
+import { usersUrl, departmentsUrl, getRecord, deleteRecord } from './API'
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
 
@@ -28,8 +28,8 @@ let userToast, userDeleteModal, userCreateEditModal, toastBootstrap;
 // Funciones
 // Muestra el listado de usuarios en un datatable
 async function showUsers() {
-  const users = await getRecords(usersUrl);
-  departments = await getRecords(departmentsUrl);
+  const users = await fetchAPI('GET', usersUrl);
+  departments = await fetchAPI('GET', departmentsUrl);
 
   // Si ya existe una instancia del DataTable 'usersTable', se destruye
   if ($.fn.DataTable.isDataTable('#usersTable')) {
@@ -167,7 +167,7 @@ async function deleteUser() {
     userDeleteModal.hide();
     deleteUserButton.classList.remove('d-none');
     deletingUserButton.classList.add('d-none');
-    const users = await getRecords(usersUrl);
+    const users = await fetchAPI('GET', usersUrl);
     refreshDatatable('usersTable', users);
     showToast(response, deleteUserButton, userToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
   }, 2000);
@@ -176,7 +176,7 @@ async function deleteUser() {
   // userDeleteModal.hide();
   // deleteUserButton.classList.remove('d-none');
   // deletingUserButton.classList.add('d-none');
-  // const users = await getRecords(usersUrl);
+  // const users = await fetchAPI('GET', usersUrl);
   // refreshDatatable('usersTable', users);
   // showToast(response, deleteUserButton, userToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
 }
@@ -217,11 +217,11 @@ async function saveUser() {
 
   let response, successMessage, errorMessage;
   if (saveUserButton.dataset.idUser === '') {
-    response = await createRecord(user, usersUrl);
+    response = await fetchAPI('POST', usersUrl, user);
     successMessage = 'Usuario creado correctamente';
     errorMessage = 'No se ha podido crear el usuario';
   } else {
-    response = await editRecord(user, usersUrl);
+    response = await fetchAPI('POST', usersUrl, user);
     successMessage = 'se ha modificado correctamente';
     errorMessage = 'no ha podido ser modificado';
   }
@@ -233,7 +233,7 @@ async function saveUser() {
     userCreateEditModal.hide();
     saveUserButton.classList.remove('d-none');
     savingUserButton.classList.add('d-none');
-    const users = await getRecords(usersUrl);
+    const users = await fetchAPI('GET', usersUrl);
     refreshDatatable('usersTable', users);
     showToast(response, saveUserButton, userToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
   }, 2000);
@@ -242,7 +242,7 @@ async function saveUser() {
   // userCreateEditModal.hide();
   // saveUserButton.classList.remove('d-none');
   // savingUserButton.classList.add('d-none');
-  // const users = await getRecords(usersUrl);
+  // const users = await fetchAPI('GET', usersUrl);
   // refreshDatatable('usersTable', users);
   // showToast(response, saveUserButton, userToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
 

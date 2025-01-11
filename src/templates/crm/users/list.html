@@ -32,7 +32,7 @@
       <div class="modal-body">
         ¿Seguro que quieres eliminar a este usuario?
       </div>
-      <div class="modal-footer form--light--theme">
+      <div class="modal-footer form--default--theme">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button id="deleteUserButton" type="button" class="btn form__button">Eliminar</button>
         <button id="deletingUserButton" class="btn form__button d-none" type="button" disabled>
@@ -52,7 +52,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="userCreateEditForm" method="POST" class="form--light--theme" autocomplete="off" novalidate>
+        <form id="userCreateEditForm" method="POST" class="form--default--theme" autocomplete="off" novalidate>
           <input id="name" type="text" name="name" class="form-control form__input" placeholder="Nombre" required />
           <input id="lastname" type="text" name="lastname" class="form-control form__input" placeholder="Apellidos" required />
           <label for="birthdate" class="form__label mb-1">Fecha de Nacimiento</label>
@@ -82,7 +82,7 @@
         </form>
         <p id="errorAlert"></p>
       </div>
-      <div class="modal-footer form--light--theme">
+      <div class="modal-footer form--default--theme">
         <button id="cancelUserButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button id="saveUserButton" type="button" class="btn form__button">Guardar</button>
         <button id="savingUserButton" class="btn form__button d-none" type="button" disabled>

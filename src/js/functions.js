@@ -67,6 +67,10 @@ export function validateErrors(obj, checkBoxes = {}) {
     errors = {...errors, ...validatePassword(obj)};
   }
 
+  if (("phoneNumber" in obj) && !errors.phoneNumber) {
+    errors = {...errors, ...validatePhoneNumber(obj.phoneNumber)};
+  }
+
   if (Object.keys(checkBoxes).length > 0) {
     errors = {...errors, ...validateCheckBoxes(checkBoxes)};
   }
@@ -89,7 +93,6 @@ export function clearFieldErrors(form, classNameErrors, classNameInputs, inputCl
   spanErrors.forEach( span => span.classList.add(spanClass) );
   
   const inputs = form.querySelectorAll(`${classNameInputs}`);
-  
   inputs.forEach( input => input.classList.add(inputClass) );
 }
 
@@ -103,7 +106,7 @@ export function showErrorForm(form, fieldId, errorMessage, inputClass = 'mb-14',
 
   if (span) {
     span.classList.remove(spanClass);
-    span.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i>${errorMessage}`;
+    span.innerHTML = `<i class="fa-solid fa-circle-exclamation form__validation__error__icon"></i>${errorMessage}`;
   }
 }
 
@@ -168,7 +171,14 @@ function validateCheckBoxes(obj) {
 export function validatePhoneNumber(phoneNumber) {
   // const phoneNumberPattern = /^\+?[0-9]{1,3}?[0-9]{7,15}$/; // Valida números de cualquier pais
   const phoneNumberPattern = /^(?:\+34)?[0-9]{9}$/; // Valida números de españa
-  return phoneNumberPattern.test(phoneNumber);
+
+  if (!phoneNumberPattern.test(phoneNumber)) {
+    return {
+      phoneNumber: errorMessages.phoneNumber.replace(':field', 'Teléfono'),
+    };
+  }
+
+  return {};
 }
 
 // Rellena los inputs
@@ -295,6 +305,34 @@ export function showError(message, containerSelector) {
     container.innerText = '';
     container.classList.remove('errorAlert');
   }, 5000);
+}
+
+// Configurar el atributo max en un input de tipo date a la fecha actual
+export function setMaxDateAttribute() {
+  const inputDate = clientCreateEditForm.querySelector('[data-registrationDate]');
+  const today = new Date().toISOString().split('T')[0];
+  inputDate.setAttribute('max', today);
+}
+
+export function getFormInputs(form, selector) {
+  if (!(form instanceof HTMLFormElement)) {
+    throw new Error("El primer argumento debe ser un elemento de formulario válido.");
+  }
+
+  if (typeof selector !== "string" || selector.trim() === "") {
+    throw new Error("El selector debe ser un string CSS válido.");
+  }
+
+  return form.querySelectorAll(selector);
+}
+
+export function constructFormObject(inputs) {
+  let object = {};
+  inputs.forEach( input => {
+    object = { ...object, ...{ [input.name]: input.value } }
+  });
+
+  return object;
 }
 
 /***************************************************************************/

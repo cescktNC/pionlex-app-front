@@ -9,6 +9,7 @@
 
 .section-content {
   box-shadow: 0 0 2rem .2rem rgba(209,209,209,1);
+  background-color: map-get(colors.$colors, "custom-white");
   padding: 2.5rem;
 
   .add-new-item-button {

@@ -1,32 +1,44 @@
-import { 
-  validateEmptyFields, 
-  validatePhoneNumber, 
-  validateEmail, 
-  populateInputFields, 
-  clearInputFields, 
-  populateSelectOptions, 
-  setSelectOption, 
-  removeSelectedOption, 
-  showError,
+import * as utilityFunctions from './functions';
+import { clientsUrl, statusesUrl, fetchAPI, deleteRecord } from './API'
+import $ from 'jquery';
+import * as bootstrap from 'bootstrap'; // Para instancias de Bootstrap
+
+const {
+  validateErrors,
+  clearFieldErrors,
+  showFieldErrors,
+  toggleElements,
+  populateInputFields,
+  clearInputFields,
+  populateSelectOptions,
+  setSelectOption,
+  removeSelectedOption,
   showToast,
   languageDatatable,
   applyDataTableStyles,
-  refreshDatatable
-} from './functions';
-import { clientsUrl, statusesUrl, createRecord, editRecord, getRecords, deleteRecord } from './API'
-import $ from 'jquery';
-import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
+  refreshDatatable,
+  setMaxDateAttribute,
+  getFormInputs,
+  constructFormObject
+} = utilityFunctions;
 
 // Variables globales
 let statuses;
-let addNewClientButton, deleteClientButton, deletingClientButton, saveClientButton, savingClientButton;
-let clientCreateEditModalLabel, inputName, inputLastname, inputPhoneNumber, inputEmail, inputCity, inputRegistrationDate, inputFields, selectStatus;
-let clientToast, clientDeleteModal, clientCreateEditModal, toastBootstrap;
+let deleteClientButton,
+  deletingClientButton,
+  saveClientButton,
+  savingClientButton,
+  clientCreateEditForm,
+  clientCreateEditModalLabel,
+  clientToast,
+  clientDeleteModal,
+  clientCreateEditModal,
+  toastBootstrap;
 
 // Funciones
 async function showClients() {
-  const clients = await getRecords(clientsUrl);
-  statuses = await getRecords(statusesUrl);
+  const clients = await fetchAPI('GET', clientsUrl);
+  statuses = await fetchAPI('GET', statusesUrl);
 
   // Si ya existe una instancia del DataTable 'clientsTable', se destruye
   if ($.fn.DataTable.isDataTable('#clientsTable')) {
@@ -36,7 +48,7 @@ async function showClients() {
   $('#clientsTable').DataTable({
     data: clients,
     columns: [
-      { 
+      {
         data: null,
         className: 'td td-align-left',
         render: data => `${data.name} ${data.lastname}`
@@ -45,7 +57,7 @@ async function showClients() {
       { data: 'email', className: 'td td-align-center' },
       { data: 'city', className: 'td td-align-center' },
       { data: 'registrationDate', className: 'td td-align-center' },
-      // { 
+      // {
       //   data: 'fecha_alta',
       //   className: 'td td-align-center',
       //   render: data => {
@@ -53,7 +65,7 @@ async function showClients() {
       //     return `${day}/${month}/${year}`;
       //   }
       // },
-      { 
+      {
         data: null,
         className: 'td td-align-center',
         width: '140px',
@@ -149,6 +161,12 @@ async function handleEditClientClick(event) {
 
   clientCreateEditModalLabel.innerText = 'Editar Cliente';
 
+  // Limpieza de errores previos
+  clearFieldErrors(clientCreateEditForm, '.form__validation__error', '[data-input]');
+
+  // Configurar el atributo max del input de tipo date a la fecha actual
+  setMaxDateAttribute();
+
   // Se obtiene la fila del cliente que se quiere editar
   const dataTableClients = $('#clientsTable').DataTable();
   const row = dataTableClients.row($(editButton).closest('tr'));
@@ -157,7 +175,9 @@ async function handleEditClientClick(event) {
   const { name, lastname, phoneNumber, email, city, registrationDate, status } = row.data();
   const valuesInputFields = [name, lastname, phoneNumber, email, city, registrationDate, status];
 
+  const inputFields = getFormInputs(clientCreateEditForm, '[data-input]');
   populateInputFields(inputFields, valuesInputFields);
+
   await showStatuses(status);
 
   const fullName = `${name} ${lastname}`;
@@ -177,8 +197,9 @@ function handleClientEditOrDelete(idClient, fullName, editButton = true) {
 
 // Muestra los diferentes estados en el select de los formulario de crear y editar cliente
 async function showStatuses(statusClient) {
-  // Verifica si el select ya contiene las opciones. Si no tiene opciones rellenar el select. 
+  // Verifica si el select ya contiene las opciones. Si no tiene opciones rellenar el select.
   // Si ya tiene opciones, selecciona la opción correspondiente.
+  const selectStatus = clientCreateEditForm.querySelector('[data-status]');
   if (selectStatus.children.length === 1 && selectStatus.children[0].disabled) {
     populateSelectOptions(selectStatus, statuses, statusClient);
   } else {
@@ -189,12 +210,23 @@ async function showStatuses(statusClient) {
 // Borra los datos del formulario de cliente
 function clearClientForm() {
   clientCreateEditModalLabel.innerText = 'Crear Cliente';
-  clearInputFields(inputFields);
+
+  // Limpieza de los datos de los inputs
+  clearInputFields(getFormInputs(clientCreateEditForm, '[data-input]'));
+
+  // Limpieza de errores previos
+  clearFieldErrors(clientCreateEditForm, '.form__validation__error', '[data-input]');
+
+  // Configurar el atributo max del input de tipo date a la fecha actual
+  setMaxDateAttribute();
+
+  const selectStatus = clientCreateEditForm.querySelector('[data-status]');
   if (selectStatus.children.length === 1 && selectStatus.children[0].disabled) {
     populateSelectOptions(selectStatus, statuses);
   } else {
     removeSelectedOption(selectStatus);
   }
+  
   saveClientButton.dataset.idClient = '';
   saveClientButton.dataset.fullName = '';
 }
@@ -211,7 +243,7 @@ async function deleteClient() {
     clientDeleteModal.hide();
     deleteClientButton.classList.remove('d-none');
     deletingClientButton.classList.add('d-none');
-    const clients = await getRecords(clientsUrl);
+    const clients = await fetchAPI('GET', clientsUrl);
     refreshDatatable('clientsTable', clients);
     showToast(response, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
   }, 2000);
@@ -220,77 +252,72 @@ async function deleteClient() {
   // clientDeleteModal.hide();
   // deleteClientButton.classList.remove('d-none');
   // deletingClientButton.classList.add('d-none');
-  // const clients = await getRecords(clientsUrl);
+  // const clients = await fetchAPI('GET', clientsUrl);
   // refreshDatatable('clientsTable', clients);
   // showToast(response, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
 }
 
 async function saveClient() {
-  const id = saveClientButton.dataset.idClient;
-  const name = inputName.value;
-  const lastname = inputLastname.value;
-  const phoneNumber = inputPhoneNumber.value;
-  const email = inputEmail.value;
-  const city = inputCity.value;
-  const registrationDate = inputRegistrationDate.value;
-  const status = selectStatus.value;
-
-  let client;
-  id === ''
-  ? client = { name, lastname, phoneNumber, email, city, registrationDate, status }
-  : client = { id, name, lastname, phoneNumber, email, city, registrationDate, status };
+  const inputFields = getFormInputs(clientCreateEditForm, '[data-input]');
   
-  if (!validateEmptyFields(client)) {
-    showError('Todos los campos son obligatorios.', 'errorAlert');
+  // Construcción de los datos de cliente
+  let client = constructFormObject(inputFields);
+
+  // Validación del formulario
+  const errors = validateErrors(client);
+
+  // Limpieza de errores previos
+  clearFieldErrors(clientCreateEditForm, '.form__validation__error', '[data-input]');
+
+  // Se muestran los errores en los campos del formulario
+  if (Object.keys(errors).length > 0) {
+    showFieldErrors(clientCreateEditForm, errors);
     return;
   }
 
-  if (!validatePhoneNumber(phoneNumber)) {
-    showError('Teléfono incorrecto.', 'errorAlert');
+  // Gestion de los botones de guardado
+  toggleElements(saveClientButton, savingClientButton);
+
+  const id = saveClientButton.dataset.idClient;
+  if (id !== '') client.id = id;
+
+  try {
+    // Enviar datos a la API
+    const data = await fetchAPI('POST', clientsUrl, client);
+    
+    // Manejo de errores devueltos por la API
+    // if (!data.result) {
+      // if (Object.keys(data.status).length > 0) {
+      //   showFieldErrors(registerForm, data.status);
+      // }
+    //   return;
+    // }
+    
+
+  } catch (error) {
+    console.error('Error al obtener los datos:', error.message);
     return;
+  } finally {
+    toggleElements(savingClientButton, saveClientButton);
   }
 
-  if (!validateEmail(email)) {
-    showError('Email incorrecto.', 'errorAlert');
-    return;
-  }
+  clientCreateEditModal.hide();
 
-  let response, successMessage, errorMessage;
-  if (saveClientButton.dataset.idClient === '') {
-    response = await createRecord(client, clientsUrl);
-    successMessage = 'Cliente creado correctamente';
-    errorMessage = 'No se ha podido crear el cliente';
-  } else {
-    response = await editRecord(client, clientsUrl);
-    successMessage = 'se ha modificado correctamente';
-    errorMessage = 'no ha podido ser modificado';
-  }
+  const clients = await fetchAPI('GET', clientsUrl);
+  refreshDatatable('clientsTable', clients);
 
-  saveClientButton.classList.add('d-none');
-  savingClientButton.classList.remove('d-none');
-  // Esto es temporal para simular el tiempo de respuesta del backend
-  setTimeout( async () => {
-    clientCreateEditModal.hide();
-    saveClientButton.classList.remove('d-none');
-    savingClientButton.classList.add('d-none');
-    const clients = await getRecords(clientsUrl);
-    refreshDatatable('clientsTable', clients);
-    showToast(response, saveClientButton, clientToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
-  }, 2000);
+  clearInputFields(inputFields);
 
-  // Cuando se quite el codigo temporal anterior hay que descomentar estas líneas
-  // clientCreateEditModal.hide();
-  // saveClientButton.classList.remove('d-none');
-  // savingClientButton.classList.add('d-none');
-  // const clients = await getRecords(clientsUrl);
-  // refreshDatatable('clientsTable', clients);
-  // showToast(response, saveClientButton, clientToast, toastBootstrap, 'Guradar', 'se ha modificado correctamente', 'no ha podido ser modificado');
+  saveClientButton.dataset.idClient === ''
+  ? showToast(true, saveClientButton, clientToast, toastBootstrap, 'Guardar', 'Cliente creado correctamente', 'No se ha podido crear el cliente')
+  : showToast(true, saveClientButton, clientToast, toastBootstrap, 'Guardar', 'se ha modificado correctamente', 'no ha podido ser modificado');
 
 }
 
 export async function initClients() {
   // Inicializar variables
-  addNewClientButton = document.querySelector('#addNewClientButton');
+  clientCreateEditForm = document.querySelector('#clientCreateEditForm');
+  const addNewClientButton = document.querySelector('#addNewClientButton');
   deleteClientButton = document.querySelector('#deleteClientButton');
   deletingClientButton = document.querySelector('#deletingClientButton');
   saveClientButton = document.querySelector('#saveClientButton');
@@ -299,14 +326,6 @@ export async function initClients() {
   clientToast = document.querySelector('#clientToast');
 
   clientCreateEditModalLabel = document.querySelector('#clientCreateEditModalLabel');
-  inputName = document.querySelector('#name');
-  inputLastname = document.querySelector('#lastname');
-  inputPhoneNumber = document.querySelector('#phoneNumber');
-  inputEmail = document.querySelector('#email');
-  inputCity = document.querySelector('#city');
-  inputRegistrationDate = document.querySelector('#registrationDate');
-  inputFields = [inputName, inputLastname, inputPhoneNumber, inputEmail, inputCity, inputRegistrationDate];
-  selectStatus = document.querySelector('#status');
 
   // Instanciar componentes de Bootstrap
   clientDeleteModal = new bootstrap.Modal(document.querySelector('#clientDeleteModal'));

@@ -10,6 +10,9 @@ export const userFieldLabels = {
   lastname: 'Apellidos',
   email: 'Email',
   password: 'Contraseña',
+  phoneNumber: 'Teléfono',
+  city: 'Población',
+  registrationDate: 'Fecha de Alta',
 };
 
 export const errorMessages = {
@@ -20,4 +23,5 @@ export const errorMessages = {
   },
   confirmed: 'El campo de confirmación de :field no coincide.',
   policiesAndTerms: 'Tienes que aceptar las Políticas y los Términos.',
+  phoneNumber: 'El formato del :field no es válido.',
 };

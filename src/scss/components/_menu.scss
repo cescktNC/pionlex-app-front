@@ -194,6 +194,13 @@
       position: relative;
       display: flex;
 
+      .form__input {
+        border-right: none;
+        border-radius: .5rem 0 0 .5rem;
+        padding: 0 1rem 0 4rem;
+        margin-bottom: 0;
+      }
+
       .right-rounded-button {
         border-radius: 0 .5rem .5rem 0;
       }

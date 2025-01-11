@@ -6,14 +6,12 @@
     font-size: 10px;
     width: 100%;
     margin: 0 auto;
-    height: 60%;
     line-height: 12px;
     border-radius: 30px;
     font-weight: bold;
-    padding: 8px 15px;
+    padding: 4px 15px;
 
     span {
-      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -65,10 +63,8 @@
 }
 
 #clientCreateEditModal {
-  #errorAlert {
-    height: 37px;
-    margin-top: 17px;
-    margin-bottom: 0;
+  .clientCreateEditModalContent {
+    padding: 2rem;
   }
 }
 
@@ -76,4 +72,10 @@
   strong {
     margin-left: 5px;
   }
+}
+
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: .25rem;
 }

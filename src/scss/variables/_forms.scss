@@ -10,19 +10,19 @@ $forms: (
       ta: center
     ),
     input: (
-      border: .75px solid map-get(colors.$colors, 'light-grey-secondary'),
-      bg: map-get(colors.$colors, 'input-bg'),
       fs: 1.5rem,
       fw: 400,
+      bs: none,
       color: map-get(colors.$colors, 'light-grey-secondary'),
+      border: .75px solid map-get(colors.$colors, 'light-grey-secondary'),
       height: 4rem,
+      bg: map-get(colors.$colors, 'dark-grey-secondary'),
       transition: all .3s,
       placeholder: (
         color: map-get(colors.$colors, 'light-grey-secondary')
       ),
       focus: (
-        bs: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
-        bc: rgba(255, 255, 255, 0.7)
+        bc: map-get(colors.$colors, 'light-grey-primary')
       )
     ),
     validation-error: (
@@ -41,12 +41,14 @@ $forms: (
       )
     ),
     label: (
+      display: flex,
+      ai: center,
       font-size: 1.5rem,
       font-weight: 400,
       color: map-get(colors.$colors, 'light-grey-secondary')
     ),
     button: (
-      bg: map-get(colors.$colors, "start-gradient-primary"),
+      bc: map-get(colors.$colors, "start-gradient-primary"),
       width: 12rem,
       height: 3.5rem,
       font-size: 1.4rem,
@@ -71,59 +73,41 @@ $forms: (
       width: 3rem
     )
   ),
-  light-theme: (
-    input: (
-      outline: 1px solid map-get(colors.$colors, 'light-grey-secondary'),
-      mb: 15px,
-      fs: 14px,
-      fw: 400,
-      transition: all .3s,
-      placeholder: (
-        color: map-get(colors.$colors, 'input-text-color')
-      ),
-      focus: (
-        bs: none,
-        oc: map-get(colors.$colors, "start-gradient-primary")
-      )
-    ),
-    label: (
-      font-size: 13px,
-      color: map-get(colors.$colors, 'input-text-color')
-    ),
-    button: (
-      bg: map-get(colors.$colors, "start-gradient-primary"),
-      font-weight: 600,
-      color: map-get(colors.$colors, "dark-grey-primary"),
-      transition: all .3s,
-      hover: (
-        bc: map-get(colors.$colors, "start-gradient-secondary")
-      )
-    )
-  ),
   default-theme: (
+    title: (
+      fs: 2.5rem,
+      font-weight: 600,
+      color: map-get(colors.$colors, 'dark-grey-secondary'),
+      mt: 0
+    ),
     input: (
       fs: 1.4rem,
-      fw: 600,
+      fw: 500,
+      br: .5rem,
+      bs: none,
+      padding: 0 1rem,
       color: map-get(colors.$colors, 'dark-grey-secondary'),
-      br: .5rem 0 0 .5rem,
-      padding: 0 1rem 0 4rem,
-      mw: 24rem,
+      border: 1px solid map-get(colors.$colors, 'light-grey-secondary'),
+      height: 3.5rem,
       transition: border-color .3s,
       placeholder: (
         color: map-get(colors.$colors, 'light-grey-secondary'),
-        fw: 500
       ),
       focus: (
-        bs: 0 0 0 0.1rem rgba(255, 255, 255, 0.2),
-        bc: #b6babe
+        bc: map-get(colors.$colors, 'dark-grey-primary')
       )
     ),
+    label: (
+      display: block,
+      font-size: 1.3rem,
+      color: map-get(colors.$colors, 'dark-grey-secondary')
+    ),
     button: (
-      bg: map-get(colors.$colors, "start-gradient-primary"),
-      width: 12rem,
+      bc: map-get(colors.$colors, "start-gradient-primary"),
+      width: 15rem,
       height: 3.5rem,
       font-size: 1.4rem,
-      font-weight: bold,
+      font-weight: 700,
       color: map-get(colors.$colors, "dark-grey-secondary"),
       br: .5rem,
       border: none,
@@ -132,19 +116,42 @@ $forms: (
         bc: map-get(colors.$colors, "start-gradient-secondary")
       )
     ),
+    button-cancel: (
+      bc: map-get(colors.$colors, "dark-grey-primary"),
+      color: map-get(colors.$colors, "custom-white"),
+      font-weight: 500,
+      hover: (
+        bc: map-get(colors.$colors, "dark-grey-secondary"),
+      )
+    ),
     icon: (
       position: absolute,
-      left: 1rem,
-      top: 50%, // Se coloca el borde superior del ícono en el medio del contenedor
-      transform: translateY(-50%), // Se mueve el ícono hacia arriba la mitad de su altura para centrarlo verticalmente
-      color: map-get(colors.$colors, "dark-grey-primary"),
+      top: 50%,
+      transform: translateY(-50%),
+      color: map-get(colors.$colors, "dark-grey-secondary"),
     ),
+    icon-left: (
+      left: 1rem,
+    ),
+    icon-right: (
+      right: 1rem,
+    ),
+    validation-error: (
+      display: inline-block,
+      color: map-get(colors.$colors, 'light-red'),
+      fs: 1.4rem,
+      fw: 600,
+      mb: .4rem
+    ),
+    validation-error-icon: (
+      mr: .5rem
+    )
   ),
   dark-theme: (
     input: (
+      color: map-get(colors.$colors, 'light-grey-secondary'),
       border: .75px solid map-get(colors.$colors, 'light-grey-secondary'),
       bg: map-get(colors.$colors, 'input-bg'),
-      color: map-get(colors.$colors, 'light-grey-secondary'),
       placeholder: (
         color: map-get(colors.$colors, 'light-grey-secondary')
       ),
