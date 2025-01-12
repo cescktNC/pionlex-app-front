@@ -1,0 +1,27 @@
+@use '../variables/colors';
+
+.toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  max-width: 35rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem map-get(colors.$colors, "box-shadow");
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+.toastSuccess {
+  background-color: map-get(colors.$colors, "success");
+}
+
+.toastError {
+  background-color: map-get(colors.$colors, "error");
+}
+
+.toast-body {
+  font-weight: 600;
+}
