@@ -11,6 +11,7 @@ const sunIcon = document.querySelector('#sun-icon');
 const moonIcon = document.querySelector('#moon-icon');
 const themeSwitcher = document.querySelector('#theme-switcher');
 const contentPage = document.querySelector('#content-page');
+const footerYear = document.querySelector('[data-footer-year]');
 
 // Eventos
 asidenavMenu.addEventListener('scroll', scroll);
@@ -31,6 +32,10 @@ themeSwitcher.addEventListener('click', () => {
   contentPage.classList.toggle('dark-theme-content-page');
 });
 
+// Año en el footer
+footerYear.textContent = new Date().getFullYear();
+
+// Funciones
 function scroll() {
   asidenavMenu.classList.add('scrolling');
 
