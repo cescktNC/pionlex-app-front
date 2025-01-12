@@ -169,7 +169,7 @@ async function deleteUser() {
     deletingUserButton.classList.add('d-none');
     const users = await fetchAPI('GET', usersUrl);
     refreshDatatable('usersTable', users);
-    showToast(response, deleteUserButton, userToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
+    // showToast(response, deleteUserButton, userToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
   }, 2000);
 
   // Cuando se quite el codigo temporal anterior hay que descomentar estas líneas
@@ -235,7 +235,7 @@ async function saveUser() {
     savingUserButton.classList.add('d-none');
     const users = await fetchAPI('GET', usersUrl);
     refreshDatatable('usersTable', users);
-    showToast(response, saveUserButton, userToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
+    // showToast(response, saveUserButton, userToast, toastBootstrap, 'Guardar', successMessage, errorMessage);
   }, 2000);
 
   // Cuando se quite el codigo temporal anterior hay que descomentar estas líneas

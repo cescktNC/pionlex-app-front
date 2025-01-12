@@ -340,21 +340,19 @@ export function constructFormObject(inputs) {
 /***************************************************************************/
 
 // Se muestra el toast correspondiente a la respuesta del backend
-export function showToast(response, button, toast, toastBootstrap, title, successMessage, errorMessage) {
+export function showToast(isSuccess, toast, toastBootstrap, title, message) {
   const iconToastHeader = toast.querySelector('.toast-header i');
   const titleToastHeader = toast.querySelector('.toast-header strong');
   const toastBody = toast.querySelector('.toast-body');
-  const fullName = button.dataset.fullName;
 
   titleToastHeader.innerText = title;
+  toastBody.innerText = message;
 
-  if (response) {
+  if (isSuccess) {
     iconToastHeader.classList.add('fa-solid', 'fa-check');
-    toastBody.innerText = `${fullName} ${successMessage}.`;
     toast.classList.add('toastSuccess');
   } else {
     iconToastHeader.classList.add('fa-solid', 'fa-triangle-exclamation');
-    toastBody.innerText = `${fullName} ${errorMessage}.`;
     toast.classList.add('toastError');
   }
   toastBootstrap.show();

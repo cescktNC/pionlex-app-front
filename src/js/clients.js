@@ -237,10 +237,11 @@ async function deleteClient() {
   toggleElements(deleteClientButton, deletingClientButton);
 
   const id = deleteClientButton.dataset.idClient;
+  const fullName = deleteClientButton.dataset.fullName;
   if (id === '') {
     clientDeleteModal.hide();
     toggleElements(deletingClientButton, deleteClientButton);
-    showToast(false, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'se ha eliminado correctamente', 'no ha podido ser eliminado');
+    showToast(false, clientToast, toastBootstrap, 'Eliminar', `${fullName} no ha podido ser eliminado. Refresque la página y vuelva a intentarlo.`);
     console.error("No existe un id de usuario en el boton de Eliminar.");
     return;
   }
@@ -255,12 +256,14 @@ async function deleteClient() {
     // if (!data.result) {
       // if (Object.keys(data.status).length > 0) {
       //   showFieldErrors(registerForm, data.status);
+      // } else {
+      //   showToast(false, clientToast, toastBootstrap, 'Eliminar', `${fullName} no ha podido ser eliminado. Vuelva a intentarlo.`);
       // }
     //   return;
     // }
-    
-
   } catch (error) {
+    clientDeleteModal.hide();
+    showToast(false, clientToast, toastBootstrap, 'Eliminar', `${fullName} no ha podido ser eliminado. Vuelva a intentarlo más tarde.`);
     console.error('Error al obtener los datos:', error.message);
     return;
   } finally {
@@ -272,7 +275,7 @@ async function deleteClient() {
   const clients = await fetchAPI('GET', clientsUrl);
   refreshDatatable('clientsTable', clients);
 
-  showToast(true, deleteClientButton, clientToast, toastBootstrap, 'Eliminar', 'Cliente eliminado correctamente', 'No se ha podido eliminar el cliente')
+  showToast(true, clientToast, toastBootstrap, 'Eliminar', `${fullName} se ha eliminado correctamente`);
 }
 
 async function saveClient() {
@@ -307,12 +310,19 @@ async function saveClient() {
     // if (!data.result) {
       // if (Object.keys(data.status).length > 0) {
       //   showFieldErrors(registerForm, data.status);
+      // } else {
+        // id === ''
+        // ? showToast(false, clientToast, toastBootstrap, 'Guardar', 'No se ha podido crear el cliente. Vuelva a intentarlo.')
+        // : showToast(false, clientToast, toastBootstrap, 'Guardar', `${saveClientButton.dataset.fullName} no ha podido ser modificado. Vuelva a intentarlo.`);
+        // console.error('Respuesta fallida del servidor');
       // }
-    //   return;
+      // return;
     // }
-    
-
   } catch (error) {
+    clientCreateEditModal.hide();
+    id === ''
+    ? showToast(false, clientToast, toastBootstrap, 'Guardar', 'No se ha podido crear el cliente. Vuelva a intentarlo más tarde.')
+    : showToast(false, clientToast, toastBootstrap, 'Guardar', `${saveClientButton.dataset.fullName} no ha podido ser modificado. Vuelva a intentarlo más tarde.`);
     console.error('Error al obtener los datos:', error.message);
     return;
   } finally {
@@ -326,10 +336,9 @@ async function saveClient() {
 
   clearInputFields(inputFields);
 
-  saveClientButton.dataset.idClient === ''
-  ? showToast(true, saveClientButton, clientToast, toastBootstrap, 'Guardar', 'Cliente creado correctamente', 'No se ha podido crear el cliente')
-  : showToast(true, saveClientButton, clientToast, toastBootstrap, 'Guardar', 'se ha modificado correctamente', 'no ha podido ser modificado');
-
+  id === ''
+  ? showToast(true, clientToast, toastBootstrap, 'Guardar', 'Cliente creado correctamente')
+  : showToast(true, clientToast, toastBootstrap, 'Guardar', `${saveClientButton.dataset.fullName} se ha modificado correctamente`);
 }
 
 export async function initClients() {
