@@ -22,7 +22,7 @@
               <span class="input-group-text form__input">
                 <i class="bi bi-person-fill form__icon"></i>
               </span>
-              <input type="text" class="form-control form__input mb-14" data-email name="email" placeholder="EMAIL" required />
+              <input type="text" class="form-control form__input mb-14" data-input data-email name="email" placeholder="EMAIL" required autocomplete="off"/>
             </div>
             <span class="form__validation__error d-none" data-error-for="email"></span>
 
@@ -30,7 +30,7 @@
               <span class="input-group-text form__input">
                 <i class="bi bi-key-fill form__icon"></i>
               </span>
-              <input type="password" class="form-control form__input mb-14" data-password name="password" placeholder="CONTRASEÑA" required />
+              <input type="password" class="form-control form__input mb-14" data-input data-password name="password" placeholder="CONTRASEÑA" required autocomplete="off"/>
             </div>
             <span class="form__validation__error d-none" data-error-for="password"></span>
 
@@ -79,32 +79,32 @@
 
             <h1 class="form__title">DESPACHO</h1>
 
-            <input type="text" class="form-control form__input mb-14" data-officeName name="officeName" placeholder="Nombre Despacho" required />
+            <input type="text" class="form-control form__input mb-14" data-input data-officeName name="officeName" placeholder="Nombre Despacho" required autocomplete="off"/>
             <span class="form__validation__error d-none" data-error-for="officeName"></span>
 
-            <input type="text" class="form-control form__input mb-14" data-cif name="cif" placeholder="CIF" required />
+            <input type="text" class="form-control form__input mb-14" data-input data-cif name="cif" placeholder="CIF" required autocomplete="off"/>
             <span class="form__validation__error d-none" data-error-for="cif"><i class="fa-solid fa-circle-exclamation"></i></span>
 
-            <input type="text" class="form-control form__input mb-14" data-invitationCode name="invitationCode" placeholder="Código de invitación" required />
+            <input type="text" class="form-control form__input mb-14" data-input data-invitationCode name="invitationCode" placeholder="Código de invitación" required autocomplete="off"/>
             <span class="form__validation__error d-none" data-error-for="invitationCode"><i class="fa-solid fa-circle-exclamation"></i></span>
 
-            <input type="text" class="form-control form__input mb-14" data-name name="name" placeholder="Nombre" required />
+            <input type="text" class="form-control form__input mb-14" data-input data-name name="name" placeholder="Nombre" required autocomplete="off"/>
             <span class="form__validation__error d-none" data-error-for="name"><i class="fa-solid fa-circle-exclamation"></i></span>
 
-            <input type="text" class="form-control form__input mb-14" data-lastname name="lastname" placeholder="Apellidos" required />
+            <input type="text" class="form-control form__input mb-14" data-input data-lastname name="lastname" placeholder="Apellidos" required autocomplete="off"/>
             <span class="form__validation__error d-none" data-error-for="lastname"><i class="fa-solid fa-circle-exclamation"></i></span>
 
-            <input type="email" class="form-control form__input mb-14" data-email name="email" placeholder="Email" required />
+            <input type="email" class="form-control form__input mb-14" data-input data-email name="email" placeholder="Email" required autocomplete="off"/>
             <span class="form__validation__error d-none" data-error-for="email"><i class="fa-solid fa-circle-exclamation"></i></span>
 
-            <input type="password" class="form-control form__input mb-14" data-password name="password" placeholder="Contraseña" required />
+            <input type="password" class="form-control form__input mb-14" data-input data-password name="password" placeholder="Contraseña" required autocomplete="off"/>
             <span class="form__validation__error d-none" data-error-for="password"><i class="fa-solid fa-circle-exclamation"></i></span>
 
-            <input type="password" class="form-control form__input mb-14" data-passwordConfirmation name="passwordConfirmation" placeholder="Confirmar Contraseña" required />
+            <input type="password" class="form-control form__input mb-14" data-input data-passwordConfirmation name="password_confirmation" placeholder="Confirmar Contraseña" required autocomplete="off"/>
             <span class="form__validation__error d-none" data-error-for="passwordConfirmation"><i class="fa-solid fa-circle-exclamation"></i></span>
 
             <label class="form__label">
-              <input type="checkbox" data-policyTerms class="form-check-input form__checkbox" name="dataPolicy" required />
+              <input type="checkbox" data-policyTerms class="form-check-input form__checkbox" name="policyTerms" required />
               Acepto la
               <a href="/legal-docs/data-policy/1" class="form__button__link" target="_blank" rel="">Política de Privacidad</a>
               y
@@ -131,8 +131,8 @@
     </div>
 
     <div class="register-div">
-        <span>¿Ya tienes usuario?</span>
-        <span class="link" data-loginLink data-container="register-container">LogIn</span>
+      <span>¿Ya tienes usuario?</span>
+      <span class="link" data-loginLink data-container="register-container">LogIn</span>
     </div>
 
   </div>
@@ -155,17 +155,17 @@
             </div>
 
             <div>
-              <input type="email" class="form-control form__input mb-14" data-email name="email" placeholder="Email" required />
+              <input type="email" class="form-control form__input mb-14" data-email name="email" placeholder="Email" required autocomplete="off"/>
               <span class="form__validation__error d-none" data-error-for="email"><i class="fa-solid fa-circle-exclamation"></i></span>
             </div>
 
             <div class="button">
+              <button id="returnButton" data-loginLink data-container="forgot-password-container" type="button" class="form__button">VOLVER</button>
               <button id="continueButton" type="submit" class="form__button">CONTINUAR</button>
               <button id="continuingButton" class="form__button loadingButton d-none" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                 <span role="status">Continuando...</span>
               </button>
-              <button id="returnButton" data-loginLink data-container="forgot-password-container" type="button" class="form__button">VOLVER</button>
             </div>
 
           </form>
@@ -196,10 +196,10 @@
             </div>
 
             <div>
-              <input type="password" class="form-control form__input mb-14" data-password name="password" placeholder="Nueva Contraseña" required />
+              <input type="password" class="form-control form__input mb-14" data-input data-password name="password" placeholder="Nueva Contraseña" required autocomplete="off"/>
               <span class="form__validation__error d-none" data-error-for="password"><i class="fa-solid fa-circle-exclamation"></i></span>
 
-              <input type="password" class="form-control form__input mb-14" data-passwordConfirmation name="passwordConfirmation" placeholder="Confirmar Contraseña" required />
+              <input type="password" class="form-control form__input mb-14" data-input data-passwordConfirmation name="password_confirmation" placeholder="Confirmar Contraseña" required autocomplete="off"/>
               <span class="form__validation__error d-none" data-error-for="passwordConfirmation"><i class="fa-solid fa-circle-exclamation"></i></span>
             </div>
 

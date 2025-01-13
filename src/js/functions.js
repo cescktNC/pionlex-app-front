@@ -200,12 +200,13 @@ export function clearRadioFields(inputRadios) {
 
 // Limpia los valores de los input
 export function clearInputFields(inputFields) {
-  inputFields.forEach( inputField => inputField.value = '' );
-}
-
-// Limpia los valores de los checkbox
-export function clearCheckBoxFields(checkboxFields) {
-  checkboxFields.forEach( checkboxField => checkboxField.checked = false );
+  inputFields.forEach( inputField => {
+    if (inputField.type === 'checkbox') {
+      inputField.checked = false;
+      return;
+    }
+    inputField.value = '' 
+  });
 }
 
 // Rellena un elemento <select> dejando la opción 'optionToSelect' seleccionada
@@ -329,6 +330,10 @@ export function getFormInputs(form, selector) {
 export function constructFormObject(inputs) {
   let object = {};
   inputs.forEach( input => {
+    if (input.type === 'checkbox') {
+      object = { ...object, ...{ [input.name]: input.checked } };
+      return;
+    }
     object = { ...object, ...{ [input.name]: input.value } }
   });
 

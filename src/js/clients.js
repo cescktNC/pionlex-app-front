@@ -1,5 +1,5 @@
 import * as utilityFunctions from './functions';
-import { clientsUrl, statusesUrl, fetchAPI, deleteRecord } from './API'
+import { clientsUrl, statusesUrl, fetchAPI } from './API'
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap'; // Para instancias de Bootstrap
 
@@ -279,6 +279,7 @@ async function deleteClient() {
 }
 
 async function saveClient() {
+  // Captura de los elementos del formulario
   const inputFields = getFormInputs(clientCreateEditForm, '[data-input]');
   
   // Construcción de los datos de cliente

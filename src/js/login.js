@@ -1,25 +1,34 @@
-import {
-  validateErrors,
-  showFieldErrors,
-  showErrorForm,
-  clearFieldErrors,
-  toggleElements,
-  clearInputFields,
-  clearCheckBoxFields,
-  addClassFromId,
-  removeClassFromId } from './functions';
-import { 
-  fetchAPI,
-  loginURL,
-  registerUserURL, 
-  forgotPasswordURL,
-  resetPasswordURL,
-  verifyEmailUser } from './API';
-import * as bootstrap from 'bootstrap'; // Para poder crear instancias de bootstrap
+import * as utilityFunctions from './functions';
+import { fetchAPI, loginURL, registerUserURL, forgotPasswordURL, resetPasswordURL, verifyEmailUser } from './API';
+import * as bootstrap from 'bootstrap'; // Para instancias de Bootstrap
 import router from './routes';
 
-// Variables
-let loginForm, registerForm, forgotPasswordForm, recoverPasswordForm, lostPasswordLink, registerLink, loginLinks, notificationModal, verifyEmail, urlVerifyEmail, tokenPasswordreset, emailPasswordreset;
+const {
+  validateErrors,
+  clearFieldErrors,
+  showFieldErrors,
+  showErrorForm,
+  toggleElements,
+  clearInputFields,
+  addClassFromId,
+  removeClassFromId,
+  getFormInputs,
+  constructFormObject
+} = utilityFunctions;
+
+// Variables globales
+let loginForm, 
+  registerForm, 
+  forgotPasswordForm, 
+  recoverPasswordForm, 
+  lostPasswordLink, 
+  registerLink, 
+  loginLinks, 
+  notificationModal, 
+  verifyEmail, 
+  urlVerifyEmail, 
+  tokenPasswordreset, 
+  emailPasswordreset;
 
 // Funciones
 
@@ -28,14 +37,10 @@ async function loginUser(e) {
   e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
   // Captura de los elementos del formulario
-  const email = loginForm.querySelector('[data-email]').value;
-  const password = loginForm.querySelector('[data-password]').value;
+  const inputFields = getFormInputs(loginForm, '[data-input]');
 
   // Construcción de los datos de usuario
-  const user = {
-    email,
-    password
-  };
+  const user = constructFormObject(inputFields);
 
   // Validación del formulario
   const errors = validateErrors(user);
@@ -97,28 +102,11 @@ async function registerUser(e) {
   e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
   // Captura de los elementos del formulario
-  const officeName = registerForm.querySelector('[data-officeName]');
-  const cif = registerForm.querySelector('[data-cif]');
-  const invitationCode = registerForm.querySelector('[data-invitationCode]');
-  const name = registerForm.querySelector('[data-name]');
-  const lastname = registerForm.querySelector('[data-lastname]');
-  const email = registerForm.querySelector('[data-email]');
-  const password = registerForm.querySelector('[data-password]');
-  const passwordConfirmation = registerForm.querySelector('[data-passwordConfirmation]');
+  const inputFields = getFormInputs(registerForm, '[data-input]');
   const policyTerms = registerForm.querySelector('[data-policyTerms]');
 
   // Construcción de los datos de usuario
-  const user = {
-    officeName: officeName.value,
-    cif: cif.value,
-    invitationCode: invitationCode.value,
-    name: name.value,
-    lastname: lastname.value,
-    email: email.value,
-    password: password.value,
-    password_confirmation: passwordConfirmation.value
-  }
-
+  const user = constructFormObject(inputFields);
   const policyTermsValue = { policyTerms: policyTerms.checked }
   
   // Validación del formulario
@@ -164,10 +152,7 @@ async function registerUser(e) {
   showModal('Verificar Usuario', 'Te hemos enviado un correo electrónico para que confirmes tu usuario.');
 
   // Reiniciar formulario
-  clearForm(
-    [officeName, cif, invitationCode, name, lastname, email, password, passwordConfirmation],
-    [policyTerms]
-  );
+  clearInputFields([...inputFields, policyTerms]);
 
   // Mostrar formulario de login
   showLeftForm('register-container', 'login-container');
@@ -223,7 +208,7 @@ async function forgotPassword(e) {
   showModal('Restablecimiento de contraseña', 'Te hemos enviado un correo electrónico con la solicitud de restablecimiento de contraseña.');
 
   // Reiniciar formulario
-  clearForm([email]);
+  clearInputFields([email]);
 
   // Mostrar formulario de login
   showLeftForm('forgot-password-container', 'login-container');
@@ -232,15 +217,11 @@ async function forgotPassword(e) {
 async function recoverPassword(e) {
   e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
-  // Construcción de los datos de usuario
-  const password = recoverPasswordForm.querySelector('[data-password]');
-  const passwordConfirmation = recoverPasswordForm.querySelector('[data-passwordConfirmation]');
+  // Captura de los elementos del formulario
+  const inputFields = getFormInputs(recoverPasswordForm, '[data-input]');
 
   // Construcción de los datos de usuario
-  const user = { 
-    password: password.value,
-    password_confirmation: passwordConfirmation.value
-  };
+  const user = constructFormObject(inputFields);
 
   // Validación del formulario
   const errors = validateErrors(user);
@@ -283,7 +264,7 @@ async function recoverPassword(e) {
   showModal('Restablecimiento de contraseña', 'Tu contraseña se ha cambiada correctamente.');
 
   // Reiniciar formulario
-  clearForm([password, passwordConfirmation]);
+  clearInputFields(inputFields);
 }
 
 // Muestra un formulario deslizando hacia la derecha
@@ -308,12 +289,6 @@ function toggleForms(deleteFormName, addFormName, deleteAnimation, addAnimation)
       removeClassFromId(addFormName, addAnimation);
     }, 50);
   }, 350);
-}
-
-// Borra todos los campos del formulario
-function clearForm(inputFields, checkboxFields = []) {
-  clearInputFields(inputFields);
-  clearCheckBoxFields(checkboxFields);
 }
 
 // Muestra un mensaje al usuario en un modal
