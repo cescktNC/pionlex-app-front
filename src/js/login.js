@@ -81,6 +81,7 @@ async function loginUser(e) {
     // Guardar token en localStorage
     const token = data.token;
     localStorage.setItem('auth_token', token);
+    localStorage.setItem('user_name', data.user.name);
 
     // Guardar id's de los módulos en Local Storage
     if (data.user.modules) {

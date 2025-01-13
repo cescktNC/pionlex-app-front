@@ -14,31 +14,62 @@ const sunIcon = document.querySelector('#sun-icon');
 const moonIcon = document.querySelector('#moon-icon');
 const themeSwitcher = document.querySelector('#theme-switcher');
 const contentPage = document.querySelector('#content-page');
-const footerYear = document.querySelector('[data-footer-year]');
 const logout = document.querySelector('[data-logout]');
+const userName = document.querySelector('[data-user-name]');
+const userPosition = document.querySelector('[data-user-position]');
+const footerYear = document.querySelector('[data-footer-year]');
 
 // Eventos
-asidenavMenu.addEventListener('scroll', scroll);
-notAccordionItems.forEach( notAccordionItem => {
-  notAccordionItem.addEventListener('click', collapseAccordion);
-});
-accordionItems.forEach( accordionItem => {
-  accordionItem.addEventListener('click', clearSelection);
-});
-sectionItems.forEach( sectionItem => {
-  sectionItem.addEventListener('click', addSelection);
-});
-themeSwitcher.addEventListener('click', () => {
-  page.classList.toggle('form--dark--theme');
-  navbarMenu.classList.toggle('dark-theme');
-  sunIcon.classList.toggle('d-none');
-  moonIcon.classList.toggle('d-none');
-  contentPage.classList.toggle('dark-theme-content-page');
-});
-logout.addEventListener('click', logoutUser);
+if (asidenavMenu) {
+  asidenavMenu.addEventListener('scroll', scroll);
+}
+
+if (notAccordionItems) {
+  notAccordionItems.forEach( notAccordionItem => {
+    notAccordionItem.addEventListener('click', collapseAccordion);
+  });
+}
+
+if (accordionItems) {
+  accordionItems.forEach( accordionItem => {
+    accordionItem.addEventListener('click', clearSelection);
+  });
+}
+
+if (sectionItems) {
+  sectionItems.forEach( sectionItem => {
+    sectionItem.addEventListener('click', addSelection);
+  });
+}
+
+if (themeSwitcher) {
+  themeSwitcher.addEventListener('click', () => {
+    page.classList.toggle('form--dark--theme');
+    navbarMenu.classList.toggle('dark-theme');
+    sunIcon.classList.toggle('d-none');
+    moonIcon.classList.toggle('d-none');
+    contentPage.classList.toggle('dark-theme-content-page');
+  });
+}
+
+if (logout) {
+  logout.addEventListener('click', logoutUser);
+}
+
+// Nombre de usuario
+if (userName) {
+  userName.textContent = localStorage.getItem('user_name') ?? 'Usuario Apellido';
+}
+
+// Posición del usuario
+if (userPosition) {
+  userPosition.textContent = localStorage.getItem('user_position') ?? 'Cargo en empresa';
+}
 
 // Año en el footer
-footerYear.textContent = new Date().getFullYear();
+if (footerYear) {
+  footerYear.textContent = new Date().getFullYear();
+}
 
 // Funciones
 function scroll() {
