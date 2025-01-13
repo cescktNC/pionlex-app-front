@@ -1,5 +1,5 @@
 import Navigo from 'navigo';
-import { getCookie, removeAllScriptsExceptMain, addScripts } from './functions';
+import { removeAllScriptsExceptMain, addScripts } from './functions';
 import { initLogin } from './login';
 import { initClients } from './clients';
 import { initUsers } from './users';

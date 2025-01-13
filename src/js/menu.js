@@ -1,3 +1,6 @@
+import { fetchAPI, logoutURL } from './API';
+import { showToast } from './functions';
+
 // Variables
 let scrollTimeOut;
 const page = document.querySelector('.page');
@@ -12,6 +15,7 @@ const moonIcon = document.querySelector('#moon-icon');
 const themeSwitcher = document.querySelector('#theme-switcher');
 const contentPage = document.querySelector('#content-page');
 const footerYear = document.querySelector('[data-footer-year]');
+const logout = document.querySelector('[data-logout]');
 
 // Eventos
 asidenavMenu.addEventListener('scroll', scroll);
@@ -31,6 +35,7 @@ themeSwitcher.addEventListener('click', () => {
   moonIcon.classList.toggle('d-none');
   contentPage.classList.toggle('dark-theme-content-page');
 });
+logout.addEventListener('click', logoutUser);
 
 // Año en el footer
 footerYear.textContent = new Date().getFullYear();
@@ -78,4 +83,26 @@ function addSelection(e) {
   const clickedElement = e.target.closest('li');
   const button = clickedElement.querySelector('button');
   button.classList.add('active');
+}
+
+async function logoutUser() {
+  const token = localStorage.getItem('auth_token');
+
+  if (token) {
+    try {
+      const data = await fetchAPI('POST', logoutURL, null, { Authorization: `Bearer ${token}` });
+
+      if (data) {
+        showToast(false, 'Cerrar sesión', 'No se ha podido cerrar la sesión. Vuelva a intentarlo.');
+        return;
+      }
+    } catch (error) {
+      showToast(false, 'Cerrar sesión', 'No se ha podido cerrar la sesión. Vuelva a intentarlo más tarde.');
+      console.error('Error al obtener los datos:', error.message);
+      return;
+    }
+  }
+
+  localStorage.clear();
+  window.location.reload();
 }

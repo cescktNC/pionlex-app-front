@@ -1,5 +1,6 @@
 import { passwordMinLength, userFieldLabels, errorMessages } from './constants';
 import $ from 'jquery';
+import * as bootstrap from 'bootstrap'; // Para instancias de Bootstrap
 
 /***************************************************************************/
 /**                             GENERALES                                 **/
@@ -345,7 +346,9 @@ export function constructFormObject(inputs) {
 /***************************************************************************/
 
 // Se muestra el toast correspondiente a la respuesta del backend
-export function showToast(isSuccess, toast, toastBootstrap, title, message) {
+export function showToast(isSuccess, title, message) {
+  const toast = document.querySelector('[data-toast]');
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
   const iconToastHeader = toast.querySelector('.toast-header i');
   const titleToastHeader = toast.querySelector('.toast-header strong');
   const toastBody = toast.querySelector('.toast-body');

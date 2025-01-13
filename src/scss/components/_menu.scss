@@ -399,3 +399,9 @@
   transition: background-color 0.3s, color 0.3s;
   color: map-get(colors.$colors, "dark-grey-primary");
 }
+
+.toast {
+  strong {
+    margin-left: 5px;
+  }
+}

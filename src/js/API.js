@@ -9,6 +9,7 @@ export const loginURL = 'http://localhost:8000/api/v1/login';
 export const registerUserURL = 'http://localhost:8000/api/v1/register';
 export const forgotPasswordURL = 'http://localhost:8000/api/v1/forgot-password';
 export const resetPasswordURL = 'http://localhost:8000/api/v1/reset-password';
+export const logoutURL = 'http://localhost:8000/api/v1/logout';
 
 export const fetchAPI = async (method, url, json = null, headers = {}) => {
   try {
@@ -26,6 +27,12 @@ export const fetchAPI = async (method, url, json = null, headers = {}) => {
     }
   
     const response = await fetch(url, options);
+
+    // Verificar si la respuesta es 'noContent'
+    if (response.status === 204) {
+      return null;
+    }
+
     return await response.json();
   } catch (error) {
     console.error('Error en fetchAPI:', error.message);

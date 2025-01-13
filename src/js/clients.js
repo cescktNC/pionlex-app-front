@@ -30,10 +30,8 @@ let deleteClientButton,
   savingClientButton,
   clientCreateEditForm,
   clientCreateEditModalLabel,
-  clientToast,
   clientDeleteModal,
-  clientCreateEditModal,
-  toastBootstrap;
+  clientCreateEditModal;
 
 // Funciones
 async function showClients() {
@@ -241,7 +239,7 @@ async function deleteClient() {
   if (id === '') {
     clientDeleteModal.hide();
     toggleElements(deletingClientButton, deleteClientButton);
-    showToast(false, clientToast, toastBootstrap, 'Eliminar', `${fullName} no ha podido ser eliminado. Refresque la página y vuelva a intentarlo.`);
+    showToast(false, 'Eliminar', `${fullName} no ha podido ser eliminado. Refresque la página y vuelva a intentarlo.`);
     console.error("No existe un id de usuario en el boton de Eliminar.");
     return;
   }
@@ -257,13 +255,13 @@ async function deleteClient() {
       // if (Object.keys(data.status).length > 0) {
       //   showFieldErrors(registerForm, data.status);
       // } else {
-      //   showToast(false, clientToast, toastBootstrap, 'Eliminar', `${fullName} no ha podido ser eliminado. Vuelva a intentarlo.`);
+      //   showToast(false, 'Eliminar', `${fullName} no ha podido ser eliminado. Vuelva a intentarlo.`);
       // }
     //   return;
     // }
   } catch (error) {
     clientDeleteModal.hide();
-    showToast(false, clientToast, toastBootstrap, 'Eliminar', `${fullName} no ha podido ser eliminado. Vuelva a intentarlo más tarde.`);
+    showToast(false, 'Eliminar', `${fullName} no ha podido ser eliminado. Vuelva a intentarlo más tarde.`);
     console.error('Error al obtener los datos:', error.message);
     return;
   } finally {
@@ -275,7 +273,7 @@ async function deleteClient() {
   const clients = await fetchAPI('GET', clientsUrl);
   refreshDatatable('clientsTable', clients);
 
-  showToast(true, clientToast, toastBootstrap, 'Eliminar', `${fullName} se ha eliminado correctamente`);
+  showToast(true, 'Eliminar', `${fullName} se ha eliminado correctamente`);
 }
 
 async function saveClient() {
@@ -313,8 +311,8 @@ async function saveClient() {
       //   showFieldErrors(registerForm, data.status);
       // } else {
         // id === ''
-        // ? showToast(false, clientToast, toastBootstrap, 'Guardar', 'No se ha podido crear el cliente. Vuelva a intentarlo.')
-        // : showToast(false, clientToast, toastBootstrap, 'Guardar', `${saveClientButton.dataset.fullName} no ha podido ser modificado. Vuelva a intentarlo.`);
+        // ? showToast(false, 'Guardar', 'No se ha podido crear el cliente. Vuelva a intentarlo.')
+        // : showToast(false, 'Guardar', `${saveClientButton.dataset.fullName} no ha podido ser modificado. Vuelva a intentarlo.`);
         // console.error('Respuesta fallida del servidor');
       // }
       // return;
@@ -322,8 +320,8 @@ async function saveClient() {
   } catch (error) {
     clientCreateEditModal.hide();
     id === ''
-    ? showToast(false, clientToast, toastBootstrap, 'Guardar', 'No se ha podido crear el cliente. Vuelva a intentarlo más tarde.')
-    : showToast(false, clientToast, toastBootstrap, 'Guardar', `${saveClientButton.dataset.fullName} no ha podido ser modificado. Vuelva a intentarlo más tarde.`);
+    ? showToast(false, 'Guardar', 'No se ha podido crear el cliente. Vuelva a intentarlo más tarde.')
+    : showToast(false, 'Guardar', `${saveClientButton.dataset.fullName} no ha podido ser modificado. Vuelva a intentarlo más tarde.`);
     console.error('Error al obtener los datos:', error.message);
     return;
   } finally {
@@ -338,8 +336,8 @@ async function saveClient() {
   clearInputFields(inputFields);
 
   id === ''
-  ? showToast(true, clientToast, toastBootstrap, 'Guardar', 'Cliente creado correctamente')
-  : showToast(true, clientToast, toastBootstrap, 'Guardar', `${saveClientButton.dataset.fullName} se ha modificado correctamente`);
+  ? showToast(true, 'Guardar', 'Cliente creado correctamente')
+  : showToast(true, 'Guardar', `${saveClientButton.dataset.fullName} se ha modificado correctamente`);
 }
 
 export async function initClients() {
@@ -351,14 +349,11 @@ export async function initClients() {
   saveClientButton = document.querySelector('#saveClientButton');
   savingClientButton = document.querySelector('#savingClientButton');
 
-  clientToast = document.querySelector('#clientToast');
-
   clientCreateEditModalLabel = document.querySelector('#clientCreateEditModalLabel');
 
   // Instanciar componentes de Bootstrap
   clientDeleteModal = new bootstrap.Modal(document.querySelector('#clientDeleteModal'));
   clientCreateEditModal = new bootstrap.Modal(document.querySelector('#clientCreateEditModal'));
-  toastBootstrap = bootstrap.Toast.getOrCreateInstance(clientToast);
 
   // Añadir eventos
   addNewClientButton.addEventListener('click', clearClientForm);

@@ -146,7 +146,7 @@
               <span>Configuración</span>
             </a>
           </div>
-          <div class="dropdown-profile">
+          <div data-logout class="dropdown-profile">
             <a class="dropdown-profile-item" href="#">
               <i class="fa-solid fa-right-from-bracket"></i>
               <span>Cerrar Sesión</span>
@@ -157,4 +157,17 @@
     </ul>
   </div>
   <div id="content-page" class="content-page"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div data-toast class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i></i>
+      <strong class="me-auto"></strong>
+      <small>Ahora</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body"></div>
+  </div>
 </div>
