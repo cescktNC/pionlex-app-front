@@ -10,6 +10,9 @@ const asidenavMenuModules = document.querySelector('#asidenav-menu-modules');
 const notAccordionItems = asidenavMenuModules.querySelectorAll('.not-accordion-item');
 const accordionItems = asidenavMenuModules.querySelectorAll('.accordion-item');
 const sectionItems = asidenavMenuModules.querySelectorAll('.list-group-item-custom-level-1');
+const closeAllNotifications = document.querySelector('[data-close-all-notifications]');
+const noNotifications = document.querySelector('[data-no-notifications]');
+const closeNotifications = document.querySelectorAll('[data-close-notification]');
 const sunIcon = document.querySelector('#sun-icon');
 const moonIcon = document.querySelector('#moon-icon');
 const themeSwitcher = document.querySelector('#theme-switcher');
@@ -39,6 +42,26 @@ if (accordionItems) {
 if (sectionItems) {
   sectionItems.forEach( sectionItem => {
     sectionItem.addEventListener('click', addSelection);
+  });
+}
+
+if (closeAllNotifications) {
+  closeAllNotifications.addEventListener('click', (e) => {
+    e.stopPropagation(); // Detener la propagación del evento y asi no se cierra el dropdown
+    document.querySelector('.dropdown-notification-body').innerHTML = '';
+    noNotifications.classList.remove('d-none');
+  });
+}
+
+if (closeNotifications) {
+  closeNotifications.forEach( closeNotification => {
+    closeNotification.addEventListener('click', (e) => {
+      e.stopPropagation(); // Detener la propagación del evento y asi no se cierra el dropdown
+      closeNotification.parentElement.remove();
+      if (document.querySelectorAll('.dropdown-notification').length === 0) { // Si no hay más notificaciones
+        noNotifications.classList.remove('d-none');
+      }
+    });
   });
 }
 

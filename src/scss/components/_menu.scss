@@ -289,7 +289,6 @@
         border-color: map-get(colors.$colors, "light-grey-secondary");
         padding: 1rem;
 
-
         .dropdown-row-items {
           display: flex;
           justify-content: space-around;
@@ -314,6 +313,48 @@
 
         .dropdown-icon-item:hover {
           background-color: map-get(colors.$colors, "light-white");
+        }
+
+        .dropdown-notification-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          border-bottom: 1px solid map-get(colors.$colors, "light-grey-secondary");
+
+          .dropdown-notification-header-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+          }
+
+          .dropdown-notification-header-close {
+            color: map-get(colors.$colors, "light-grey-secondary");
+            background: none;
+            border: 1px solid map-get(colors.$colors, "light-grey-secondary");
+            border-radius: 1.4rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: .5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s, border-color 0.3s;
+          }
+
+          .dropdown-notification-header-close:hover {
+            color: map-get(colors.$colors, "dark-grey-secondary");
+            border-color: map-get(colors.$colors, "dark-grey-secondary");
+          }
+        }
+
+        .no-notifications {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 10rem;
+          font-size: 1.4rem;
+          color: map-get(colors.$colors, "light-grey-secondary");
         }
 
         .dropdown-notification {
@@ -382,6 +423,10 @@
             font-size: 1.3rem;
           }
         }
+      }
+
+      .dropdown-menu.dropdown-menu-notification {
+        width: 37rem;
       }
     }
   }

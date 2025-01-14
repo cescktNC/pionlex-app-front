@@ -70,54 +70,63 @@
             4
           </span>
         </div>
-        <div class="dropdown-menu">
-          <div class="dropdown-notification">
-            <a class="dropdown-notification-item" href="#">
-              <img src="/images/slack.png" alt="slack">
-              <div class="dropdown-notification-item-text">
-                <strong><span>Nuevo Mensaje de Jordi</span></strong>
-                <span class="truncate">Hola, ¿puedes revisar el caso 5423? Ha habido un problema y tenemos que solucionarlo lo más rápido posible</span>
-              </div>
-            </a>
-            <button type="button" class="dropdown-notification-item-close" aria-label="Cerrar">
-              <i class="fa-solid fa-xmark"></i>
+        <div class="dropdown-menu dropdown-menu-notification">
+          <div class="dropdown-notification-header">
+            <h5 class="dropdown-notification-header-title">Notificaciones</h5>
+            <button type="button" class="dropdown-notification-header-close" data-close-all-notifications aria-label="Cerrar todas las notificaciones">
+              Eliminar todas
             </button>
           </div>
-          <div class="dropdown-notification">
-            <a class="dropdown-notification-item" href="#">
-              <img src="/images/dropbox.png" alt="dropbox">
-              <div class="dropdown-notification-item-text">
-                <strong><span>Nuevo documento en Dropbox</span></strong>
-                <span class="truncate">Contrato_Alba_Caso5423.pdf compartido por Juan Pérez.</span>
-              </div>
-            </a>
-            <button type="button" class="dropdown-notification-item-close" aria-label="Cerrar">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <div class="dropdown-notification">
-            <a class="dropdown-notification-item" href="#">
-              <img src="/images/google_calendar.png" alt="google calendar">
-              <div class="dropdown-notification-item-text">
-                <strong><span>Nueva cita</span></strong>
-                <span class="truncate">Reunión con el cliente María López, 15:00 en Sala 2.</span>
-              </div>
-            </a>
-            <button type="button" class="dropdown-notification-item-close" aria-label="Cerrar">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <div class="dropdown-notification">
-            <a class="dropdown-notification-item" href="#">
-              <i class="fa-solid fa-clock"></i>
-              <div class="dropdown-notification-item-text">
-                <strong><span>Tarea pendiente</span></strong>
-                <span class="truncate">Revisar el expediente del caso 1234 antes de mañana.</span>
-              </div>
-            </a>
-            <button type="button" class="dropdown-notification-item-close" aria-label="Cerrar">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
+          <span data-no-notifications class="no-notifications d-none">No hay notificaciones</span>
+          <div class="dropdown-notification-body">
+            <div class="dropdown-notification">
+              <a class="dropdown-notification-item" href="#">
+                <img src="/images/slack.png" alt="slack">
+                <div class="dropdown-notification-item-text">
+                  <strong><span>Nuevo Mensaje de Jordi</span></strong>
+                  <span class="truncate">Hola, ¿puedes revisar el caso 5423? Ha habido un problema y tenemos que solucionarlo lo más rápido posible</span>
+                </div>
+              </a>
+              <button type="button" class="dropdown-notification-item-close" data-close-notification aria-label="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div class="dropdown-notification">
+              <a class="dropdown-notification-item" href="#">
+                <img src="/images/dropbox.png" alt="dropbox">
+                <div class="dropdown-notification-item-text">
+                  <strong><span>Nuevo documento en Dropbox</span></strong>
+                  <span class="truncate">Contrato_Alba_Caso5423.pdf compartido por Juan Pérez.</span>
+                </div>
+              </a>
+              <button type="button" class="dropdown-notification-item-close" data-close-notification aria-label="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div class="dropdown-notification">
+              <a class="dropdown-notification-item" href="#">
+                <img src="/images/google_calendar.png" alt="google calendar">
+                <div class="dropdown-notification-item-text">
+                  <strong><span>Nueva cita</span></strong>
+                  <span class="truncate">Reunión con el cliente María López, 15:00 en Sala 2.</span>
+                </div>
+              </a>
+              <button type="button" class="dropdown-notification-item-close" data-close-notification aria-label="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div class="dropdown-notification">
+              <a class="dropdown-notification-item" href="#">
+                <i class="fa-solid fa-clock"></i>
+                <div class="dropdown-notification-item-text">
+                  <strong><span>Tarea pendiente</span></strong>
+                  <span class="truncate">Revisar el expediente del caso 1234 antes de mañana.</span>
+                </div>
+              </a>
+              <button type="button" class="dropdown-notification-item-close" data-close-notification aria-label="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
           </div>
         </div>
       </li>
